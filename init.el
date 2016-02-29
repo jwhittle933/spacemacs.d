@@ -415,7 +415,7 @@ layers configuration. You are free to put any user code."
    deft-use-filename-as-title nil
    deft-use-filter-string-for-filename t
    deft-directory "~/Dropbox (Substantial)/Notes"
-   deft-auto-save-interval 5.0
+   deft-auto-save-interval 2.0
    org-agenda-files '("~/Dropbox (Substantial)/Notes"))
 
   (spacemacs/set-leader-keys "SPC" 'avy-goto-char-timer)
