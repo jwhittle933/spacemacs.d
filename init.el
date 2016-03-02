@@ -390,6 +390,8 @@ layers configuration. You are free to put any user code."
    magit-push-always-verify nil
    magit-popup-show-common-commands nil
    magit-auto-revert-mode t
+   magit-revert-buffers 1
+   magit-commit-show-diff nil
 
    ;; Shell-script mode
    sh-basic-offset 2
