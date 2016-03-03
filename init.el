@@ -283,6 +283,21 @@ user code here.  The exception is org related code, which should be placed in
 `dotspacemacs/user-config'."
   ;; flycheck eslint
   (with-eval-after-load 'flycheck
+    (flycheck-define-checker elixir-dialyzer
+      "Erlang syntax checker based on dialyzer."
+      :command ("mix" "dialyzer")
+      :error-patterns
+      ((error line-start
+              (file-name)
+              ":"
+              line
+              ":"
+              (message)
+              line-end))
+      :modes elixir-mode)
+
+    (add-to-list 'flycheck-checkers 'elixir-dialyzer t)
+
     (setq flycheck-disabled-checkers
                   (append flycheck-disabled-checkers
                           '(javascript-jshint)))
@@ -463,6 +478,10 @@ layers configuration. You are free to put any user code."
   ;; Enable midnight-mode to clean old buffers every day
   '(midnight-mode t nil (midnight))
 
+  (add-hook 'elixir-mode-hook (lambda ()
+                                (setq default-directory
+                                      (locate-dominating-file default-directory "mix.exs"))
+                                (flycheck-mode)))
   (add-hook 'js-mode-hook 'eslint-set-closest-executable)
 
   ;; load private settings
