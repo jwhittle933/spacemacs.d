@@ -32,7 +32,8 @@ values."
      spacemacs-helm
      emacs-lisp
      markdown
-     syntax-checking
+     (syntax-checking :variables
+                      syntax-checking-enable-tooltips nil)
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t)
      erlang
@@ -298,6 +299,7 @@ user code here.  The exception is org related code, which should be placed in
 
     (add-to-list 'flycheck-checkers 'elixir-dialyzer t)
 
+    (setq flycheck-display-errors-delay 0.5)
     (setq flycheck-disabled-checkers
                   (append flycheck-disabled-checkers
                           '(javascript-jshint)))
