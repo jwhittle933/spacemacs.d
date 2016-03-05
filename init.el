@@ -79,7 +79,6 @@ values."
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages
    '(
-     multiple-cursors
      dtrt-indent
      company-flx
      graphviz-dot-mode
