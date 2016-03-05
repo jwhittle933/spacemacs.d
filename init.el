@@ -471,8 +471,8 @@ layers configuration. You are free to put any user code."
   ;; Magit
   ;; Use C-n/C-p to navigate sections
   (with-eval-after-load 'magit
-    (evil-define-key 'motion magit-mode-map (kbd "C-n") 'magit-section-forward-sibling)
-    (evil-define-key 'motion magit-mode-map (kbd "C-p") 'magit-section-backward-sibling))
+    (evil-define-key 'normal magit-mode-map (kbd "C-n") 'magit-section-forward-sibling)
+    (evil-define-key 'normal magit-mode-map (kbd "C-p") 'magit-section-backward-sibling))
 
   ;; Start in insert mode
   (add-hook 'git-commit-mode-hook 'evil-insert-state)
