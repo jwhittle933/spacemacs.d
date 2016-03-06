@@ -364,6 +364,12 @@ layers configuration. You are free to put any user code."
   (add-hook 'prog-mode-hook 'turn-on-evil-mc-mode)
   (add-hook 'text-mode-hook 'turn-on-evil-mc-mode)
 
+  ;; Move text up and down in visual mode with J/K
+  (define-key evil-visual-state-map "J"
+    (concat ":m '>+1" (kbd "RET") "gv=gv"))
+  (define-key evil-visual-state-map "K"
+    (concat ":m '<-2" (kbd "RET") "gv=gv"))
+
   (spacemacs|do-after-display-system-init
    (setq powerline-default-separator 'alternate))
 
