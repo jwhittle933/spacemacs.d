@@ -511,6 +511,7 @@ layers configuration. You are free to put any user code."
           (setq flycheck-javascript-eslint-executable eslint-executable))
       (if (string= dir "/") nil
         (eslint-set-closest-executable (expand-file-name ".." dir))))))
+
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-faces
