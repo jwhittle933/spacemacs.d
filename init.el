@@ -41,7 +41,8 @@ values."
      git
      dash
      html
-     org
+     (org :variables
+          org-enable-github-support t)
      colors
      osx
      ;; vinegar
