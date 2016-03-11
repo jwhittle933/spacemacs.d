@@ -499,6 +499,19 @@ layers configuration. You are free to put any user code."
                                 (flycheck-mode)))
   (add-hook 'js-mode-hook 'eslint-set-closest-executable)
 
+  ;; Display alchemist buffers always at the right side
+  ;; Just change (side . right) with the position you would like 'bottom, 'top, 'right or 'left
+  ;; Source: http://www.lunaryorn.com/2015/04/29/the-power-of-display-buffer-alist.html
+  (add-to-list 'display-buffer-alist
+               `(,(rx bos (or "*alchemist test report*"
+                              "*alchemist mix*"
+                              "*alchemist help*"))
+                 (display-buffer-reuse-window
+                  display-buffer-in-side-window)
+                 (reusable-frames . visible)
+                 (side . bottom)
+                 (window-width . 0.5)))
+
   ;; load private settings
   (when (file-exists-p "~/.emacs-private.el")
     (load-file "~/.emacs-private.el"))
