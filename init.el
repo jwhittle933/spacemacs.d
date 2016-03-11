@@ -512,6 +512,14 @@ layers configuration. You are free to put any user code."
                  (side . bottom)
                  (window-width . 0.5)))
 
+  (add-to-list 'display-buffer-alist
+               `(,(rx bos "*magit:")
+                 (display-buffer-reuse-window
+                  display-buffer-in-side-window)
+                 (reusable-frames . visible)
+                 (side . right)
+                 (window-width . 0.5)))
+
   ;; load private settings
   (when (file-exists-p "~/.emacs-private.el")
     (load-file "~/.emacs-private.el"))
