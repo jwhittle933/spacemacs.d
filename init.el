@@ -80,6 +80,7 @@ values."
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages
    '(
+     shackle
      dtrt-indent
      company-flx
      graphviz-dot-mode
@@ -505,8 +506,10 @@ layers configuration. You are free to put any user code."
         popwin:special-display-config)
   (push '("*alchemist help*" :position bottom :noselect t :dedicated t)
         popwin:special-display-config)
-  (push '(magit-status-mode :position right :width 90 :dedicated t)
-        popwin:special-display-config)
+
+  (setq shackle-rules '(
+                        (magit-status-mode :align right :size 90)))
+  (shackle-mode)
 
   ;; load private settings
   (when (file-exists-p "~/.emacs-private.el")
