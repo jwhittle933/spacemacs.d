@@ -500,11 +500,11 @@ layers configuration. You are free to put any user code."
                                 (flycheck-mode)))
   (add-hook 'js-mode-hook 'eslint-set-closest-executable)
 
-  (push '("*alchemist test report*" :position bottom :noselect t :dedicated t)
+  (push '("*alchemist test report*" :position bottom :noselect t :dedicated t :stick t)
         popwin:special-display-config)
-  (push '("*alchemist mix*" :position bottom :noselect t :dedicated t)
+  (push '("*alchemist mix*" :position bottom :noselect t :dedicated t :stick t)
         popwin:special-display-config)
-  (push '("*alchemist help*" :position bottom :noselect t :dedicated t)
+  (push '("*alchemist help*" :position bottom :noselect t :dedicated t :stick t)
         popwin:special-display-config)
 
   (setq shackle-rules '(
