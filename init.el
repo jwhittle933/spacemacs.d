@@ -513,10 +513,69 @@ layers configuration. You are free to put any user code."
                         (magit-status-mode :align right :size 90)))
   (shackle-mode)
 
+  (company-complete-cycle-enable)
+
   ;; load private settings
   (when (file-exists-p "~/.emacs-private.el")
     (load-file "~/.emacs-private.el"))
   )
+
+(defun company-complete-cycle-enable ()
+  "Enables TAB and S-tab to cycle completions without requiring
+    return to confirm"
+  (with-eval-after-load 'company
+    (define-key company-active-map [tab] 'company-complete-cycle-next)
+    (define-key company-active-map (kbd "TAB") 'company-complete-cycle-next)
+    (define-key company-active-map (kbd "<S-tab>") 'company-complete-cycle-previous)
+    (define-key company-active-map (kbd "RET") nil)
+    (define-key company-active-map (kbd "<return>") nil)
+
+    (put 'company-complete-cycle-next 'company-keep t)
+    (put 'company-complete-cycle-previous 'company-keep t)
+    (ad-activate 'company--create-lines)
+    (ad-activate 'company-pseudo-tooltip-frontend)
+    (add-to-list 'company-transformers 'company-add-no-selection-placeholder t)))
+
+(defvar company-no-selection-placeholder "**company-no-selection**")
+(defvar company-before-complete-point nil)
+
+(defun company-complete-cycle-next (&optional arg)
+  (interactive "p")
+  (company-select-next arg)
+  (company-complete-selection-and-stay))
+
+(defun company-complete-cycle-previous (&optional arg)
+  (interactive "p")
+  (company-select-previous arg)
+  (company-complete-selection-and-stay))
+
+(defun company-complete-selection-and-stay ()
+  (when (company-manual-begin)
+    (let ((result (nth company-selection company-candidates)))
+      (when company-before-complete-point
+        (delete-region company-before-complete-point (point)))
+      (setq company-before-complete-point (point))
+      (unless (eq result company-no-selection-placeholder)
+        (company--insert-candidate result))
+      (company-call-frontends 'update)
+      (company-call-frontends 'post-command))))
+
+(defadvice company--create-lines (after remove-no-selection ())
+  "Remove the company no selection placeholder"
+  (let ((first (car ad-return-value)))
+    (when (and first
+               (equal company-no-selection-placeholder
+                      (string-trim (substring-no-properties first))))
+      (setq ad-return-value (cdr ad-return-value)))))
+
+(defadvice company-pseudo-tooltip-frontend (before reset-before-complete-point (command))
+  (when (equal command 'hide)
+    (setq company-before-complete-point nil)))
+
+(defun company-add-no-selection-placeholder (candidates)
+  (if (> (length candidates) 1)
+      (push company-no-selection-placeholder candidates)
+    candidates))
 
 (defun eslint-set-closest-executable (&optional dir)
   (interactive)
