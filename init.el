@@ -537,11 +537,15 @@ layers configuration. You are free to put any user code."
     (add-to-list 'company-transformers 'company-add-no-selection-placeholder t)))
 
 (defvar company-no-selection-placeholder "**company-no-selection**")
+(defvar company-previous-prefix nil)
 (defvar company-before-complete-point nil)
 
 (defun company-complete-cycle-frontend (command)
-  (when (eq command 'show)
-    (setq company-before-complete-point nil)))
+  (when (or (eq command 'show)
+            (not (equal company-prefix company-previous-prefix)))
+    (setq company-selection 0
+          company-previous-prefix company-prefix
+          company-before-complete-point nil)))
 
 (defun company-complete-cycle-next (&optional arg)
   (interactive "p")
@@ -575,7 +579,7 @@ layers configuration. You are free to put any user code."
       (setq ad-return-value (cdr ad-return-value)))))
 
 (defun company-add-no-selection-placeholder (candidates)
-  (if (> (length candidates) 1)
+  (if (cdr candidates)
       (push company-no-selection-placeholder candidates)
     candidates))
 
