@@ -533,11 +533,15 @@ layers configuration. You are free to put any user code."
     (put 'company-complete-cycle-next 'company-keep t)
     (put 'company-complete-cycle-previous 'company-keep t)
     (ad-activate 'company--create-lines)
-    (ad-activate 'company-pseudo-tooltip-frontend)
+    (add-to-list 'company-frontends 'company-complete-cycle-frontend)
     (add-to-list 'company-transformers 'company-add-no-selection-placeholder t)))
 
 (defvar company-no-selection-placeholder "**company-no-selection**")
 (defvar company-before-complete-point nil)
+
+(defun company-complete-cycle-frontend (command)
+  (when (eq command 'show)
+    (setq company-before-complete-point nil)))
 
 (defun company-complete-cycle-next (&optional arg)
   (interactive "p")
@@ -550,7 +554,7 @@ layers configuration. You are free to put any user code."
   (company-complete-selection-and-stay))
 
 (defun company-complete-selection-and-stay ()
-  (if (> (length company-candidates) 1)
+  (if (cdr company-candidates)
       (when (company-manual-begin)
         (let ((result (nth company-selection company-candidates)))
           (when company-before-complete-point
@@ -569,11 +573,6 @@ layers configuration. You are free to put any user code."
                (equal company-no-selection-placeholder
                       (string-trim (substring-no-properties first))))
       (setq ad-return-value (cdr ad-return-value)))))
-
-(defadvice company-pseudo-tooltip-frontend
-    (before reset-before-complete-point (command))
-  (when (equal command 'hide)
-    (setq company-before-complete-point nil)))
 
 (defun company-add-no-selection-placeholder (candidates)
   (if (> (length candidates) 1)
