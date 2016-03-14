@@ -542,7 +542,8 @@ layers configuration. You are free to put any user code."
 
 (defun company-complete-cycle-frontend (command)
   (when (or (eq command 'show)
-            (not (equal company-prefix company-previous-prefix)))
+            (and (eq command 'update)
+                 (not (equal company-prefix company-previous-prefix))))
     (setq company-selection 0
           company-previous-prefix company-prefix
           company-before-complete-point nil)))
