@@ -550,15 +550,17 @@ layers configuration. You are free to put any user code."
   (company-complete-selection-and-stay))
 
 (defun company-complete-selection-and-stay ()
-  (when (company-manual-begin)
-    (let ((result (nth company-selection company-candidates)))
-      (when company-before-complete-point
-        (delete-region company-before-complete-point (point)))
-      (setq company-before-complete-point (point))
-      (unless (eq result company-no-selection-placeholder)
-        (company--insert-candidate result))
-      (company-call-frontends 'update)
-      (company-call-frontends 'post-command))))
+  (if (> (length company-candidates) 1)
+      (when (company-manual-begin)
+        (let ((result (nth company-selection company-candidates)))
+          (when company-before-complete-point
+            (delete-region company-before-complete-point (point)))
+          (setq company-before-complete-point (point))
+          (unless (eq result company-no-selection-placeholder)
+            (company--insert-candidate result))
+          (company-call-frontends 'update)
+          (company-call-frontends 'post-command)))
+    (company-complete-selection)))
 
 (defadvice company--create-lines (after remove-no-selection ())
   "Remove the company no selection placeholder"
@@ -568,7 +570,8 @@ layers configuration. You are free to put any user code."
                       (string-trim (substring-no-properties first))))
       (setq ad-return-value (cdr ad-return-value)))))
 
-(defadvice company-pseudo-tooltip-frontend (before reset-before-complete-point (command))
+(defadvice company-pseudo-tooltip-frontend
+    (before reset-before-complete-point (command))
   (when (equal command 'hide)
     (setq company-before-complete-point nil)))
 
