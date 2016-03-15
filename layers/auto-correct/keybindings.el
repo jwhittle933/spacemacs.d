@@ -1,1 +1,1 @@
-(define-key ctl-x-map "\C-i" 'autocorrect/ispell-word-then-abbrev)
+(define-key ctl-x-map (kbd "<C-i>") 'autocorrect/ispell-word-then-abbrev)
