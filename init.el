@@ -396,7 +396,8 @@ layers configuration. You are free to put any user code."
     (define-key org-mode-map (kbd "M-H") 'org-shiftmetaleft)
     (define-key org-mode-map (kbd "M-J") 'org-shiftmetadown)
     (define-key org-mode-map (kbd "M-K") 'org-shiftmetaup)
-    (define-key org-mode-map (kbd "M-L") 'org-shiftmetaright))
+    (define-key org-mode-map (kbd "M-L") 'org-shiftmetaright)
+    (org-keys))
 
   (setq
    ;; Use bash because it's faster
@@ -519,6 +520,23 @@ layers configuration. You are free to put any user code."
   (when (file-exists-p "~/.emacs-private.el")
     (load-file "~/.emacs-private.el"))
   )
+
+(defun org-keys ()
+  (interactive)
+  ;; Make ~SPC ,~ work, reference:
+  ;; http://stackoverflow.com/questions/24169333/how-can-i-emphasize-or-verbatim-quote-a-comma-in-org-mode
+  (setcar (nthcdr 2 org-emphasis-regexp-components) " \t\n")
+  (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+
+  (setq org-emphasis-alist '(("*" bold)
+                                   ("/" italic)
+                                   ("_" underline)
+                                   ("=" org-verbatim verbatim)
+                                   ("~" org-kbd)
+                                   ("+"
+                                    (:strike-through t))))
+
+  (setq org-hide-emphasis-markers t))
 
 (defun company-complete-cycle-enable ()
   "Enables TAB and S-tab to cycle completions without requiring
