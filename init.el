@@ -354,7 +354,7 @@ user code here.  The exception is org related code, which should be placed in
     (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
 
   ;; Monkey patch to fix indentation for attributes in jsx
-  (load-file "~/.spacemacs.d/sgml-mode-patch.el")
+  (load-file "~/.spacemacs.d/lisp/sgml-mode-patch.el")
   (require 'sgml-mode)
 
   ;; RCIRC
