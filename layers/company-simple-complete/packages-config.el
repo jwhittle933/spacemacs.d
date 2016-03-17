@@ -1,6 +1,6 @@
 (defvar company-simple-complete--no-selection "**company-no-selection**")
-(defvar company-simple-complete--previous-prefix nil)
-(defvar company-simple-complete--before-complete-point nil)
+(defvar-local company-simple-complete--previous-prefix nil)
+(defvar-local company-simple-complete--before-complete-point nil)
 
 (defun company-simple-complete/post-init-company ()
   (with-eval-after-load 'company
