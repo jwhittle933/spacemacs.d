@@ -73,6 +73,7 @@ values."
      ;; Personal layers
      auto-correct
      frame-geometry
+     company-simple-complete
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -514,8 +515,6 @@ layers configuration. You are free to put any user code."
                         (magit-status-mode :align right :size 90)))
   (shackle-mode)
 
-  (company-complete-cycle-enable)
-
   ;; load private settings
   (when (file-exists-p "~/.emacs-private.el")
     (load-file "~/.emacs-private.el"))
@@ -537,70 +536,6 @@ layers configuration. You are free to put any user code."
                                     (:strike-through t))))
 
   (setq org-hide-emphasis-markers t))
-
-(defun company-complete-cycle-enable ()
-  "Enables TAB and S-tab to cycle completions without requiring
-    return to confirm"
-  (with-eval-after-load 'company
-    (define-key company-active-map [tab] 'company-complete-cycle-next)
-    (define-key company-active-map (kbd "TAB") 'company-complete-cycle-next)
-    (define-key company-active-map (kbd "<S-tab>") 'company-complete-cycle-previous)
-    (define-key company-active-map (kbd "RET") nil)
-    (define-key company-active-map (kbd "<return>") nil)
-
-    (put 'company-complete-cycle-next 'company-keep t)
-    (put 'company-complete-cycle-previous 'company-keep t)
-    (ad-activate 'company--create-lines)
-    (add-to-list 'company-frontends 'company-complete-cycle-frontend)
-    (add-to-list 'company-transformers 'company-add-no-selection-placeholder t)))
-
-(defvar company-no-selection-placeholder "**company-no-selection**")
-(defvar company-previous-prefix nil)
-(defvar company-before-complete-point nil)
-
-(defun company-complete-cycle-frontend (command)
-  (when (or (eq command 'show)
-            (and (eq command 'update)
-                 (not (equal company-prefix company-previous-prefix))))
-    (setq company-selection 0
-          company-previous-prefix company-prefix
-          company-before-complete-point nil)))
-
-(defun company-complete-cycle-next (&optional arg)
-  (interactive "p")
-  (company-select-next arg)
-  (company-complete-selection-and-stay))
-
-(defun company-complete-cycle-previous (&optional arg)
-  (interactive "p")
-  (company-select-previous arg)
-  (company-complete-selection-and-stay))
-
-(defun company-complete-selection-and-stay ()
-  (if (cdr company-candidates)
-      (when (company-manual-begin)
-        (let ((result (nth company-selection company-candidates)))
-          (when company-before-complete-point
-            (delete-region company-before-complete-point (point)))
-          (setq company-before-complete-point (point))
-          (unless (eq result company-no-selection-placeholder)
-            (company--insert-candidate result))
-          (company-call-frontends 'update)
-          (company-call-frontends 'post-command)))
-    (company-complete-selection)))
-
-(defadvice company--create-lines (after remove-no-selection ())
-  "Remove the company no selection placeholder"
-  (let ((first (car ad-return-value)))
-    (when (and first
-               (equal company-no-selection-placeholder
-                      (string-trim (substring-no-properties first))))
-      (setq ad-return-value (cdr ad-return-value)))))
-
-(defun company-add-no-selection-placeholder (candidates)
-  (if (cdr candidates)
-      (push company-no-selection-placeholder candidates)
-    candidates))
 
 (defun eslint-set-closest-executable (&optional dir)
   (interactive)
