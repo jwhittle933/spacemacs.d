@@ -331,8 +331,8 @@ user code here.  The exception is org related code, which should be placed in
 
   ;; Company
   ;; Fuzzy completion
-  (with-eval-after-load 'company
-    (company-flx-mode +1))
+  ;; (with-eval-after-load 'company
+  ;;   (company-flx-mode +1))
   ;; Speed up autocomplete popup
   (setq company-idle-delay 0.1)
   (setq company-backends-js2-mode '((company-tern :with company-dabbrev)
