@@ -1,4 +1,3 @@
-(defvar company-simple-complete--no-selection "**company-no-selection**")
 (defvar-local company-simple-complete--previous-prefix nil)
 (defvar-local company-simple-complete--before-complete-point nil)
 
@@ -12,6 +11,7 @@
 
     (put 'company-simple-complete/next 'company-keep t)
     (put 'company-simple-complete/previous 'company-keep t)
-    (ad-activate 'company--create-lines)
-    (add-to-list 'company-frontends 'company-simple-complete//frontend)
-    (add-to-list 'company-transformers 'company-simple-complete//add-no-selection t)))
+    (ad-activate 'company-set-selection)
+    (ad-activate 'company-tooltip--simple-update-offset)
+    (ad-activate 'company-tooltip--lines-update-offset)
+    (add-to-list 'company-frontends 'company-simple-complete//frontend)))

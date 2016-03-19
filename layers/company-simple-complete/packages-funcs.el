@@ -2,7 +2,7 @@
   (when (or (eq command 'show)
             (and (eq command 'update)
                  (not (equal company-prefix company-simple-complete--previous-prefix))))
-    (setq company-selection 0
+    (setq company-selection -1
           company-simple-complete--previous-prefix company-prefix
           company-simple-complete--before-complete-point nil)))
 
@@ -19,25 +19,33 @@
 (defun company-simple-complete//complete-selection-and-stay ()
   (if (cdr company-candidates)
       (when (company-manual-begin)
-        (let ((result (nth company-selection company-candidates)))
-          (when company-simple-complete--before-complete-point
-            (delete-region company-simple-complete--before-complete-point (point)))
-          (setq company-simple-complete--before-complete-point (point))
-          (unless (eq result company-simple-complete--no-selection)
-            (company--insert-candidate result))
-          (company-call-frontends 'update)
-          (company-call-frontends 'post-command)))
+        (when company-simple-complete--before-complete-point
+          (delete-region company-simple-complete--before-complete-point (point)))
+        (setq company-simple-complete--before-complete-point (point))
+        (unless (eq company-selection -1)
+          (company--insert-candidate (nth company-selection company-candidates)))
+        (company-call-frontends 'update)
+        (company-call-frontends 'post-command))
     (company-complete-selection)))
 
-(defadvice company--create-lines (after remove-no-selection ())
-  "Remove the company no selection placeholder"
-  (let ((first (car ad-return-value)))
-    (when (and first
-               (equal company-simple-complete--no-selection
-                      (string-trim (substring-no-properties first))))
-      (setq ad-return-value (cdr ad-return-value)))))
+(defadvice company-set-selection (around allow-no-selection (selection &optional force-update))
+  "Allow selection to be -1"
+  (setq selection
+        ;; TODO deal w/ wrap-around
+        (if company-selection-wrap-around
+            (mod selection company-candidates-length)
+          (max -1 (min (1- company-candidates-length) selection))))
+  (when (or force-update (not (equal selection company-selection)))
+    (setq company-selection selection
+          company-selection-changed t)
+    (company-call-frontends 'update)))
 
-(defun company-simple-complete//add-no-selection (candidates)
-  (if (cdr candidates)
-      (push company-simple-complete--no-selection candidates)
-    candidates))
+(defadvice company-tooltip--lines-update-offset (before allow-no-selection (selection _num-lines _limit))
+  "Allow selection to be -1"
+  (when (eq selection -1)
+    (ad-set-arg 0 0)))
+
+(defadvice company-tooltip--simple-update-offset (before allow-no-selection (selection _num-lines limit))
+  "Allow selection to be -1"
+  (when (eq selection -1)
+    (ad-set-arg 0 0)))
