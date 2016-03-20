@@ -21,7 +21,7 @@ values."
    '(
      better-defaults
      spacemacs-layouts
-     spacemacs-helm
+     spacemacs-ivy
      emacs-lisp
      markdown
      (syntax-checking :variables
@@ -282,6 +282,11 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost any
 user code here.  The exception is org related code, which should be placed in
 `dotspacemacs/user-config'."
+  ;; ivy
+  ;; Use fuzzy finder
+  (setq ivy-re-builders-alist
+        '((t . ivy--regex-fuzzy)))
+
   ;; flycheck eslint
   (with-eval-after-load 'flycheck
     (flycheck-define-checker elixir-dialyzer
