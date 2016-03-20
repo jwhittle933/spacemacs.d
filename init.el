@@ -287,6 +287,8 @@ user code here.  The exception is org related code, which should be placed in
   ;; Use fuzzy finder
   (setq ivy-re-builders-alist
         '((t . ivy--regex-fuzzy)))
+  ;; Do not insert ^
+  (setq ivy-initial-inputs-alist nil)
 
   ;; flycheck eslint
   (with-eval-after-load 'flycheck
