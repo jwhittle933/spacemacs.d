@@ -1,4 +1,10 @@
-(defun company-simple-complete//frontend (command)
+;; Modify company so that tab and S-tab cycle through completions without
+;; needing to hit enter.
+
+(defvar-local company-simple-complete--previous-prefix nil)
+(defvar-local company-simple-complete--before-complete-point nil)
+
+(defun company-simple-complete-frontend (command)
   (when (or (eq command 'show)
             (and (eq command 'update)
                  (not (equal company-prefix company-simple-complete--previous-prefix))))
@@ -6,12 +12,12 @@
           company-simple-complete--previous-prefix company-prefix
           company-simple-complete--before-complete-point nil)))
 
-(defun company-simple-complete/next (&optional arg)
+(defun company-simple-complete-next (&optional arg)
   (interactive "p")
   (company-select-next arg)
   (company-simple-complete//complete-selection-and-stay))
 
-(defun company-simple-complete/previous (&optional arg)
+(defun company-simple-complete-previous (&optional arg)
   (interactive "p")
   (company-select-previous arg)
   (company-simple-complete//complete-selection-and-stay))
@@ -49,3 +55,19 @@
   "Allow selection to be -1"
   (when (eq selection -1)
     (ad-set-arg 0 0)))
+
+(with-eval-after-load 'company
+  (define-key company-active-map [tab] 'company-simple-complete-next)
+  (define-key company-active-map (kbd "TAB") 'company-simple-complete-next)
+  (define-key company-active-map (kbd "<S-tab>") 'company-simple-complete-previous)
+  (define-key company-active-map (kbd "RET") nil)
+  (define-key company-active-map (kbd "<return>") nil)
+
+  (put 'company-simple-complete-next 'company-keep t)
+  (put 'company-simple-complete-previous 'company-keep t)
+  (ad-activate 'company-set-selection)
+  (ad-activate 'company-tooltip--simple-update-offset)
+  (ad-activate 'company-tooltip--lines-update-offset)
+  (add-to-list 'company-frontends 'company-simple-complete-frontend))
+
+(provide 'company-simple-complete)

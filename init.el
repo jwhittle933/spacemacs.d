@@ -66,7 +66,6 @@ values."
      ;; Personal layers
      auto-correct
      frame-geometry
-     company-simple-complete
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -283,6 +282,8 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost any
 user code here.  The exception is org related code, which should be placed in
 `dotspacemacs/user-config'."
+  (add-to-list 'load-path "~/.spacemacs.d/lisp/")
+
   ;; ivy
   ;; Use fuzzy finder
   (setq ivy-re-builders-alist
@@ -368,6 +369,8 @@ user code here.  The exception is org related code, which should be placed in
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  (require 'company-simple-complete)
+
   (add-hook 'prog-mode-hook 'turn-on-evil-mc-mode)
   (add-hook 'text-mode-hook 'turn-on-evil-mc-mode)
 
