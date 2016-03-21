@@ -21,7 +21,8 @@ values."
    '(
      better-defaults
      spacemacs-layouts
-     spacemacs-ivy
+     ;; spacemacs-ivy
+     spacemacs-helm
      emacs-lisp
      markdown
      (syntax-checking :variables
