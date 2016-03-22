@@ -15,14 +15,14 @@
 (defun company-simple-complete-next (&optional arg)
   (interactive "p")
   (company-select-next arg)
-  (company-simple-complete//complete-selection-and-stay))
+  (company-simple-complete--complete-selection-and-stay))
 
 (defun company-simple-complete-previous (&optional arg)
   (interactive "p")
   (company-select-previous arg)
-  (company-simple-complete//complete-selection-and-stay))
+  (company-simple-complete--complete-selection-and-stay))
 
-(defun company-simple-complete//complete-selection-and-stay ()
+(defun company-simple-complete--complete-selection-and-stay ()
   (if (cdr company-candidates)
       (when (company-manual-begin)
         (when company-simple-complete--before-complete-point
