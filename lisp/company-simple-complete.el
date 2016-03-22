@@ -63,6 +63,7 @@
   (define-key company-active-map (kbd "RET") nil)
   (define-key company-active-map (kbd "<return>") nil)
 
+  (setq company-require-match nil)
   (put 'company-simple-complete-next 'company-keep t)
   (put 'company-simple-complete-previous 'company-keep t)
   (ad-activate 'company-set-selection)
