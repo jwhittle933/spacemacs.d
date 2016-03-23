@@ -283,7 +283,7 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost any
 user code here.  The exception is org related code, which should be placed in
 `dotspacemacs/user-config'."
-  (add-to-list 'load-path "~/.spacemacs.d/lisp/")
+  (add-to-list 'load-path (expand-file-name "lisp" dotspacemacs-directory))
 
   ;; ivy
   ;; Use fuzzy finder
@@ -292,38 +292,7 @@ user code here.  The exception is org related code, which should be placed in
   ;; Do not insert ^
   (setq ivy-initial-inputs-alist nil)
 
-  ;; flycheck eslint
-  (with-eval-after-load 'flycheck
-    (flycheck-define-checker elixir-dialyzer
-      "Erlang syntax checker based on dialyzer."
-      :command ("mix" "dialyzer")
-      :error-patterns
-      ((error line-start
-              (file-name)
-              ":"
-              line
-              ":"
-              (message)
-              line-end))
-      :modes elixir-mode)
-
-    (add-to-list 'flycheck-checkers 'elixir-dialyzer t)
-
-    (setq flycheck-display-errors-delay 0.5)
-    (setq flycheck-disabled-checkers
-                  (append flycheck-disabled-checkers
-                          '(javascript-jshint)))
-
-    (flycheck-add-mode 'javascript-eslint 'web-mode)
-
-    (setq flycheck-disabled-checkers
-                  (append flycheck-disabled-checkers
-                          '(json-jsonlist))))
-  ;; Elixir
-  ;; Treat _ as a word character
-  (with-eval-after-load 'elixir-mode
-    (modify-syntax-entry ?_ "w" elixir-mode-syntax-table))
-  (setq alchemist-test-ask-about-save nil)
+  (setq flycheck-display-errors-delay 0.5)
 
   ;; Ruby
   ;; Treat _ as a word character
@@ -345,19 +314,6 @@ user code here.  The exception is org related code, which should be placed in
   ;;   (company-flx-mode +1))
   ;; Speed up autocomplete popup
   (setq company-idle-delay 0.1)
-  (setq company-backends-js2-mode '((company-tern :with company-dabbrev)
-                                            company-files
-                                            company-dabbrev))
-
-  ;; HTML
-  (with-eval-after-load 'web-mode
-    (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
-    (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
-    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
-
-  ;; Monkey patch to fix indentation for attributes in jsx
-  (load-file "~/.spacemacs.d/lisp/sgml-mode-patch.el")
-  (require 'sgml-mode)
 
   ;; RCIRC
   ;;; Keep line at margin-bottom: ...
@@ -371,6 +327,12 @@ user code here.  The exception is org related code, which should be placed in
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (require 'company-simple-complete)
+  (require 'init-deft)
+  (require 'init-elixir)
+  (require 'init-html)
+  (require 'init-javascript)
+  (require 'init-magit)
+  (require 'init-org)
 
   (add-hook 'prog-mode-hook 'turn-on-evil-mc-mode)
   (add-hook 'text-mode-hook 'turn-on-evil-mc-mode)
@@ -384,25 +346,10 @@ layers configuration. You are free to put any user code."
   (spacemacs|do-after-display-system-init
    (setq powerline-default-separator 'alternate))
 
-  (setq flycheck-global-modes
-        (append flycheck-global-modes '(js2-jsx-mode)))
-
   ;; auto-correct
   (setq abbrev-file-name "~/.spacemacs.d/abbrev_defs")
   (if (file-exists-p abbrev-file-name)
       (quietly-read-abbrev-file))
-
-  ;; Org mode
-  (with-eval-after-load 'org
-    (define-key org-mode-map (kbd "M-h") 'org-metaleft)
-    (define-key org-mode-map (kbd "M-j") 'org-metadown)
-    (define-key org-mode-map (kbd "M-k") 'org-metaup)
-    (define-key org-mode-map (kbd "M-l") 'org-metaright)
-    (define-key org-mode-map (kbd "M-H") 'org-shiftmetaleft)
-    (define-key org-mode-map (kbd "M-J") 'org-shiftmetadown)
-    (define-key org-mode-map (kbd "M-K") 'org-shiftmetaup)
-    (define-key org-mode-map (kbd "M-L") 'org-shiftmetaright)
-    (org-keys))
 
   (setq
    ;; Use bash because it's faster
@@ -425,39 +372,12 @@ layers configuration. You are free to put any user code."
    vc-follow-symlinks t
    require-final-newline t
 
-   ;; magit
-   magit-push-always-verify nil
-   magit-popup-show-common-commands nil
-   magit-auto-revert-mode t
-   magit-revert-buffers 1
-   magit-commit-show-diff nil
-
    ;; Shell-script mode
    sh-basic-offset 2
 
-   ;; js2-mode
-   js2-mode-show-parse-errors nil
-   js2-mode-show-strict-warnings nil
-   js-indent-level 2
-   js2-basic-offset 2
-   js2-strict-trailing-comma-warning nil
-   js2-strict-missing-semi-warning nil
-   web-mode-markup-indent-offset 2
-   web-mode-css-indent-offset 2
-   web-mode-code-indent-offset 2
-   web-mode-attr-indent-offset 2
-
    ;; dtrt-indent-mode
    dtrt-indent-mode t
-
-   ;; deft
-   deft-extensions '("org" "txt")
-   deft-org-mode-title-prefix t
-   deft-use-filename-as-title nil
-   deft-use-filter-string-for-filename t
-   deft-directory "~/Dropbox (Substantial)/Notes"
-   deft-auto-save-interval 2.0
-   org-agenda-files '("~/Dropbox (Substantial)/Notes"))
+   )
 
   (spacemacs/set-leader-keys "SPC" 'avy-goto-char-timer)
   (setq avy-timeout-seconds 0.2)
@@ -480,43 +400,12 @@ layers configuration. You are free to put any user code."
   ;; (define-key key-translation-map "\C-j" "\C-x")
   (global-set-key (kbd "<s-return>") 'spacemacs/toggle-fullscreen-frame)
 
-  ;; Javascript
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-jsx-mode))
-
-  (defun set-jsx-indentation ()
-    (setq-local sgml-basic-offset js2-basic-offset))
-  (add-hook 'js2-jsx-mode-hook #'set-jsx-indentation)
-
   ;; Word wrap in text buffers
   (add-hook 'text-mode-hook 'auto-fill-mode)
-
-  ;; Magit
-  ;; Use C-n/C-p to navigate sections
-  (with-eval-after-load 'magit
-    (evil-define-key 'normal magit-mode-map (kbd "C-n") 'magit-section-forward-sibling)
-    (evil-define-key 'normal magit-mode-map (kbd "C-p") 'magit-section-backward-sibling))
-
-  ;; Start in insert mode
-  (add-hook 'git-commit-mode-hook 'evil-insert-state)
 
   ;; Enable midnight-mode to clean old buffers every day
   '(midnight-mode t nil (midnight))
 
-  (add-hook 'elixir-mode-hook (lambda ()
-                                (setq default-directory
-                                      (locate-dominating-file default-directory "mix.exs"))
-                                (flycheck-mode)))
-  (add-hook 'js-mode-hook 'eslint-set-closest-executable)
-
-  (push '("*alchemist test report*" :position bottom :noselect t :dedicated t :stick t)
-        popwin:special-display-config)
-  (push '("*alchemist mix*" :position bottom :noselect t :dedicated t :stick t)
-        popwin:special-display-config)
-  (push '("*alchemist help*" :position bottom :noselect t :dedicated t :stick t)
-        popwin:special-display-config)
-
-  (setq shackle-rules '(
-                        (magit-status-mode :align right :size 90)))
   (shackle-mode)
 
   ;; load private settings
@@ -524,33 +413,6 @@ layers configuration. You are free to put any user code."
     (load-file "~/.emacs-private.el"))
   )
 
-(defun org-keys ()
-  (interactive)
-  ;; Make ~SPC ,~ work, reference:
-  ;; http://stackoverflow.com/questions/24169333/how-can-i-emphasize-or-verbatim-quote-a-comma-in-org-mode
-  (setcar (nthcdr 2 org-emphasis-regexp-components) " \t\n")
-  (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
-
-  (setq org-emphasis-alist '(("*" bold)
-                                   ("/" italic)
-                                   ("_" underline)
-                                   ("=" org-verbatim verbatim)
-                                   ("~" org-kbd)
-                                   ("+"
-                                    (:strike-through t))))
-
-  (setq org-hide-emphasis-markers t))
-
-(defun eslint-set-closest-executable (&optional dir)
-  (interactive)
-  (let* ((dir (or dir default-directory))
-         (eslint-executable (concat dir "/node_modules/.bin/eslint")))
-    (if (file-exists-p eslint-executable)
-        (progn
-          (make-variable-buffer-local 'flycheck-javascript-eslint-executable)
-          (setq flycheck-javascript-eslint-executable eslint-executable))
-      (if (string= dir "/") nil
-        (eslint-set-closest-executable (expand-file-name ".." dir))))))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
