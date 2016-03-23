@@ -317,20 +317,12 @@ layers configuration. You are free to put any user code."
   (require 'company-simple-complete)
   (require 'init-deft)
   (require 'init-elixir)
+  (require 'init-evil)
   (require 'init-html)
   (require 'init-javascript)
   (require 'init-lisp)
   (require 'init-magit)
   (require 'init-org)
-
-  (add-hook 'prog-mode-hook 'turn-on-evil-mc-mode)
-  (add-hook 'text-mode-hook 'turn-on-evil-mc-mode)
-
-  ;; Move text up and down in visual mode with J/K
-  (define-key evil-visual-state-map "J"
-    (concat ":move '>+1" (kbd "RET") "gv=gv"))
-  (define-key evil-visual-state-map "K"
-    (concat ":move '<-2" (kbd "RET") "gv=gv"))
 
   (spacemacs|do-after-display-system-init
    (setq powerline-default-separator 'alternate))
@@ -350,8 +342,6 @@ layers configuration. You are free to put any user code."
    ;; Spaceline
    spaceline-minor-modes-p nil
 
-   ;; Evil
-   evil-shift-round nil
 
    ;; File name completion
    read-file-name-completion-ignore-case t
@@ -376,14 +366,6 @@ layers configuration. You are free to put any user code."
   (spacemacs/set-leader-keys "opr" 'profiler-report)
   (spacemacs/set-leader-keys "opt" 'profiler-stop)
   (spacemacs/set-leader-keys "oper" 'elp-results)
-
-  ;; make j & k behave as g j & g k:
-  (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
-
-  ;; Use more simple */# so we don't drop into symbol-highlight mode
-  (define-key evil-normal-state-map (kbd "*") 'ahs-forward)
-  (define-key evil-normal-state-map (kbd "#") 'ahs-backward)
 
   ;; Use C-j in place of C-x
   ;; (define-key key-translation-map "\C-j" "\C-x")
@@ -419,7 +401,6 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(evil-esc-delay 0.001)
  '(max-specpdl-size 2000)
  '(package-selected-packages
    (quote
