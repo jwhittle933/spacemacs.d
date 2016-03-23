@@ -45,7 +45,6 @@ values."
      deft
      floobits
      ruby
-     semantic
      (shell :variables
             shell-default-shell 'ansi-term
             shell-default-height 30
