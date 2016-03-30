@@ -315,7 +315,6 @@ user code here.  The exception is org related code, which should be placed in
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
-  (require 'company-simple-complete)
   (require 'init-deft)
   (require 'init-elixir)
   (require 'init-evil)
@@ -325,6 +324,9 @@ layers configuration. You are free to put any user code."
   (require 'init-magit)
   (require 'init-org)
   (require 'init-terminal-cursor)
+
+  (require 'company-simple-complete)
+  (require 'fix-bracketed-paste)
 
   (spacemacs|do-after-display-system-init
    (setq powerline-default-separator 'alternate))
@@ -385,7 +387,6 @@ layers configuration. You are free to put any user code."
   (when (file-exists-p "~/.emacs-private.el")
     (load-file "~/.emacs-private.el"))
   )
-
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
