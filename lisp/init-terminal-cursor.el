@@ -23,4 +23,12 @@
      ad-do-it))
 (ad-activate 'etcc--apply-to-terminal)
 
+(advice-add #'etcc--in-iterm? :around
+            (lambda (f)
+              (string= (getenv "TERM_PROGRAM" (selected-frame)) "iTerm.app")))
+
+(advice-add #'etcc--in-tmux? :around
+            (lambda (f)
+              (getenv "TMUX" (selected-frame))))
+
 (provide 'init-terminal-cursor)
