@@ -16,4 +16,11 @@
     ad-do-it))
 
 (ad-activate 'etcc--make-cursor-shape-seq)
+
+(defadvice etcc--apply-to-terminal (around fix-is-not-termcap (seq))
+  ""
+  (unless (display-graphic-p)
+     ad-do-it))
+(ad-activate 'etcc--apply-to-terminal)
+
 (provide 'init-terminal-cursor)
