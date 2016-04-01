@@ -63,6 +63,7 @@ values."
      ;; Personal layers
      auto-correct
      frame-geometry
+     cleverparens-lispy
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -75,8 +76,6 @@ values."
      dtrt-indent
      company-flx
      graphviz-dot-mode
-     evil-cleverparens
-     lispy
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages
@@ -324,7 +323,6 @@ layers configuration. You are free to put any user code."
   (require 'init-evil)
   (require 'init-html)
   (require 'init-javascript)
-  (require 'init-lisp)
   (require 'init-magit)
   (require 'init-org)
   (require 'init-terminal-cursor)
