@@ -7,6 +7,7 @@
                                   (lispy-mode 1)
                                   (lispy-set-key-theme '(special evilcp c-digits))))
 (setq evil-move-beyond-eol t)
+(setq evil-cleverparens-use-additional-bindings t)
 (require 'evil-cleverparens-text-objects)
 
 ;; Smartparens
