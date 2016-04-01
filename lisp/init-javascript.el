@@ -17,6 +17,9 @@
                                   company-files
                                   company-dabbrev))
 
+(with-eval-after-load 'js2-mode
+  (modify-syntax-entry ?_ "w" js2-mode-syntax-table))
+
 ;; Set up flycheck for javascript
 (with-eval-after-load 'flycheck
   (push 'javascript-jshint flycheck-disabled-checkers)
