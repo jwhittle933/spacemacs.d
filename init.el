@@ -1,4 +1,8 @@
 ;; -*- mode: emacs-lisp -*-
+
+;; https://github.com/syl20bnr/spacemacs/pull/5657
+(setq tmux-packages '((tmux :location local)))
+
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
@@ -54,6 +58,7 @@ values."
      ranger
      version-control
      rcirc
+     tmux
 
      ;; TheBB's layers
      ;; https://github.com/TheBB/spacemacs-layers
