@@ -391,6 +391,9 @@ layers configuration. You are free to put any user code."
 
   (shackle-mode)
 
+  ;; https://github.com/syl20bnr/spacemacs/pull/5660
+  (global-set-key (kbd "C-h") 'help-command)
+
   ;; load private settings
   (when (file-exists-p "~/.emacs-private.el")
     (load-file "~/.emacs-private.el"))
