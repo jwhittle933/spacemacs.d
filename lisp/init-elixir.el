@@ -36,5 +36,7 @@
       popwin:special-display-config)
 (push '("*alchemist help*" :position bottom :noselect t :dedicated t :stick t)
       popwin:special-display-config)
+(push '("*Alchemist-IEx*" :position bottom :noselect t :dedicated t :stick t)
+      popwin:special-display-config)
 
 (provide 'init-elixir)
