@@ -29,7 +29,7 @@ values."
      (syntax-checking :variables
                       syntax-checking-enable-tooltips nil)
      (auto-completion :variables
-                      auto-completion-enable-sort-by-usage t
+                      auto-completion-enable-sort-by-usage nil
                       auto-completion-enable-snippets-in-popup t)
      erlang
      elixir
