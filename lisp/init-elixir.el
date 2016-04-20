@@ -31,13 +31,17 @@
                               (flycheck-mode)))
 
 ;; Pin alchemist windows to bottom
-(push '("*alchemist test report*" :position bottom :noselect t :dedicated t :stick t)
+(push '("*alchemist test report*"
+        :position bottom :noselect t :dedicated t :stick t :height 25)
       popwin:special-display-config)
-(push '("*alchemist mix*" :position bottom :noselect t :dedicated t :stick t)
+(push '("*alchemist mix*"
+        :position bottom :noselect t :dedicated t :stick t :height 25)
       popwin:special-display-config)
-(push '("*alchemist help*" :position bottom :noselect t :dedicated t :stick t)
+(push '("*alchemist help*"
+        :position bottom :noselect t :dedicated t :stick t :height 25)
       popwin:special-display-config)
-(push '("*Alchemist-IEx*" :position bottom :noselect t :dedicated t :stick t)
+(push '("*Alchemist-IEx*"
+        :position bottom :noselect t :dedicated t :stick t :height 25)
       popwin:special-display-config)
 
 (provide 'init-elixir)
