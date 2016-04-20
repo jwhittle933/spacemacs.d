@@ -332,6 +332,7 @@ layers configuration. You are free to put any user code."
   (require 'company-simple-complete)
   (require 'fix-bracketed-paste)
   (require 'eval-overlay)
+  (require 'fix-autorevert-breaking-git)
 
   (spacemacs|do-after-display-system-init
    (setq powerline-default-separator 'alternate))
