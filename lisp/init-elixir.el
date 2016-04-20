@@ -25,8 +25,9 @@
 ;; Change default-directory to where the mix.exs is so dialyzer works
 ;; Better solution here: https://github.com/flycheck/flycheck/pull/813
 (add-hook 'elixir-mode-hook (lambda ()
-                              (setq default-directory
-                                    (locate-dominating-file default-directory "mix.exs"))
+                              (let ((mix-path (locate-dominating-file default-directory "mix.exs")))
+                                (when mix-path
+                                  (setq default-directory mix-path)))
                               (flycheck-mode)))
 
 ;; Pin alchemist windows to bottom
