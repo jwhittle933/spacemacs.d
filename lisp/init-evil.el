@@ -13,8 +13,12 @@
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
 ;; Use more simple */# so we don't drop into symbol-highlight mode
-(define-key evil-normal-state-map (kbd "*") 'ahs-forward)
-(define-key evil-normal-state-map (kbd "#") 'ahs-backward)
+(define-key evil-normal-state-map (kbd "*") 'evil-search-word-forward)
+(define-key evil-normal-state-map (kbd "#") 'evil-search-word-backward)
+;; search by symbols in emacs
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (setq evil-symbol-word-search t)))
 
 ;; Remove this mapping so C-z can suspend in tty
 (define-key evil-motion-state-map (kbd "C-z") nil)
