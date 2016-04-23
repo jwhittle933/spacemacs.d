@@ -10,6 +10,13 @@
   (flycheck-define-checker elixir-dialyzer
     "Erlang syntax checker based on dialyzer."
     :command ("mix" "dialyzer")
+    :predicate
+    (lambda ()
+      (and
+       (buffer-file-name)
+       (file-exists-p "mix.exs")
+       (file-exists-p "deps/dialyxir")
+       (file-exists-p ".local.plt")))
     :error-patterns
     ((error line-start
             (file-name)
