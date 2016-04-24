@@ -287,6 +287,7 @@ It is called immediately after `dotspacemacs/init'.  You are free to put almost 
 user code here.  The exception is org related code, which should be placed in
 `dotspacemacs/user-config'."
   (add-to-list 'load-path (expand-file-name "lisp" dotspacemacs-directory))
+  (require 'init-evil)
 
   ;; ivy
   ;; Use fuzzy finder
@@ -322,7 +323,6 @@ This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (require 'init-deft)
   (require 'init-elixir)
-  (require 'init-evil)
   (require 'init-html)
   (require 'init-javascript)
   (require 'init-magit)
