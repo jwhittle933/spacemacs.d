@@ -372,9 +372,13 @@ layers configuration. You are free to put any user code."
   (setq avy-timeout-seconds 0.2)
 
   ;; Profiler bindings
-  (spacemacs/set-leader-keys "ops" 'profiler-start)
+  (defun profiler-start-cpu ()
+    (interactive)
+    (profiler-start 'cpu))
+  (spacemacs/set-leader-keys "ops" 'profiler-start-cpu)
   (spacemacs/set-leader-keys "opr" 'profiler-report)
   (spacemacs/set-leader-keys "opt" 'profiler-stop)
+  (spacemacs/set-leader-keys "opx" 'profiler-reset)
   (spacemacs/set-leader-keys "oper" 'elp-results)
 
   ;; Use C-j in place of C-x
