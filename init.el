@@ -289,6 +289,11 @@ user code here.  The exception is org related code, which should be placed in
   (add-to-list 'load-path (expand-file-name "lisp" dotspacemacs-directory))
   (require 'init-evil)
 
+  ;; work around persp-mode slowing things down
+  ;; https://github.com/syl20bnr/spacemacs/issues/5622
+  ;; https://github.com/Bad-ptr/persp-mode.el/issues/35
+  (setq persp-set-frame-buffer-predicate nil)
+
   ;; ivy
   ;; Use fuzzy finder
   (setq ivy-re-builders-alist
