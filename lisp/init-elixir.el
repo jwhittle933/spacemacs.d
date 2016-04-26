@@ -4,6 +4,8 @@
   (modify-syntax-entry ?_ "w" elixir-mode-syntax-table))
 
 (setq alchemist-test-ask-about-save nil)
+(setq alchemist-goto-elixir-source-dir "~/Source/elixir")
+(setq alchemist-goto-erlang-source-dir "~/Source/otp")
 
 ;; Add flychecker for dialyzer
 (with-eval-after-load 'flycheck
