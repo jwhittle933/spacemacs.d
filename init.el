@@ -289,6 +289,8 @@ user code here.  The exception is org related code, which should be placed in
   (add-to-list 'load-path (expand-file-name "lisp" dotspacemacs-directory))
   (require 'init-evil)
 
+  (add-to-list 'auto-mode-alist '("\\.?\\(bashrc\\|zshrc\\|shellrc\\|bash_profile\\)" . sh-mode))
+
   ;; ivy
   ;; Use fuzzy finder
   (setq ivy-re-builders-alist
