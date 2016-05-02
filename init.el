@@ -288,6 +288,7 @@ user code here.  The exception is org related code, which should be placed in
 `dotspacemacs/user-config'."
   (add-to-list 'load-path (expand-file-name "lisp" dotspacemacs-directory))
   (require 'init-evil)
+  (require 'init-javascript)
 
   (add-to-list 'auto-mode-alist '("\\.?\\(bashrc\\|zshrc\\|shellrc\\|bash_profile\\)" . sh-mode))
 
@@ -326,7 +327,6 @@ layers configuration. You are free to put any user code."
   (require 'init-deft)
   (require 'init-elixir)
   (require 'init-html)
-  (require 'init-javascript)
   (require 'init-magit)
   (require 'init-org)
   (require 'init-terminal-cursor)
