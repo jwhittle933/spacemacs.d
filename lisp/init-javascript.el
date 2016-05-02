@@ -28,11 +28,6 @@
 
   (flycheck-add-mode 'javascript-eslint 'web-mode))
 
-(with-eval-after-load 'web-mode
-  (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
-  (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
-  (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
-
 ;; Find eslint by walking up directory
 (add-hook 'js-mode-hook 'eslint-set-closest-executable)
 (defun eslint-set-closest-executable (&optional dir)

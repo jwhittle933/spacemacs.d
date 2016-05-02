@@ -290,6 +290,7 @@ user code here.  The exception is org related code, which should be placed in
   (add-to-list 'load-path (expand-file-name "lisp" dotspacemacs-directory))
   (require 'init-evil)
   (require 'init-javascript)
+  (require 'init-html)
 
   (add-to-list 'auto-mode-alist '("\\.?\\(bashrc\\|zshrc\\|shellrc\\|bash_profile\\)" . sh-mode))
 
@@ -327,7 +328,6 @@ This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (require 'init-deft)
   (require 'init-elixir)
-  (require 'init-html)
   (require 'init-magit)
   (require 'init-org)
   (require 'init-terminal-cursor)
