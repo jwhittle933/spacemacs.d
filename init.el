@@ -44,6 +44,7 @@ values."
      ;; vinegar
      github
      javascript
+     react
      deft
      floobits
      ruby

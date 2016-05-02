@@ -6,7 +6,7 @@
 (setq js2-strict-missing-semi-warning nil)
 
 ;; Use js2-jsx-mode for all js files
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-jsx-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
 
 ;; Set jsx indentation offset to same as js js
 (add-hook 'js2-jsx-mode-hook #'set-jsx-indentation)
@@ -28,6 +28,11 @@
 
   (flycheck-add-mode 'javascript-eslint 'web-mode))
 
+(with-eval-after-load 'web-mode
+  (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
+
 ;; Find eslint by walking up directory
 (add-hook 'js-mode-hook 'eslint-set-closest-executable)
 (defun eslint-set-closest-executable (&optional dir)
@@ -44,6 +49,5 @@
 ;; Monkey patch to fix indentation for attributes in jsx
 (load-file "~/.spacemacs.d/lisp/sgml-mode-patch.el")
 (require 'sgml-mode)
-
 
 (provide 'init-javascript)
