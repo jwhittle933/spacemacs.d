@@ -29,6 +29,8 @@
 
 (define-abbrev-table 'bookmark-edit-annotation-mode-abbrev-table '())
 
+(define-abbrev-table 'bracketed-paste--pasting-mode-abbrev-table '())
+
 (define-abbrev-table 'c++-mode-abbrev-table
   '(
    ))
@@ -105,6 +107,8 @@
     ("lyaer" "layer" nil 0)
     ("mispelling" "misspelling" nil 0)
     ("oepn" "open" nil 0)
+    ("reenabling" "enabling" nil 0)
+    ("referting" "reverting" nil 1)
     ("siwtch" "switch" nil 0)
     ("teh" "the" nil 1)
    ))
@@ -114,6 +118,8 @@
 (define-abbrev-table 'haml-mode-abbrev-table '())
 
 (define-abbrev-table 'helm-grep-mode-abbrev-table '())
+
+(define-abbrev-table 'helm-major-mode-abbrev-table '())
 
 (define-abbrev-table 'helm-moccur-mode-abbrev-table '())
 
@@ -155,6 +161,8 @@
 
 (define-abbrev-table 'magit-diff-mode-abbrev-table '())
 
+(define-abbrev-table 'magit-gh-pulls-editor-mode-abbrev-table '())
+
 (define-abbrev-table 'magit-log-mode-abbrev-table '())
 
 (define-abbrev-table 'magit-log-select-mode-abbrev-table '())
@@ -195,6 +203,8 @@
 
 (define-abbrev-table 'occur-mode-abbrev-table '())
 
+(define-abbrev-table 'org-export-stack-mode-abbrev-table '())
+
 (define-abbrev-table 'org-mode-abbrev-table '())
 
 (define-abbrev-table 'outline-mode-abbrev-table '())
@@ -210,6 +220,8 @@
 (define-abbrev-table 'profiler-report-mode-abbrev-table '())
 
 (define-abbrev-table 'prog-mode-abbrev-table '())
+
+(define-abbrev-table 'react-mode-abbrev-table '())
 
 (define-abbrev-table 'rspec-compilation-mode-abbrev-table '())
 
@@ -230,6 +242,8 @@
 (define-abbrev-table 'skewer-error-mode-abbrev-table '())
 
 (define-abbrev-table 'snippet-mode-abbrev-table '())
+
+(define-abbrev-table 'spacemacs/report-issue-mode-abbrev-table '())
 
 (define-abbrev-table 'special-mode-abbrev-table '())
 
