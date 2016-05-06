@@ -9,6 +9,24 @@
 
 ;; Add flychecker for dialyzer
 (with-eval-after-load 'flycheck
+  ;; Requires dogma globally
+  ;; git clone https://github.com/lpil/dogma
+  ;; cd dogma
+  ;; mix archive.build
+  ;; mix archive.install
+  (flycheck-define-checker elixir-dogma
+    "Defines a checker for elixir with dogma"
+    :command ("mix" "dogma" "--format" "flycheck" "--stdin" source-original)
+    :standard-input t
+    :error-patterns
+    (
+     (info line-start (file-name) ":" line ":" column ": " (or "C" "R" "D") ": " (optional (id (one-or-more (not (any ":")))) ": ") (message) line-end)
+     (warning line-start (file-name) ":" line ":" column ": " (or "W" "E" "F") ": " (optional (id (one-or-more (not (any ":")))) ": ") (message) line-end)
+     )
+    :modes (elixir-mode))
+
+  (add-to-list 'flycheck-checkers 'elixir-dogma)
+
   (flycheck-define-checker elixir-dialyzer
     "Erlang syntax checker based on dialyzer."
     :command ("mix" "dialyzer")
