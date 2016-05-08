@@ -79,11 +79,11 @@ values."
      dtrt-indent
      company-flx
      graphviz-dot-mode
+     powerline
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages
    '(
-     powerline
      spaceline
      )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -328,6 +328,9 @@ user code here.  The exception is org related code, which should be placed in
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  (require 'powerline)
+  (powerline-default-theme)
+
   (require 'init-deft)
   (require 'init-elixir)
   (require 'init-magit)
