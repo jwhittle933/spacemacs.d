@@ -338,7 +338,8 @@ layers configuration. You are free to put any user code."
   (require 'fix-autorevert-breaking-git)
 
   (spacemacs|do-after-display-system-init
-   (setq powerline-default-separator 'alternate))
+   (setq powerline-default-separator 'alternate)
+   (spaceline-compile))
 
   ;; auto-correct
   (setq abbrev-file-name "~/.spacemacs.d/abbrev_defs")
