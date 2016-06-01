@@ -337,6 +337,7 @@ layers configuration. You are free to put any user code."
   (require 'eval-overlay)
   (require 'fix-autorevert-breaking-git)
 
+  (global-hungry-delete-mode)
   (spacemacs|do-after-display-system-init
    (setq powerline-default-separator 'alternate)
    (spaceline-compile))
