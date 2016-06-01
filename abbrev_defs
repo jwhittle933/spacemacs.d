@@ -103,7 +103,9 @@
 
 (define-abbrev-table 'global-abbrev-table
   '(
+    ("aboslutely" "absolutely" nil 0)
     ("entirley" "entirely" nil 0)
+    ("hpoe" "hope" nil 0)
     ("lyaer" "layer" nil 0)
     ("mispelling" "misspelling" nil 0)
     ("oepn" "open" nil 0)
@@ -111,6 +113,7 @@
     ("referting" "reverting" nil 1)
     ("siwtch" "switch" nil 0)
     ("teh" "the" nil 1)
+    ("thel" "the" nil 0)
    ))
 
 (define-abbrev-table 'grep-mode-abbrev-table '())
@@ -223,9 +226,15 @@
 
 (define-abbrev-table 'react-mode-abbrev-table '())
 
+(define-abbrev-table 'reb-lisp-mode-abbrev-table '())
+
+(define-abbrev-table 'reb-mode-abbrev-table '())
+
 (define-abbrev-table 'rspec-compilation-mode-abbrev-table '())
 
 (define-abbrev-table 'ruby-mode-abbrev-table '())
+
+(define-abbrev-table 'rxt-help-mode-abbrev-table '())
 
 (define-abbrev-table 'sass-mode-abbrev-table '())
 
