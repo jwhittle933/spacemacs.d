@@ -336,6 +336,7 @@ layers configuration. You are free to put any user code."
   (require 'fix-bracketed-paste)
   (require 'eval-overlay)
   (require 'fix-autorevert-breaking-git)
+  (require 'fill-or-unfill)
 
   (global-hungry-delete-mode)
   (spacemacs|do-after-display-system-init
