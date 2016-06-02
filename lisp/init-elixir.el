@@ -7,54 +7,83 @@
 (setq alchemist-goto-elixir-source-dir "~/Source/elixir")
 (setq alchemist-goto-erlang-source-dir "~/Source/otp")
 
+(defun elixir-flycheck-project-root ()
+  (locate-dominating-file buffer-file-name "mix.exs"))
+
+(defun elixir-flycheck-cd-option ()
+  (format "IEx.Helpers.cd(\"%s\")"
+          (elixir-flycheck-project-root)))
+
 ;; Add flychecker for dialyzer
 (with-eval-after-load 'flycheck
-  ;; Requires dogma globally
-  ;; git clone https://github.com/lpil/dogma
-  ;; cd dogma
-  ;; mix archive.build
-  ;; mix archive.install
   (flycheck-define-checker elixir-dogma
     "Defines a checker for elixir with dogma"
-    :command ("mix" "dogma" "--format" "flycheck" "--stdin" source-original)
+    :command ("elixir" "-e" (eval (elixir-flycheck-cd-option)) "-S"
+              "mix" "dogma" "--format" "flycheck" "--stdin" source-original)
+    :predicate
+    (lambda ()
+      (let ((root (elixir-flycheck-project-root)))
+        (and
+         root
+         (buffer-file-name)
+         (file-exists-p (concat root "mix.exs"))
+         (file-exists-p (concat root "deps/dogma")))))
     :standard-input t
     :error-patterns
     (
      (info line-start (file-name) ":" line ":" column ": " (or "C" "R" "D") ": " (optional (id (one-or-more (not (any ":")))) ": ") (message) line-end)
-     (warning line-start (file-name) ":" line ":" column ": " (or "W" "E" "F") ": " (optional (id (one-or-more (not (any ":")))) ": ") (message) line-end)
-     )
+     (warning line-start (file-name) ":" line ":" column ": " (or "W" "E" "F") ": " (optional (id (one-or-more (not (any ":")))) ": ") (message) line-end))
+    :error-filter
+    (lambda (errors)
+      (dolist (err (flycheck-sanitize-errors errors))
+        (setf (flycheck-error-filename err)
+              (concat (elixir-flycheck-project-root)
+                      (flycheck-error-filename err))))
+      errors)
     :modes (elixir-mode))
-
-  (add-to-list 'flycheck-checkers 'elixir-dogma)
 
   (flycheck-define-checker elixir-dialyzer
     "Erlang syntax checker based on dialyzer."
-    :command ("mix" "dialyzer")
+    :command ("elixir" "-e" (eval (elixir-flycheck-cd-option)) "-S"
+              "mix" "dialyzer")
     :predicate
     (lambda ()
-      (and
-       (buffer-file-name)
-       (file-exists-p "mix.exs")
-       (file-exists-p "deps/dialyxir")
-       (file-exists-p ".local.plt")))
+      (let ((root (elixir-flycheck-project-root)))
+        (and
+         root
+         (buffer-file-name)
+         (file-exists-p (concat root "mix.exs"))
+         (file-exists-p (concat root ".local.plt"))
+         (file-exists-p (concat root "deps/dialyxir")))))
     :error-patterns
-    ((error line-start
+    ((warning line-start
+              (file-name)
+              ":"
+              line
+              ": warning: "
+              (message)
+              line-end)
+     (error line-start
             (file-name)
             ":"
             line
             ":"
             (message)
             line-end))
+    :error-filter
+    (lambda (errors)
+      (dolist (err (flycheck-sanitize-errors errors))
+        (setf (flycheck-error-filename err)
+              (concat (elixir-flycheck-project-root)
+                      (flycheck-error-filename err))))
+      errors)
     :modes elixir-mode)
 
-  (add-to-list 'flycheck-checkers 'elixir-dialyzer t))
+  (add-to-list 'flycheck-checkers 'elixir-dogma)
+  (add-to-list 'flycheck-checkers 'elixir-dialyzer t)
+  (flycheck-add-next-checker 'elixir-dogma '(t . elixir-dialyzer)))
 
-;; Change default-directory to where the mix.exs is so dialyzer works
-;; Better solution here: https://github.com/flycheck/flycheck/pull/813
 (add-hook 'elixir-mode-hook (lambda ()
-                              (let ((mix-path (locate-dominating-file default-directory "mix.exs")))
-                                (when mix-path
-                                  (setq default-directory mix-path)))
                               (flycheck-mode)))
 
 ;; Pin alchemist windows to bottom
