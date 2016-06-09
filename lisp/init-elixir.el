@@ -25,7 +25,7 @@
       (let ((root (elixir-flycheck-project-root)))
         (and
          root
-         (buffer-file-name)
+         (flycheck-buffer-saved-p)
          (file-exists-p (concat root "mix.exs"))
          (file-exists-p (concat root "deps/dogma")))))
     :standard-input t
@@ -51,7 +51,7 @@
       (let ((root (elixir-flycheck-project-root)))
         (and
          root
-         (buffer-file-name)
+         (flycheck-buffer-saved-p)
          (file-exists-p (concat root "mix.exs"))
          (file-exists-p (concat root ".local.plt"))
          (file-exists-p (concat root "deps/dialyxir")))))
