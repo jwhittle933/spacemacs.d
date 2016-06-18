@@ -28,6 +28,14 @@
 
   (flycheck-add-mode 'javascript-eslint 'web-mode))
 
+;; Stop web-mode from using block comments in comment-dwim.
+(with-eval-after-load 'web-mode
+  (add-to-list 'web-mode-comment-formats '("jsx" . "//"))
+  (setq web-mode-comment-formats
+        (-map-when (lambda (i) (equal (car i) "javascript"))
+                   (lambda (i) '("javascript" . "//"))
+                   web-mode-comment-formats)))
+
 ;; Find eslint by walking up directory
 (add-hook 'js-mode-hook 'eslint-set-closest-executable)
 (defun eslint-set-closest-executable (&optional dir)
