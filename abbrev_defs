@@ -43,6 +43,14 @@
 
 (define-abbrev-table 'change-log-mode-abbrev-table '())
 
+(define-abbrev-table 'clojure-mode-abbrev-table '())
+
+(define-abbrev-table 'clojurec-mode-abbrev-table '())
+
+(define-abbrev-table 'clojurescript-mode-abbrev-table '())
+
+(define-abbrev-table 'clojurex-mode-abbrev-table '())
+
 (define-abbrev-table 'comint-mode-abbrev-table '())
 
 (define-abbrev-table 'completion-list-mode-abbrev-table '())
@@ -104,9 +112,11 @@
 (define-abbrev-table 'global-abbrev-table
   '(
     ("aboslutely" "absolutely" nil 0)
+    ("commision" "commission" nil 0)
     ("entirley" "entirely" nil 0)
     ("hpoe" "hope" nil 0)
     ("lyaer" "layer" nil 0)
+    ("merchatn" "merchant" nil 0)
     ("mispelling" "misspelling" nil 0)
     ("oepn" "open" nil 0)
     ("reenabling" "enabling" nil 0)
@@ -119,6 +129,8 @@
 (define-abbrev-table 'grep-mode-abbrev-table '())
 
 (define-abbrev-table 'haml-mode-abbrev-table '())
+
+(define-abbrev-table 'helm-ag-mode-abbrev-table '())
 
 (define-abbrev-table 'helm-grep-mode-abbrev-table '())
 
