@@ -368,6 +368,7 @@ layers configuration. You are free to put any user code."
 
    ;; Shell-script mode
    sh-basic-offset 2
+   sh-indentation 2
 
    ;; dtrt-indent-mode
    dtrt-indent-mode t
