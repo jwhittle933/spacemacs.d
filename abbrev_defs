@@ -83,6 +83,10 @@
 
 (define-abbrev-table 'elixir-mode-abbrev-table '())
 
+(define-abbrev-table 'elm-interactive-mode-abbrev-table '())
+
+(define-abbrev-table 'elm-package-mode-abbrev-table '())
+
 (define-abbrev-table 'emacs-lisp-byte-code-mode-abbrev-table '())
 
 (define-abbrev-table 'emacs-lisp-mode-abbrev-table '())
@@ -117,6 +121,7 @@
     ("merchatn" "merchant" nil 0)
     ("mispelling" "misspelling" nil 0)
     ("oepn" "open" nil 0)
+    ("prioritizaiton" "prioritization" nil 0)
     ("reenabling" "enabling" nil 0)
     ("referting" "reverting" nil 1)
     ("siwtch" "switch" nil 0)
