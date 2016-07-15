@@ -17,7 +17,11 @@
 
 (define-abbrev-table 'alchemist-test-report-mode-abbrev-table '())
 
-(define-abbrev-table 'awk-mode-abbrev-table '())
+(define-abbrev-table 'apropos-mode-abbrev-table '())
+
+(define-abbrev-table 'awk-mode-abbrev-table
+  '(
+   ))
 
 (define-abbrev-table 'bat-mode-abbrev-table '())
 
@@ -29,9 +33,13 @@
 
 (define-abbrev-table 'bracketed-paste--pasting-mode-abbrev-table '())
 
-(define-abbrev-table 'c++-mode-abbrev-table '())
+(define-abbrev-table 'c++-mode-abbrev-table
+  '(
+   ))
 
-(define-abbrev-table 'c-mode-abbrev-table '())
+(define-abbrev-table 'c-mode-abbrev-table
+  '(
+   ))
 
 (define-abbrev-table 'calc-trail-mode-abbrev-table '())
 
@@ -72,6 +80,8 @@
 (define-abbrev-table 'debugger-mode-abbrev-table '())
 
 (define-abbrev-table 'diff-mode-abbrev-table '())
+
+(define-abbrev-table 'dockerfile-mode-abbrev-table '())
 
 (define-abbrev-table 'edebug-eval-mode-abbrev-table '())
 
@@ -114,6 +124,7 @@
 (define-abbrev-table 'global-abbrev-table
   '(
     ("aboslutely" "absolutely" nil 0)
+    ("chagnes" "changes" nil 0)
     ("commision" "commission" nil 0)
     ("entirley" "entirely" nil 0)
     ("hpoe" "hope" nil 0)
@@ -158,7 +169,9 @@
 
 (define-abbrev-table 'ivy-occur-mode-abbrev-table '())
 
-(define-abbrev-table 'java-mode-abbrev-table '())
+(define-abbrev-table 'java-mode-abbrev-table
+  '(
+   ))
 
 (define-abbrev-table 'js-jsx-mode-abbrev-table '())
 
@@ -214,7 +227,9 @@
 
 (define-abbrev-table 'nxml-mode-abbrev-table '())
 
-(define-abbrev-table 'objc-mode-abbrev-table '())
+(define-abbrev-table 'objc-mode-abbrev-table
+  '(
+   ))
 
 (define-abbrev-table 'occur-edit-mode-abbrev-table '())
 
@@ -228,7 +243,9 @@
 
 (define-abbrev-table 'package-menu-mode-abbrev-table '())
 
-(define-abbrev-table 'pike-mode-abbrev-table '())
+(define-abbrev-table 'pike-mode-abbrev-table
+  '(
+   ))
 
 (define-abbrev-table 'process-menu-mode-abbrev-table '())
 
@@ -249,6 +266,8 @@
 (define-abbrev-table 'rxt-help-mode-abbrev-table '())
 
 (define-abbrev-table 'sass-mode-abbrev-table '())
+
+(define-abbrev-table 'scss-mode-abbrev-table '())
 
 (define-abbrev-table 'select-tags-table-mode-abbrev-table '())
 
