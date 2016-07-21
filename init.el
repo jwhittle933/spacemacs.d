@@ -299,6 +299,9 @@ user code here.  The exception is org related code, which should be placed in
 
   (setq require-final-newline t)
 
+  ;; smartparens
+  (setq sp-highlight-pair-overlay nil)
+
   ;; ivy
   ;; Use fuzzy finder
   (setq ivy-re-builders-alist
