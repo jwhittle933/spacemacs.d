@@ -53,7 +53,6 @@
          root
          (flycheck-buffer-saved-p)
          (file-exists-p (concat root "mix.exs"))
-         (file-exists-p (concat root ".local.plt"))
          (file-exists-p (concat root "deps/dialyxir")))))
     :error-patterns
     ((warning line-start
