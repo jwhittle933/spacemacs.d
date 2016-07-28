@@ -56,7 +56,7 @@
          (file-exists-p (concat root "deps/credo")))))
     :error-patterns
     ((info line-start (file-name) ":" line ":" column ": " (or "F" "R" "C")  ": " (message) line-end)
-     (info line-start (file-name) ":" line ": " (or "F" "D" "R" "C" "W")  ": " (message) line-end)
+     (info line-start (file-name) ":" line ": " (or "F" "R" "C")  ": " (message) line-end)
      (warning line-start (file-name) ":" line ":" column ": " (or "D" "W")  ": " (message) line-end)
      (warning line-start (file-name) ":" line ": " (or "D" "W")  ": " (message) line-end))
     :modes elixir-mode)
