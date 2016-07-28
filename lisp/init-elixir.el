@@ -42,6 +42,25 @@
       errors)
     :modes (elixir-mode))
 
+  (flycheck-define-checker elixir-credo
+    "Erlang syntax checker based on dialyzer."
+    :command ("elixir" "-e" (eval (elixir-flycheck-cd-option)) "-S"
+              "mix" "credo" "--format" "flycheck" source-inplace)
+    :standard-input t
+    :predicate
+    (lambda ()
+      (let ((root (elixir-flycheck-project-root)))
+        (and
+         root
+         (file-exists-p (concat root "mix.exs"))
+         (file-exists-p (concat root "deps/credo")))))
+    :error-patterns
+    ((info line-start (file-name) ":" line ":" column ": " (or "F" "R" "C")  ": " (message) line-end)
+     (info line-start (file-name) ":" line ": " (or "F" "D" "R" "C" "W")  ": " (message) line-end)
+     (warning line-start (file-name) ":" line ":" column ": " (or "D" "W")  ": " (message) line-end)
+     (warning line-start (file-name) ":" line ": " (or "D" "W")  ": " (message) line-end))
+    :modes elixir-mode)
+
   (flycheck-define-checker elixir-dialyzer
     "Erlang syntax checker based on dialyzer."
     :command ("elixir" "-e" (eval (elixir-flycheck-cd-option)) "-S"
@@ -78,8 +97,10 @@
       errors)
     :modes elixir-mode)
 
+  (add-to-list 'flycheck-checkers 'elixir-credo)
   (add-to-list 'flycheck-checkers 'elixir-dogma)
   (add-to-list 'flycheck-checkers 'elixir-dialyzer t)
+  (flycheck-add-next-checker 'elixir-credo '(t . elixir-dogma))
   (flycheck-add-next-checker 'elixir-dogma '(t . elixir-dialyzer)))
 
 (add-hook 'elixir-mode-hook (lambda ()
