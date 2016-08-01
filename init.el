@@ -295,6 +295,7 @@ user code here.  The exception is org related code, which should be placed in
   (require 'init-javascript)
   (require 'init-html)
 
+  (setq exec-path-from-shell-arguments '("-l"))
   (add-to-list 'auto-mode-alist '("\\.?\\(bashrc\\|zshrc\\|shellrc\\|bash_profile\\)" . sh-mode))
 
   (setq require-final-newline t)
