@@ -82,6 +82,7 @@ values."
      dtrt-indent
      company-flx
      graphviz-dot-mode
+     editorconfig
      flycheck-flow
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -348,6 +349,9 @@ layers configuration. You are free to put any user code."
   (require 'eval-overlay)
   (require 'fix-autorevert-breaking-git)
   (require 'fill-or-unfill)
+
+  (require 'editorconfig)
+  (editorconfig-mode 1)
 
   (global-hungry-delete-mode)
   (spacemacs|do-after-display-system-init
