@@ -82,6 +82,7 @@ values."
      dtrt-indent
      company-flx
      graphviz-dot-mode
+     flycheck-flow
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages
@@ -340,6 +341,7 @@ layers configuration. You are free to put any user code."
   (require 'init-magit)
   (require 'init-org)
   (require 'init-terminal-cursor)
+  (require 'init-flow)
 
   (require 'company-simple-complete)
   (require 'fix-bracketed-paste)
