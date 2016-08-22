@@ -140,7 +140,8 @@
     ("reenabling" "enabling" nil 0)
     ("referting" "reverting" nil 1)
     ("siwtch" "switch" nil 0)
-    ("teh" "the" nil 1)
+    ("teh" "the" nil 2)
+    ("tehn" "then" nil 1)
     ("thel" "the" nil 0)
     ("wnats" "wants" nil 0)
    ))
@@ -258,6 +259,8 @@
 (define-abbrev-table 'profiler-report-mode-abbrev-table '())
 
 (define-abbrev-table 'prog-mode-abbrev-table '())
+
+(define-abbrev-table 'ranger-mode-abbrev-table '())
 
 (define-abbrev-table 'react-mode-abbrev-table '())
 
