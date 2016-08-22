@@ -46,7 +46,6 @@ values."
      javascript
      react
      deft
-     floobits
      ruby
      (shell :variables
             shell-default-shell 'ansi-term
