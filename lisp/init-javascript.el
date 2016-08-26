@@ -5,9 +5,6 @@
 (setq js2-strict-trailing-comma-warning nil)
 (setq js2-strict-missing-semi-warning nil)
 
-;; Use js2-jsx-mode for all js files
-(add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
-
 ;; Set jsx indentation offset to same as js js
 (add-hook 'js2-jsx-mode-hook #'set-jsx-indentation)
 (defun set-jsx-indentation ()
@@ -18,6 +15,8 @@
                                   company-dabbrev))
 
 (with-eval-after-load 'js2-mode
+  ;; Use js2-jsx-mode for all js files
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
   (modify-syntax-entry ?_ "w" js2-mode-syntax-table))
 
 ;; Set up flycheck for javascript
