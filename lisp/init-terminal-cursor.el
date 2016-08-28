@@ -31,4 +31,5 @@
             (lambda (f)
               (getenv "TMUX" (selected-frame))))
 
+(evil-terminal-cursor-changer-activate)
 (provide 'init-terminal-cursor)
