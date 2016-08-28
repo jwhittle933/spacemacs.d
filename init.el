@@ -356,6 +356,10 @@ layers configuration. You are free to put any user code."
   ;; Ensure all js files are in react mode
   (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
 
+  ;; Delete consecutive dupes from company in case they differ by annotation only
+  ;; https://github.com/company-mode/company-mode/issues/528
+  (add-to-list 'company-transformers 'delete-consecutive-dups t)
+
   (global-hungry-delete-mode)
   (spacemacs|do-after-display-system-init
    (setq powerline-default-separator 'alternate)
