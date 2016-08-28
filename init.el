@@ -353,6 +353,9 @@ layers configuration. You are free to put any user code."
   (require 'editorconfig)
   (editorconfig-mode 1)
 
+  ;; Ensure all js files are in react mode
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
+
   (global-hungry-delete-mode)
   (spacemacs|do-after-display-system-init
    (setq powerline-default-separator 'alternate)

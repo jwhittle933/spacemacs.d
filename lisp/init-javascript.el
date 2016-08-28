@@ -17,10 +17,7 @@
                                     company-files
                                     company-dabbrev))
 
-
 (with-eval-after-load 'js2-mode
-  ;; Use js2-jsx-mode for all js files
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
   (modify-syntax-entry ?_ "w" js2-mode-syntax-table))
 
 ;; Set up flycheck for javascript
