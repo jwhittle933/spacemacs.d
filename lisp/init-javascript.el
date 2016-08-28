@@ -10,9 +10,13 @@
 (defun set-jsx-indentation ()
   (setq-local sgml-basic-offset js2-basic-offset))
 
-(setq company-backends-js2-mode '((company-tern :with company-dabbrev)
+(setq company-backends-js2-mode '((company-flow :with company-dabbrev)
                                   company-files
                                   company-dabbrev))
+(setq company-backends-react-mode '((company-flow :with company-dabbrev)
+                                    company-files
+                                    company-dabbrev))
+
 
 (with-eval-after-load 'js2-mode
   ;; Use js2-jsx-mode for all js files
