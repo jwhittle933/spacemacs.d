@@ -17,6 +17,8 @@
                                     company-files
                                     company-dabbrev))
 
+;; (setq company-backends-react-mode '(company-flow ))
+
 (with-eval-after-load 'js2-mode
   (modify-syntax-entry ?_ "w" js2-mode-syntax-table))
 
