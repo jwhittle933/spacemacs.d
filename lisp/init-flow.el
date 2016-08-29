@@ -7,6 +7,9 @@
     (flycheck-add-mode 'javascript-flow 'react-mode)
     (flycheck-add-next-checker 'javascript-flow '(t . javascript-eslint))))
 
+(require 'company-flow)
+(add-to-list 'company-flow-modes 'react-mode)
+
 (require 'flow-types)
 
 (provide 'init-flow)
