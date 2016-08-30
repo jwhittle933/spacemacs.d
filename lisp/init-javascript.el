@@ -10,14 +10,15 @@
 (defun set-jsx-indentation ()
   (setq-local sgml-basic-offset js2-basic-offset))
 
-(setq company-backends-js2-mode '((company-flow :with company-dabbrev)
-                                  company-files
-                                  company-dabbrev))
-(setq company-backends-react-mode '((company-flow :with company-dabbrev)
-                                    company-files
-                                    company-dabbrev))
-
-;; (setq company-backends-react-mode '(company-flow ))
+(spacemacs|use-package-add-hook company-flow
+  :post-init
+  (progn
+    (setq company-backends-js2-mode '((company-flow :with company-dabbrev)
+                                      company-files
+                                      company-dabbrev))
+    (setq company-backends-react-mode '((company-flow :with company-dabbrev)
+                                        company-files
+                                        company-dabbrev))))
 
 (with-eval-after-load 'js2-mode
   (modify-syntax-entry ?_ "w" js2-mode-syntax-table))
