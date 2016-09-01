@@ -83,8 +83,9 @@
   (flycheck-add-next-checker 'elixir-credo '(t . elixir-dogma))
   (flycheck-add-next-checker 'elixir-dogma '(t . elixir-dialyzer)))
 
+;; TODO: Remove after https://github.com/syl20bnr/spacemacs/pull/6983 merged
 (add-hook 'elixir-mode-hook (lambda ()
-                              (flycheck-mode)))
+                              (kill-local-variable 'flycheck-check-syntax-automatically)) t)
 
 ;; Pin alchemist windows to bottom
 (push '("*alchemist test report*"
