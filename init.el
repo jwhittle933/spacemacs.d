@@ -85,6 +85,10 @@ values."
      editorconfig
      flycheck-flow
      flycheck-package
+     (flycheck-credo :toggle (configuration-layer/package-usedp 'flycheck)
+                     :location (recipe
+                                :fetcher github
+                                :repo "aaronjensen/flycheck-credo"))
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages
@@ -363,7 +367,9 @@ layers configuration. You are free to put any user code."
   ;; https://github.com/company-mode/company-mode/issues/528
   (add-to-list 'company-transformers 'delete-consecutive-dups t)
 
-  (eval-after-load 'flycheck '(flycheck-package-setup))
+  (with-eval-after-load 'flycheck
+    (flycheck-package-setup)
+    (flycheck-credo-setup))
 
   (global-hungry-delete-mode)
   (spacemacs|do-after-display-system-init
