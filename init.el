@@ -368,8 +368,7 @@ layers configuration. You are free to put any user code."
   (add-to-list 'company-transformers 'delete-consecutive-dups t)
 
   (with-eval-after-load 'flycheck
-    (flycheck-package-setup)
-    (flycheck-credo-setup))
+    (flycheck-package-setup))
 
   (global-hungry-delete-mode)
   (spacemacs|do-after-display-system-init

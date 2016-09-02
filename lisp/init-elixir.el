@@ -8,7 +8,8 @@
 (setq alchemist-goto-erlang-source-dir "~/Source/otp")
 
 (defun elixir-flycheck-project-root (&rest _ignored)
-  (locate-dominating-file buffer-file-name "mix.exs"))
+  (and buffer-file-name
+       (locate-dominating-file buffer-file-name "mix.exs")))
 
 (with-eval-after-load 'flycheck
   (flycheck-define-checker elixir-dogma
@@ -49,6 +50,8 @@
             line-end))
     :working-directory elixir-flycheck-project-root
     :modes elixir-mode)
+
+  (flycheck-credo-setup)
 
   (add-to-list 'flycheck-checkers 'elixir-dogma)
   (add-to-list 'flycheck-checkers 'elixir-dialyzer t)
