@@ -51,7 +51,7 @@ values."
             shell-default-shell 'ansi-term
             shell-default-height 30
             shell-default-position 'bottom)
-     spell-checking
+     (spell-checking :variables spell-checking-enable-by-default nil)
      ranger
      version-control
      rcirc
@@ -319,6 +319,9 @@ user code here.  The exception is org related code, which should be placed in
   (require 'init-evil)
   (require 'init-javascript)
   (require 'init-html)
+
+  ;; Enable spell checking in text mode only
+  (add-hook 'text-mode-hook 'flyspell-mode)
 
   (setq exec-path-from-shell-arguments '("-l"))
   (add-to-list 'auto-mode-alist '("\\.?\\(bashrc\\|zshrc\\|shellrc\\|bash_profile\\)" . sh-mode))
