@@ -426,6 +426,8 @@ layers configuration. You are free to put any user code."
    dtrt-indent-mode t
    )
 
+  (global-set-key (kbd "M-]") 'sp-slurp-hybrid-sexp)
+
   (spacemacs/set-leader-keys "SPC" 'avy-goto-char-timer)
   (setq avy-timeout-seconds 0.2)
 
