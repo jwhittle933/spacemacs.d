@@ -62,6 +62,9 @@
   (define-key company-active-map (kbd "<S-tab>") 'company-simple-complete-previous)
   (define-key company-active-map (kbd "RET") nil)
   (define-key company-active-map (kbd "<return>") nil)
+  (define-key company-active-map (kbd "C-f") nil)
+  (define-key company-active-map (kbd "C-d") nil)
+  (define-key company-active-map (kbd "M-d") 'company-show-doc-buffer)
 
   (setq company-require-match nil)
   (put 'company-simple-complete-next 'company-keep t)
