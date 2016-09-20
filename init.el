@@ -390,7 +390,6 @@ layers configuration. You are free to put any user code."
   (with-eval-after-load 'flycheck
     (flycheck-package-setup))
 
-  (global-hungry-delete-mode)
   (spacemacs|do-after-display-system-init
    (setq powerline-default-separator 'alternate)
    (spaceline-compile))
