@@ -399,6 +399,16 @@ layers configuration. You are free to put any user code."
   (if (file-exists-p abbrev-file-name)
       (quietly-read-abbrev-file))
 
+  ;; Indentation
+  (setq
+   sh-basic-offset 2
+   sh-indentation 2
+   css-indent-offset 2
+
+   ;; dtrt-indent-mode
+   dtrt-indent-mode t
+   )
+
   (setq
    ;; Use bash because it's faster
    shell-file-name "/bin/bash"
@@ -417,14 +427,11 @@ layers configuration. You are free to put any user code."
    vc-follow-symlinks t
    require-final-newline t
 
-   ;; Shell-script mode
-   sh-basic-offset 2
-   sh-indentation 2
-
-   ;; dtrt-indent-mode
-   dtrt-indent-mode t
+   ;; Enable midnight-mode to clean old buffers every day
+   midnight-mode t
    )
 
+  ;; Key Bindings
   (global-set-key (kbd "M-]") 'sp-slurp-hybrid-sexp)
 
   (spacemacs/set-leader-keys "SPC" 'avy-goto-char-timer)
@@ -446,9 +453,6 @@ layers configuration. You are free to put any user code."
 
   ;; Word wrap in text buffers
   (add-hook 'text-mode-hook 'auto-fill-mode)
-
-  ;; Enable midnight-mode to clean old buffers every day
-  '(midnight-mode t nil (midnight))
 
   (shackle-mode)
 
