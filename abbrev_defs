@@ -142,6 +142,7 @@
     ("reenabling" "enabling" nil 0)
     ("referting" "reverting" nil 1)
     ("sattus" "status" nil 0)
+    ("shennanigans" "shenanigans" nil 0)
     ("siwtch" "switch" nil 0)
     ("swimlane" "lane" nil 0)
     ("teh" "the" nil 3)
