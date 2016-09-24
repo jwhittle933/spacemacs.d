@@ -53,6 +53,18 @@
       (if (string= dir "/") nil
         (eslint-set-closest-executable (expand-file-name ".." dir))))))
 
+;; Runs eslint --fix after save
+(defun eslint-fix ()
+  (interactive)
+  (shell-command
+   (concat flycheck-javascript-eslint-executable " --fix " (buffer-file-name)))
+  (revert-buffer t t))
+
+(add-hook 'js-mode-hook
+          (lambda () (add-hook 'after-save-hook #'eslint-fix)))
+(add-hook 'react-mode-hook
+          (lambda () (add-hook 'after-save-hook #'eslint-fix)))
+
 ;; Monkey patch to fix indentation for attributes in jsx
 (load-file "~/.spacemacs.d/lisp/sgml-mode-patch.el")
 (require 'sgml-mode)
