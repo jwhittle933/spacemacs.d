@@ -56,9 +56,16 @@
 ;; Runs eslint --fix after save
 (defun eslint-fix ()
   (interactive)
-  (shell-command
-   (concat flycheck-javascript-eslint-executable " --fix " (buffer-file-name)))
-  (revert-buffer t t))
+  (let* ((command  (list flycheck-javascript-eslint-executable
+                          "--fix"
+                          buffer-file-name))
+         (process (apply 'start-process "eslint-fix" nil command)))
+    (set-process-sentinel process #'eslint-fix-handle-signal)))
+
+(defun eslint-fix-handle-signal (process _event)
+  (when (and (eq (process-status process) 'exit)
+             (eq (process-exit-status process) 0))
+    (revert-buffer t t)))
 
 (add-hook 'js-mode-hook
           (lambda () (add-hook 'after-save-hook #'eslint-fix)))
