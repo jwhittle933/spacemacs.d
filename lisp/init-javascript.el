@@ -57,8 +57,8 @@
 (defun eslint-fix ()
   (interactive)
   (let* ((command  (list flycheck-javascript-eslint-executable
-                          "--fix"
-                          buffer-file-name))
+                         "--fix"
+                         buffer-file-name))
          (process-connection-type nil)
          (process (apply 'start-process "eslint-fix" nil command)))
     (set-process-sentinel process #'eslint-fix-handle-signal)))
