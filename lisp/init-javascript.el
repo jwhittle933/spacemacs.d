@@ -56,23 +56,33 @@
 ;; Runs eslint --fix after save
 (defun eslint-fix ()
   (interactive)
-  (let* ((command  (list flycheck-javascript-eslint-executable
-                         "--fix"
-                         buffer-file-name))
-         (process-connection-type nil)
-         (process (apply 'start-process "eslint-fix" nil command)))
-    (set-process-sentinel process #'eslint-fix-handle-signal)))
-
-(defun eslint-fix-handle-signal (process _event)
-  (when (and (eq (process-status process) 'exit)
-             (eq (process-exit-status process) 0))
-    (unwind-protect
-        (revert-buffer t t))))
+  (let ((current-point (point)))
+    (shell-command-on-region
+     ;; Region
+     (point-min)
+     (point-max)
+     ;; Command
+     (concat
+      flycheck-javascript-eslint-executable
+      " --stdin"
+      " --fix-to-stdout"
+      " --stdin-filename " buffer-file-name)
+     ;; Output to current buffer
+     t
+     ;; Replace buffer
+     t
+     ;; Error buffer name
+     "*eslint-fix error*"
+     ;; Display error buffer
+     t)
+    ;; Refresh syntax highlighting
+    (font-lock-fontify-buffer)
+    (goto-char current-point)))
 
 (add-hook 'js-mode-hook
-          (lambda () (add-hook 'after-save-hook #'eslint-fix)))
+          (lambda () (add-hook 'before-save-hook #'eslint-fix nil t)))
 (add-hook 'react-mode-hook
-          (lambda () (add-hook 'after-save-hook #'eslint-fix)))
+          (lambda () (add-hook 'before-save-hook #'eslint-fix nil t)))
 
 ;; Monkey patch to fix indentation for attributes in jsx
 (load-file "~/.spacemacs.d/lisp/sgml-mode-patch.el")
