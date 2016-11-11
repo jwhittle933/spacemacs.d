@@ -5,6 +5,8 @@
 
 (define-abbrev-table 'Info-edit-mode-abbrev-table '())
 
+(define-abbrev-table 'Man-mode-abbrev-table '())
+
 (define-abbrev-table 'alchemist-compile-mode-abbrev-table '())
 
 (define-abbrev-table 'alchemist-execute-mode-abbrev-table '())
@@ -111,6 +113,8 @@
 
 (define-abbrev-table 'evil-list-view-mode-abbrev-table '())
 
+(define-abbrev-table 'finder-mode-abbrev-table '())
+
 (define-abbrev-table 'flycheck-error-list-mode-abbrev-table '())
 
 (define-abbrev-table 'fundamental-mode-abbrev-table '())
@@ -125,6 +129,7 @@
 
 (define-abbrev-table 'global-abbrev-table
   '(
+    ("abandonded" "abandoned" nil 0)
     ("aboslutely" "absolutely" nil 0)
     ("acknowledgements" "acknowledgments" nil 0)
     ("chagnes" "changes" nil 0)
@@ -174,6 +179,8 @@
 (define-abbrev-table 'image-dired-display-image-mode-abbrev-table '())
 
 (define-abbrev-table 'image-dired-thumbnail-mode-abbrev-table '())
+
+(define-abbrev-table 'imenu-list-major-mode-abbrev-table '())
 
 (define-abbrev-table 'ivy-occur-grep-mode-abbrev-table '())
 
@@ -238,6 +245,8 @@
 (define-abbrev-table 'neotree-mode-abbrev-table '())
 
 (define-abbrev-table 'nxml-mode-abbrev-table '())
+
+(define-abbrev-table 'ob-http-mode-abbrev-table '())
 
 (define-abbrev-table 'objc-mode-abbrev-table
   '(
