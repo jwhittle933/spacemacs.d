@@ -30,7 +30,13 @@ values."
                       syntax-checking-enable-tooltips nil)
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage nil
-                      auto-completion-enable-snippets-in-popup nil)
+                      auto-completion-enable-snippets-in-popup nil
+                      ;; spacemacs adds .emacs.d/private/snippets as the first snippet dir
+                      ;; but I want to save to .spacemacs.d by default.
+                      auto-completion-private-snippets-directory
+                      (expand-file-name
+                       "snippets"
+                       dotspacemacs-directory))
      erlang
      elixir
      git
