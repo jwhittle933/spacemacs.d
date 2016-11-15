@@ -82,11 +82,13 @@
                  "*eslint-fix error*"))
         (let ((fixed-text (buffer-substring-no-properties (point-min) (point-max))))
           (with-current-buffer buffer
-            (delete-region (point-min) (point-max))
-            (insert fixed-text)
-            ;; Restore point and scroll position
-            (goto-char current-point)
-            (recenter (- line 1))))))))
+            (unless (string= fixed-text
+                             (buffer-substring-no-properties (point-min) (point-max)))
+              (delete-region (point-min) (point-max))
+              (insert fixed-text)
+              ;; Restore point and scroll position
+              (goto-char current-point)
+              (recenter (- line 1)))))))))
 
 (add-hook 'js-mode-hook
           (lambda () (add-hook 'before-save-hook #'eslint-fix nil t)))
