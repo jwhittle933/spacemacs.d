@@ -85,6 +85,7 @@ values."
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages
    '(
+     rjsx-mode
      evil-terminal-cursor-changer
      shackle
      dtrt-indent
@@ -389,7 +390,7 @@ layers configuration. You are free to put any user code."
   (editorconfig-mode 1)
 
   ;; Ensure all js files are in react mode
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 
   ;; Delete consecutive dupes from company in case they differ by annotation only
   ;; https://github.com/company-mode/company-mode/issues/528

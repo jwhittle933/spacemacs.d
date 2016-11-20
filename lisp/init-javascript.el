@@ -10,6 +10,8 @@
 (defun set-jsx-indentation ()
   (setq-local sgml-basic-offset js2-basic-offset))
 
+(add-hook 'rjsx-mode-hook #'flycheck-mode)
+
 (spacemacs|use-package-add-hook company-flow
   :post-init
   (progn
