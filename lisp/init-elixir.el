@@ -27,7 +27,7 @@
 
   (flycheck-define-checker elixir-dialyzer
     "Erlang syntax checker based on dialyzer."
-    :command ("mix" "dialyzer" "--fullpath")
+    :command ("mix" "dialyzer" "--fullpath" "--no-check")
     :predicate
     (lambda ()
       (and
