@@ -464,6 +464,9 @@ layers configuration. You are free to put any user code."
   ;; Word wrap in text buffers
   (add-hook 'text-mode-hook 'auto-fill-mode)
 
+  ;; Don't copy text to system clipboard while selecting it
+  (fset 'evil-visual-update-x-selection 'ignore)
+
   (shackle-mode)
 
   ;; load private settings
