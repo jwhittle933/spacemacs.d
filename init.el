@@ -68,7 +68,9 @@ values."
             shell-default-shell 'ansi-term
             shell-default-height 30
             shell-default-position 'bottom)
-     (spell-checking :variables spell-checking-enable-by-default nil)
+     (spell-checking :variables
+                     spell-checking-enable-by-default t
+                     enable-flyspell-auto-completion t)
      ranger
      version-control
      rcirc
@@ -361,9 +363,6 @@ user code here.  The exception is org related code, which should be placed in
   (require 'init-javascript)
   (require 'init-html)
 
-  ;; Enable spell checking in text mode only
-  (add-hook 'text-mode-hook 'flyspell-mode)
-
   (setq exec-path-from-shell-arguments '("-l"))
   (add-to-list 'auto-mode-alist '("\\.?\\(bashrc\\|zshrc\\|shellrc\\|bash_profile\\)" . sh-mode))
 
@@ -411,6 +410,7 @@ layers configuration. You are free to put any user code."
   (require 'init-org)
   (require 'init-terminal-cursor)
   (require 'init-flow)
+  (require 'init-flyspell)
 
   (require 'company-simple-complete)
   (require 'fix-bracketed-paste)
