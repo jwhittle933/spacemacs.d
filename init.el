@@ -31,8 +31,8 @@ values."
    '(
      better-defaults
      spacemacs-layouts
-     ;; ivy
-     helm
+     ivy
+     ;; helm
      emacs-lisp
      markdown
      (syntax-checking :variables
@@ -372,13 +372,6 @@ user code here.  The exception is org related code, which should be placed in
   ;; smartparens
   (setq sp-highlight-pair-overlay nil)
 
-  ;; ivy
-  ;; Use fuzzy finder
-  (setq ivy-re-builders-alist
-        '((t . ivy--regex-fuzzy)))
-  ;; Do not insert ^
-  (setq ivy-initial-inputs-alist nil)
-
   (setq flycheck-display-errors-delay 0.5)
 
   ;; Ruby
@@ -449,6 +442,13 @@ layers configuration. You are free to put any user code."
    ;; dtrt-indent-mode
    dtrt-indent-mode t
    )
+
+  ;; ivy
+  ;; Use fuzzy finder
+  (setq ivy-re-builders-alist
+        '((t . ivy--regex-fuzzy)))
+  ;; Do not insert ^
+  (setq ivy-initial-inputs-alist nil)
 
   (setq
    ;; Use bash because it's faster
