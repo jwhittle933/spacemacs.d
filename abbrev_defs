@@ -132,6 +132,8 @@
     ("abandonded" "abandoned" nil 0)
     ("aboslutely" "absolutely" nil 0)
     ("acknowledgements" "acknowledgments" nil 0)
+    ("annoynace" "annoyance" nil 0)
+    ("arugments" "arguments" nil 0)
     ("chagnes" "changes" nil 0)
     ("commision" "commission" nil 0)
     ("ecause" "because" nil 0)
@@ -281,6 +283,10 @@
 (define-abbrev-table 'reb-lisp-mode-abbrev-table '())
 
 (define-abbrev-table 'reb-mode-abbrev-table '())
+
+(define-abbrev-table 'restclient-mode-abbrev-table '())
+
+(define-abbrev-table 'rjsx-mode-abbrev-table '())
 
 (define-abbrev-table 'rspec-compilation-mode-abbrev-table '())
 
