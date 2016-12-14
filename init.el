@@ -69,8 +69,7 @@ values."
             shell-default-height 30
             shell-default-position 'bottom)
      (spell-checking :variables
-                     spell-checking-enable-by-default t
-                     enable-flyspell-auto-completion t)
+                     spell-checking-enable-by-default t)
      ranger
      version-control
      rcirc
