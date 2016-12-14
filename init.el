@@ -442,10 +442,11 @@ layers configuration. You are free to put any user code."
    dtrt-indent-mode t
    )
 
-  ;; Prevent perp-mode from warning you if you delete a buffer belonging to
+  ;; Automatically add all free buffers to the current perspective. This
+  ;; prevents perp-mode from warning you if you delete a buffer belonging to
   ;; another perspective. This fixes issues I had w/ projectile capture:
   ;; https://github.com/syl20bnr/spacemacs/issues/7931#issuecomment-266706480
-  (setq persp-kill-foreign-buffer-action nil)
+  (setq persp-add-buffer-on-after-change-major-mode 'free)
 
   ;; ivy
   ;; Use fuzzy finder
