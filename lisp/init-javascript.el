@@ -11,6 +11,7 @@
   (setq-local sgml-basic-offset js2-basic-offset))
 
 (add-hook 'rjsx-mode-hook #'flycheck-mode)
+(add-hook 'rjsx-mode-hook #'add-node-modules-path)
 
 (spacemacs|use-package-add-hook company-flow
   :post-init
@@ -40,20 +41,6 @@
         (-map-when (lambda (i) (equal (car i) "javascript"))
                    (lambda (i) '("javascript" . "//"))
                    web-mode-comment-formats)))
-
-;; Find eslint by walking up directory
-(add-hook 'js-mode-hook 'eslint-set-closest-executable)
-(add-hook 'react-mode-hook 'eslint-set-closest-executable)
-(defun eslint-set-closest-executable (&optional dir)
-  (interactive)
-  (let* ((dir (or dir default-directory))
-         (eslint-executable (concat dir "/node_modules/.bin/eslint_d")))
-    (if (file-exists-p eslint-executable)
-        (progn
-          (make-variable-buffer-local 'flycheck-javascript-eslint-executable)
-          (setq flycheck-javascript-eslint-executable eslint-executable))
-      (if (string= dir "/") nil
-        (eslint-set-closest-executable (expand-file-name ".." dir))))))
 
 ;; Runs eslint --fix after save
 (defun eslint-fix ()

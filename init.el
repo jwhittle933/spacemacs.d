@@ -97,6 +97,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
+     add-node-modules-path
      rjsx-mode
      evil-terminal-cursor-changer
      shackle
