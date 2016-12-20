@@ -363,11 +363,10 @@ user code here.  The exception is org related code, which should be placed in
   (require 'init-evil)
   (require 'init-javascript)
   (require 'init-html)
+  (require 'init-lisp)
 
   (setq exec-path-from-shell-arguments '("-l"))
   (add-to-list 'auto-mode-alist '("\\.?\\(bashrc\\|zshrc\\|shellrc\\|bash_profile\\)" . sh-mode))
-
-  (add-hook 'emacs-lisp-mode-hook #'nameless-mode)
 
   (setq create-lockfiles nil)
   (setq require-final-newline t)
@@ -410,7 +409,6 @@ layers configuration. You are free to put any user code."
 
   (require 'company-simple-complete)
   (require 'fix-bracketed-paste)
-  (require 'eval-overlay)
   (require 'fix-autorevert-breaking-git)
   (require 'fill-or-unfill)
 
