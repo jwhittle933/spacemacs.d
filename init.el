@@ -362,6 +362,7 @@ user code here.  The exception is org related code, which should be placed in
   (require 'init-javascript)
   (require 'init-html)
   (require 'init-lisp)
+  (require 'contextual-menubar)
 
   (setq exec-path-from-shell-arguments '("-l"))
   (add-to-list 'auto-mode-alist '("\\.?\\(bashrc\\|zshrc\\|shellrc\\|bash_profile\\)" . sh-mode))
@@ -391,6 +392,10 @@ user code here.  The exception is org related code, which should be placed in
   (add-hook 'rcirc-mode-hook
             (lambda ()
               (set (make-local-variable 'scroll-conservatively) 8192)))
+  (add-hook 'before-make-frame-hook
+            (lambda ()
+              (unless window-system
+                (menu-bar-mode -1))))
   )
 
 (defun dotspacemacs/user-config ()
