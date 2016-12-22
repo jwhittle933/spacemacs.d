@@ -489,6 +489,7 @@ layers configuration. You are free to put any user code."
 
   ;; Key Bindings
   (global-set-key (kbd "M-]") 'sp-slurp-hybrid-sexp)
+  (global-set-key (kbd "C-x C-l") 'evil-complete-next-line)
 
   (spacemacs/set-leader-keys "SPC" 'avy-goto-char-timer)
   (setq avy-timeout-seconds 0.2)
