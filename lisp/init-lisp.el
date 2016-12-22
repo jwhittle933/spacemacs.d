@@ -1,4 +1,4 @@
 (add-hook 'emacs-lisp-mode-hook #'nameless-mode)
-(require 'eval-overlay)
+(add-hook 'emacs-lisp-mode-hook #'eros-mode)
 
 (provide 'init-lisp)
