@@ -461,7 +461,8 @@ layers configuration. You are free to put any user code."
   ;; ivy
   ;; Use fuzzy finder
   (setq ivy-re-builders-alist
-        '((t . ivy--regex-fuzzy)))
+        '((swiper . ivy--regex-plus)
+          (t . ivy--regex-fuzzy)))
   ;; Do not insert ^
   (setq ivy-initial-inputs-alist nil)
 
