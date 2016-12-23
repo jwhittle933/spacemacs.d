@@ -97,6 +97,8 @@
 
 (define-abbrev-table 'elm-interactive-mode-abbrev-table '())
 
+(define-abbrev-table 'elm-mode-abbrev-table '())
+
 (define-abbrev-table 'elm-package-mode-abbrev-table '())
 
 (define-abbrev-table 'emacs-lisp-byte-code-mode-abbrev-table '())
@@ -150,8 +152,8 @@
     ("referting" "reverting" nil 1)
     ("sattus" "status" nil 0)
     ("shennanigans" "shenanigans" nil 0)
+    ("simulatenously" "simultaneously" nil 0)
     ("siwtch" "switch" nil 0)
-    ("swimlane" "lane" nil 0)
     ("teh" "the" nil 3)
     ("tehn" "then" nil 1)
     ("thel" "the" nil 0)
