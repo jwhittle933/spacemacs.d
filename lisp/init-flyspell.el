@@ -17,4 +17,7 @@
   (put 'js2-mode 'flyspell-mode-predicate 'js-flyspell-verify)
   (put 'rjsx-mode 'flyspell-mode-predicate 'js-flyspell-verify))
 
+;; Enable spell checking in text mode only
+(add-hook 'text-mode-hook 'flyspell-mode)
+
 (provide 'init-flyspell)
