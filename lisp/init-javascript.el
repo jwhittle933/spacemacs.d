@@ -10,6 +10,7 @@
 (defun set-jsx-indentation ()
   (setq-local sgml-basic-offset js2-basic-offset))
 
+(add-hook 'rjsx-mode-hook #'eslintd-set-flycheck-executable)
 (add-hook 'rjsx-mode-hook #'flycheck-mode)
 (add-hook 'rjsx-mode-hook #'add-node-modules-path)
 
@@ -25,6 +26,12 @@
 
 (with-eval-after-load 'js2-mode
   (modify-syntax-entry ?_ "w" js2-mode-syntax-table))
+
+(defun eslintd-set-flycheck-executable ()
+  (interactive)
+  (when-let (eslintd-executable (executable-find "eslint_d"))
+    (make-variable-buffer-local 'flycheck-javascript-eslint-executable)
+    (setq flycheck-javascript-eslint-executable eslintd-executable)))
 
 ;; Set up flycheck for javascript
 (with-eval-after-load 'flycheck
