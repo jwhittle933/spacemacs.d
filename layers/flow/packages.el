@@ -15,8 +15,9 @@
 (defun flow/init-company-flow ()
   (use-package company-flow
     :defer t
-    :commands company-flow))
-
-(defun flow/post-init-company ()
-  (spacemacs|add-company-backends
-    :backends company-flow :modes js2-mode rjsx-mode))
+    :commands company-flow
+    :init
+    (spacemacs|add-company-backends
+      :backends company-flow :modes js2-mode rjsx-mode)
+    :config
+    (add-to-list 'company-flow-modes 'rjsx-mode)))

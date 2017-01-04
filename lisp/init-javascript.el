@@ -12,6 +12,7 @@
 
 (add-hook 'rjsx-mode-hook #'eslintd-set-flycheck-executable)
 (add-hook 'rjsx-mode-hook #'flycheck-mode)
+(add-hook 'rjsx-mode-hook #'company-mode)
 (add-hook 'rjsx-mode-hook #'add-node-modules-path)
 
 (spacemacs|use-package-add-hook company-flow
