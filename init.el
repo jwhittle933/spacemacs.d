@@ -424,7 +424,8 @@ layers configuration. You are free to put any user code."
 
   ;; Delete consecutive dupes from company in case they differ by annotation only
   ;; https://github.com/company-mode/company-mode/issues/528
-  (add-to-list 'company-transformers 'delete-consecutive-dups t)
+  (with-eval-after-load 'company
+    (add-to-list 'company-transformers 'delete-consecutive-dups t))
 
   (with-eval-after-load 'flycheck
     (flycheck-package-setup))
