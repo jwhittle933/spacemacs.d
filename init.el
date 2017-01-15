@@ -461,7 +461,10 @@ layers configuration. You are free to put any user code."
   ;; prevents perp-mode from warning you if you delete a buffer belonging to
   ;; another perspective. This fixes issues I had w/ projectile capture:
   ;; https://github.com/syl20bnr/spacemacs/issues/7931#issuecomment-266706480
+  ;; Remove after https://github.com/syl20bnr/spacemacs/pull/7998 is merged
   (setq persp-add-buffer-on-after-change-major-mode 'free)
+  (setq persp-kill-foreign-indirect-buffer-behaviour-override 'as-base-buffer)
+
   ;; Prevent persp from loading existing perspectives when opening new frames.
   ;; This fixes a flash of another buffer when opening things from the terminal.
   ;; https://github.com/Bad-ptr/persp-mode.el/issues/64
