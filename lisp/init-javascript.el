@@ -79,8 +79,11 @@
                  "*eslint-fix error*"))
         (let ((fixed-text (buffer-substring-no-properties (point-min) (point-max))))
           (with-current-buffer buffer
-            (unless (string= fixed-text
-                             (buffer-substring-no-properties (point-min) (point-max)))
+            (unless (or
+                     (string= fixed-text
+                              (buffer-substring-no-properties (point-min) (point-max)))
+                     (s-starts-with-p "Error:" fixed-text ))
+
               (delete-region (point-min) (point-max))
               (insert fixed-text)
               ;; Restore point and scroll position
