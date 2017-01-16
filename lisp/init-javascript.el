@@ -95,8 +95,4 @@
 (add-hook 'react-mode-hook
           (lambda () (add-hook 'before-save-hook #'eslint-fix nil t)))
 
-;; Monkey patch to fix indentation for attributes in jsx
-(load-file "~/.spacemacs.d/lisp/sgml-mode-patch.el")
-(require 'sgml-mode)
-
 (provide 'init-javascript)
