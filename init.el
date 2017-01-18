@@ -531,6 +531,15 @@ layers configuration. You are free to put any user code."
 
   (shackle-mode)
 
+  (dotimes (n 10)
+    ;; Map s-<number> to switch layouts
+    (global-set-key (kbd (format "s-%d" n)) (intern (format "spacemacs/persp-switch-to-%d" n)))
+    ;; Map M-<number> to workspace switching
+    (let ((key (kbd (format "M-%d" n))))
+      (define-key winum-keymap key nil)
+      (global-unset-key key)
+      (global-set-key key (intern (format "eyebrowse-switch-to-window-config-%d" n)))))
+
   ;; load private settings
   (when (file-exists-p "~/.emacs-private.el")
     (load-file "~/.emacs-private.el"))
