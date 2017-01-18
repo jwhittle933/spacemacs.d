@@ -105,7 +105,6 @@ values."
      company-flx
      graphviz-dot-mode
      editorconfig
-     flycheck-flow
      flycheck-package
      (flycheck-credo :toggle (configuration-layer/package-usedp 'flycheck)
                      :location (recipe
