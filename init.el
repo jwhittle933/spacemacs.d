@@ -31,7 +31,6 @@ values."
      spacemacs-layouts
      ivy
      ;; helm
-     emacs-lisp
      markdown
      (syntax-checking :variables
                       syntax-checking-enable-tooltips nil)
@@ -84,6 +83,7 @@ values."
      ;; Personal layers
      aj-deft
      aj-javascript
+     aj-emacs-lisp
      auto-correct
      cleverparens-lispy
      contextual-menubar
@@ -99,7 +99,6 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
-     eros
      evil-terminal-cursor-changer
      shackle
      company-flx
@@ -110,7 +109,6 @@ values."
                                 :fetcher github
                                 :repo "aaronjensen/flycheck-credo"))
      monokai-theme
-     nameless
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -359,7 +357,6 @@ user code here.  The exception is org related code, which should be placed in
   (add-to-list 'load-path (expand-file-name "lisp" dotspacemacs-directory))
   (require 'init-evil)
   (require 'init-html)
-  (require 'init-lisp)
 
   (setq exec-path-from-shell-arguments '("-l"))
   (add-to-list 'auto-mode-alist '("\\.?\\(bashrc\\|zshrc\\|shellrc\\|bash_profile\\)" . sh-mode))
