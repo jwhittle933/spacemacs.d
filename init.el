@@ -409,7 +409,6 @@ layers configuration. You are free to put any user code."
   (require 'init-magit)
   (require 'init-org)
   (require 'init-terminal-cursor)
-  (require 'init-flow)
   (require 'init-flyspell)
 
   (require 'company-simple-complete)
