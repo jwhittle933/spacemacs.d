@@ -410,7 +410,6 @@ layers configuration. You are free to put any user code."
   (require 'init-flyspell)
 
   (require 'company-simple-complete)
-  (require 'fix-bracketed-paste)
   (require 'fix-autorevert-breaking-git)
   (require 'fill-or-unfill)
 
