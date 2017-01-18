@@ -1,6 +1,5 @@
 ;; Unaccepted fix for http://debbugs.gnu.org/cgi/bugreport.cgi?bug=21559
-;; Originally Based on https://github.com/bgamari/emacs/commit/64c97e7d123e7796a204c640de8ad5e03c9c9cc0
-;; Now based on the more simple https://debbugs.gnu.org/cgi/bugreport.cgi?bug=21559#74
+;; Based on the more simple https://debbugs.gnu.org/cgi/bugreport.cgi?bug=21559#74
 
 (with-eval-after-load 'vc-git
   (defun vc-git-conflicted-files (directory)
@@ -24,5 +23,3 @@
 
             (when (equal state "U")
               (push (expand-file-name file directory) files))))))))
-
-(provide 'fix-autorevert-breaking-git)

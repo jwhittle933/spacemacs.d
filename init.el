@@ -89,6 +89,7 @@ values."
      cleverparens-lispy
      contextual-menubar
      editorconfig
+     fix-git-autorevert
      flow
      frame-geometry
      )
@@ -410,7 +411,6 @@ layers configuration. You are free to put any user code."
   (require 'init-flyspell)
 
   (require 'company-simple-complete)
-  (require 'fix-autorevert-breaking-git)
   (require 'fill-or-unfill)
 
   ;; Ensure all js files are in react mode
