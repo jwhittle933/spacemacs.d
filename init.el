@@ -61,7 +61,6 @@ values."
      github
      javascript
      react
-     deft
      ruby
      (shell :variables
             shell-default-shell 'ansi-term
@@ -89,6 +88,7 @@ values."
      frame-geometry
      cleverparens-lispy
      flow
+     aj-deft
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -403,7 +403,6 @@ user code here.  The exception is org related code, which should be placed in
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
-  (require 'init-deft)
   (require 'init-elixir)
   (require 'init-magit)
   (require 'init-org)
