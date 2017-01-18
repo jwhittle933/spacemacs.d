@@ -92,6 +92,7 @@ values."
      fix-git-autorevert
      flow
      frame-geometry
+     match-indent
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -104,7 +105,6 @@ values."
      eros
      evil-terminal-cursor-changer
      shackle
-     dtrt-indent
      company-flx
      graphviz-dot-mode
      flycheck-package
@@ -438,9 +438,6 @@ layers configuration. You are free to put any user code."
    sh-basic-offset 2
    sh-indentation 2
    css-indent-offset 2
-
-   ;; dtrt-indent-mode
-   dtrt-indent-mode t
    )
 
   ;; https://github.com/syl20bnr/spacemacs/pull/8065
