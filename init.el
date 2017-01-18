@@ -84,12 +84,13 @@ values."
      evil-little-word
 
      ;; Personal layers
-     contextual-menubar
-     auto-correct
-     frame-geometry
-     cleverparens-lispy
-     flow
      aj-deft
+     auto-correct
+     cleverparens-lispy
+     contextual-menubar
+     editorconfig
+     flow
+     frame-geometry
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -105,7 +106,6 @@ values."
      dtrt-indent
      company-flx
      graphviz-dot-mode
-     editorconfig
      flycheck-package
      (flycheck-credo :toggle (configuration-layer/package-usedp 'flycheck)
                      :location (recipe
@@ -413,9 +413,6 @@ layers configuration. You are free to put any user code."
   (require 'fix-bracketed-paste)
   (require 'fix-autorevert-breaking-git)
   (require 'fill-or-unfill)
-
-  (require 'editorconfig)
-  (editorconfig-mode 1)
 
   ;; Ensure all js files are in react mode
   (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
