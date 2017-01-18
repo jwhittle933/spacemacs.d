@@ -59,8 +59,6 @@ values."
      osx
      ;; vinegar
      github
-     javascript
-     react
      ruby
      (shell :variables
             shell-default-shell 'ansi-term
@@ -85,6 +83,7 @@ values."
 
      ;; Personal layers
      aj-deft
+     aj-javascript
      auto-correct
      cleverparens-lispy
      contextual-menubar
@@ -100,8 +99,6 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
-     add-node-modules-path
-     rjsx-mode
      eros
      evil-terminal-cursor-changer
      shackle
@@ -120,7 +117,6 @@ values."
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages
    '(
-     tern
      )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -362,7 +358,6 @@ user code here.  The exception is org related code, which should be placed in
 `dotspacemacs/user-config'."
   (add-to-list 'load-path (expand-file-name "lisp" dotspacemacs-directory))
   (require 'init-evil)
-  (require 'init-javascript)
   (require 'init-html)
   (require 'init-lisp)
 
@@ -412,9 +407,6 @@ layers configuration. You are free to put any user code."
 
   (require 'company-simple-complete)
   (require 'fill-or-unfill)
-
-  ;; Ensure all js files are in react mode
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 
   ;; Delete consecutive dupes from company in case they differ by annotation only
   ;; https://github.com/company-mode/company-mode/issues/528

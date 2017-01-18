@@ -72,6 +72,7 @@ function."
              (t
               (error "invalid rcs patch or internal error in eslint-fix--apply-rcs-patch")))))))))
 
+;;;###autoload
 (defun eslint-fix ()
   (interactive)
   (let ((current-point (point))

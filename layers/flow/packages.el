@@ -2,7 +2,8 @@
   '(
     (flycheck-flow :toggle (configuration-layer/package-usedp 'flycheck))
     (company-flow :toggle (configuration-layer/package-usedp 'company))
-    ))
+    (tern :excluded t)
+    (company-tern :excluded t)))
 
 (defun flow/init-flycheck-flow ()
   (use-package flycheck-flow
