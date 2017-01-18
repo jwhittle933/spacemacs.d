@@ -84,6 +84,7 @@ values."
      evil-little-word
 
      ;; Personal layers
+     contextual-menubar
      auto-correct
      frame-geometry
      cleverparens-lispy
@@ -363,7 +364,6 @@ user code here.  The exception is org related code, which should be placed in
   (require 'init-javascript)
   (require 'init-html)
   (require 'init-lisp)
-  (require 'contextual-menubar)
 
   (setq exec-path-from-shell-arguments '("-l"))
   (add-to-list 'auto-mode-alist '("\\.?\\(bashrc\\|zshrc\\|shellrc\\|bash_profile\\)" . sh-mode))
