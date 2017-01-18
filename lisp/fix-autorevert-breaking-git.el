@@ -1,44 +1,28 @@
 ;; Unaccepted fix for http://debbugs.gnu.org/cgi/bugreport.cgi?bug=21559
-;; Based on https://github.com/bgamari/emacs/commit/64c97e7d123e7796a204c640de8ad5e03c9c9cc0
-;; Thanks Ben Gamari!
+;; Originally Based on https://github.com/bgamari/emacs/commit/64c97e7d123e7796a204c640de8ad5e03c9c9cc0
+;; Now based on the more simple https://debbugs.gnu.org/cgi/bugreport.cgi?bug=21559#74
 
-(with-eval-after-load 'autorevert
-  (defvar auto-revert-vc-check-timer nil
-    "Timer used by Auto-Revert Mode to schedule
-checks of version control information. See
-`auto-revert-schedule-vc-check' for details.")
+(with-eval-after-load 'vc-git
+  (defun vc-git-conflicted-files (directory)
+    "Return the list of files with conflicts in DIRECTORY."
+    (let* ((status
+            (vc-git--run-command-string directory "diff-files"
+                                        "--name-status"))
+           (lines (when status (split-string status "\n" 'omit-nulls)))
+           files)
+      ;; TODO: Look into reimplementing `vc-git-state', as well as
 
-  (defcustom auto-revert-vc-check-idle-time 2
-    "How much time to wait after noticing a changed file before calling
-`vc-find-file-hook' or nil to check immediately."
-    :group 'auto-revert
-    :type 'number
-    :version "25.1")
+      ;; `vc-git-dir-status-files', based on this output, thus making the
 
-  (defun auto-revert-schedule-vc-check ()
-    "Schedule a call to `vc-find-file-hook'.
+      ;; extra process call in `vc-git-find-file-hook' unnecessary.
 
-We need to be careful when calling `vc-refresh-state' after file changes
-as some version control utilities (e.g. git rebase) have a tendency
-to do many successive calls and will fail ungracefully if they find
-we have taken the repository lock.
+      (dolist (line lines files)
+        (when (string-match "\\([ MADRCU?!]\\)[ \t]+\\(.+\\)" line)
+          (let ((state (match-string 1 line))
+                (file (match-string 2 line)))
+            ;; See git-status(1).
 
-For this reason we wait for the repository to be idle for at least
-`auto-revert-vc-check-idle-time' seconds before calling
-`vc-refresh-state'."
-    (if auto-revert-vc-check-idle-time
-        (progn
-          (when (timerp auto-revert-vc-check-timer)
-            (cancel-timer auto-revert-vc-check-timer))
-          (setq auto-revert-vc-check-idle-timer
-                (run-at-time auto-revert-vc-check-idle-time nil
-                             'vc-find-file-hook))
-          )
-      (vc-refresh-state)))
-
-  (defadvice auto-revert-handler (around refresh-on-idle ())
-    (flet ((vc-refresh-state () (auto-revert-schedule-vc-check)))
-      ad-do-it))
-  (ad-activate 'auto-revert-handler))
+            (when (equal state "U")
+              (push (expand-file-name file directory) files))))))))
 
 (provide 'fix-autorevert-breaking-git)
