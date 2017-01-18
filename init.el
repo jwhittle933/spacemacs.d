@@ -100,7 +100,6 @@ values."
    dotspacemacs-additional-packages
    '(
      evil-terminal-cursor-changer
-     shackle
      company-flx
      graphviz-dot-mode
      flycheck-package
@@ -507,8 +506,6 @@ layers configuration. You are free to put any user code."
 
   ;; Don't copy text to system clipboard while selecting it
   (fset 'evil-visual-update-x-selection 'ignore)
-
-  (shackle-mode)
 
   (dotimes (n 10)
     ;; Map s-<number> to switch layouts
