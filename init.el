@@ -414,6 +414,7 @@ layers configuration. You are free to put any user code."
 
   (spacemacs|do-after-display-system-init
    (setq powerline-default-separator 'alternate)
+   (setq spaceline-version-control-p nil)
    (spaceline-compile))
 
   ;; auto-correct
