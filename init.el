@@ -101,7 +101,6 @@ values."
      evil-terminal-cursor-changer
      company-flx
      graphviz-dot-mode
-     flycheck-package
      monokai-theme
      )
    ;; A list of packages that cannot be updated.
@@ -402,9 +401,6 @@ layers configuration. You are free to put any user code."
   ;; https://github.com/company-mode/company-mode/issues/528
   (with-eval-after-load 'company
     (add-to-list 'company-transformers 'delete-consecutive-dups t))
-
-  (with-eval-after-load 'flycheck
-    (flycheck-package-setup))
 
   (spacemacs|do-after-display-system-init
    (setq powerline-default-separator 'alternate)
