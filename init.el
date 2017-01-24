@@ -43,8 +43,6 @@ values."
                       (expand-file-name
                        "snippets"
                        dotspacemacs-directory))
-     erlang
-     elixir
      git
      dash
      pdf-tools
@@ -82,8 +80,9 @@ values."
 
      ;; Personal layers
      aj-deft
-     aj-javascript
+     aj-elixir
      aj-emacs-lisp
+     aj-javascript
      auto-correct
      cleverparens-lispy
      contextual-menubar
@@ -103,10 +102,6 @@ values."
      company-flx
      graphviz-dot-mode
      flycheck-package
-     (flycheck-credo :toggle (configuration-layer/package-usedp 'flycheck)
-                     :location (recipe
-                                :fetcher github
-                                :repo "aaronjensen/flycheck-credo"))
      monokai-theme
      )
    ;; A list of packages that cannot be updated.
@@ -395,7 +390,6 @@ user code here.  The exception is org related code, which should be placed in
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
-  (require 'init-elixir)
   (require 'init-magit)
   (require 'init-org)
   (require 'init-terminal-cursor)
