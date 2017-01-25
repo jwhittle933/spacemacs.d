@@ -4,7 +4,7 @@
     elixir-mode
     (flycheck-credo :toggle (configuration-layer/package-usedp 'flycheck))
     (flycheck-dialyxir :location (recipe :fetcher github :repo "aaronjensen/flycheck-dialyxir"))
-    (flycheck-dogma :location local)
+    (flycheck-dogma :location (recipe :fetcher github :repo "aaronjensen/flycheck-dogma"))
     flycheck
     ))
 
