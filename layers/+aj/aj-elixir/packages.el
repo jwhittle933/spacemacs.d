@@ -3,7 +3,7 @@
     alchemist
     elixir-mode
     (flycheck-credo :toggle (configuration-layer/package-usedp 'flycheck))
-    (flycheck-dialyzer :location local)
+    (flycheck-dialyxir :location (recipe :fetcher github :repo "aaronjensen/flycheck-dialyxir"))
     (flycheck-dogma :location local)
     flycheck
     ))
@@ -44,10 +44,10 @@
     :commands flycheck-dogma-setup
     ))
 
-(defun aj-elixir/init-flycheck-dialyzer ()
-  (use-package flycheck-dialyzer
+(defun aj-elixir/init-flycheck-dialyxir ()
+  (use-package flycheck-dialyxir
     :defer t
-    :commands flycheck-dialyzer-setup
+    :commands flycheck-dialyxir-setup
     ))
 
 (defun aj-elixir/post-init-flycheck ()
@@ -55,6 +55,6 @@
     (with-eval-after-load 'elixir-mode
       (flycheck-dogma-setup)
       (flycheck-credo-setup)
-      (flycheck-dialyzer-setup)
+      (flycheck-dialyxir-setup)
       (flycheck-add-next-checker 'elixir-dogma 'elixir-credo)
-      (flycheck-add-next-checker 'elixir-credo 'elixir-dialyzer))))
+      (flycheck-add-next-checker 'elixir-credo 'elixir-dialyxir))))
