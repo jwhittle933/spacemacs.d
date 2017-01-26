@@ -3,8 +3,8 @@
     alchemist
     elixir-mode
     (flycheck-credo :toggle (configuration-layer/package-usedp 'flycheck))
-    (flycheck-dialyxir :location (recipe :fetcher github :repo "aaronjensen/flycheck-dialyxir"))
-    (flycheck-dogma :location (recipe :fetcher github :repo "aaronjensen/flycheck-dogma"))
+    flycheck-dialyxir
+    flycheck-dogma
     flycheck
     ))
 
