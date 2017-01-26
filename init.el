@@ -548,5 +548,7 @@ This function is called at the very end of Spacemacs initialization."
  '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822")) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C"))))
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
+ '(diff-refine-added ((t (:background "#394e10" :foreground "#A6E22E"))))
+ '(diff-refine-removed ((t (:background "#430b1e" :foreground "#F92672"))))
  '(header-line ((t (:background "#3E3D31" :foreground "#F8F8F0" :box nil)))))
 )
