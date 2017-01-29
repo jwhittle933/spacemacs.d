@@ -10,10 +10,9 @@
 (defun aj-javascript/init-eslintd-fix ()
   (use-package eslintd-fix
     :defer t
-    :commands eslintd-fix
+    :commands eslintd-fix-mode
     :init
-    (add-hook 'rjsx-mode-hook
-              (lambda () (add-hook 'before-save-hook #'eslintd-fix nil t)))))
+    (add-hook 'rjsx-mode-hook #'eslintd-fix-mode)))
 
 (defun aj-javascript/init-rjsx-mode ()
   (use-package rjsx-mode

@@ -1,8 +1,55 @@
-;; Runs eslint --fix after save
+;;; eslintd-fix.el --- flycheck checker for elixir dogma
+
+;; Copyright (C) 2016 by Aaron Jensen
+
+;; Author: Aaron Jensen <aaronjensen@gmail.com>
+;; URL: https://github.com/aaronjensen/eslintd-fix
+;; Version: 0.1.0
+;; Package-Requires: ((flycheck "29"))
+
+;;; Commentary:
+
+;; This package provides the eslintd-fix minor mode, which will use eslint_d
+;; (https://github.com/mantoni/eslint_d.js) to automatically fix javascript code
+;; before it is saved.
+
+;; To use it, require it ...
+
+
+;;; License:
+
+;; This file is not part of GNU Emacs.
+;; However, it is distributed under the same license.
+
+;; GNU Emacs is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 3, or (at your option)
+;; any later version.
+
+;; GNU Emacs is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs; see the file COPYING.  If not, write to the
+;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301, USA.
+
+;;; Code:
+(defgroup eslintd-fix nil
+  "Fix javsacript code with eslint_d"
+  :group 'tools)
+
+(defcustom eslintd-fix-executable "eslint_d"
+  "The eslint_d executable used by `eslintd-fix'."
+  :group 'eslintd-fix
+  :type 'string)
 
 (defun eslintd-fix--goto-line (line)
+  "Move point to LINE."
   (goto-char (point-min))
-    (forward-line (1- line)))
+  (forward-line (1- line)))
 
 (defun eslintd-fix--delete-whole-line (&optional arg)
     "Delete the current line without putting it in the `kill-ring'.
@@ -49,7 +96,7 @@ function."
         (goto-char (point-min))
         (while (not (eobp))
           (unless (looking-at "^\\([ad]\\)\\([0-9]+\\) \\([0-9]+\\)")
-            (error "invalid rcs patch or internal error in eslintd-fix--apply-rcs-patch"))
+            (error "Invalid rcs patch or internal error in eslintd-fix--apply-rcs-patch"))
           (forward-line)
           (let ((action (match-string 1))
                 (from (string-to-number (match-string 2)))
@@ -70,10 +117,10 @@ function."
                 (setq line-offset (+ line-offset len))
                 (eslintd-fix--delete-whole-line len)))
              (t
-              (error "invalid rcs patch or internal error in eslintd-fix--apply-rcs-patch")))))))))
+              (error "Invalid rcs patch or internal error in eslintd-fix--apply-rcs-patch")))))))))
 
-;;;###autoload
 (defun eslintd-fix ()
+  "Replace buffer contents with \"fixed\" code from eslint_d."
   (interactive)
   (let ((current-point (point))
         (line (count-screen-lines (window-start) (point)))
@@ -81,7 +128,7 @@ function."
                   "("
                   " set -o pipefail;"
                   " original=$(cat);"
-                  flycheck-javascript-eslint-executable
+                  eslintd-fix-executable
                   " --stdin"
                   " --fix-to-stdout"
                   " --stdin-filename " buffer-file-name
@@ -111,4 +158,13 @@ function."
           (with-current-buffer buffer
             (eslintd-fix--apply-rcs-patch patch-buffer)))))))
 
+;;;###autoload
+(define-minor-mode eslintd-fix-mode
+  "Use eslint_d to automatically fix javascript before saving."
+  :lighter " fix"
+  (if eslintd-fix-mode
+      (add-hook 'before-save-hook #'eslintd-fix nil t)
+    (remove-hook 'before-save-hook #'eslintd-fix t)))
+
 (provide 'eslintd-fix)
+;;; eslintd-fix.el ends here
