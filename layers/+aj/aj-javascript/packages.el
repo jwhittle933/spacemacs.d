@@ -2,18 +2,18 @@
   '(
     add-node-modules-path
     company-flow
-    (eslint-fix :location local)
+    (eslintd-fix :location local)
     flycheck
     rjsx-mode
     ))
 
-(defun aj-javascript/init-eslint-fix ()
-  (use-package eslint-fix
+(defun aj-javascript/init-eslintd-fix ()
+  (use-package eslintd-fix
     :defer t
-    :commands eslint-fix
+    :commands eslintd-fix
     :init
     (add-hook 'rjsx-mode-hook
-              (lambda () (add-hook 'before-save-hook #'eslint-fix nil t)))))
+              (lambda () (add-hook 'before-save-hook #'eslintd-fix nil t)))))
 
 (defun aj-javascript/init-rjsx-mode ()
   (use-package rjsx-mode

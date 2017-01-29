@@ -1,10 +1,10 @@
 ;; Runs eslint --fix after save
 
-(defun eslint-fix--goto-line (line)
+(defun eslintd-fix--goto-line (line)
   (goto-char (point-min))
     (forward-line (1- line)))
 
-(defun eslint-fix--delete-whole-line (&optional arg)
+(defun eslintd-fix--delete-whole-line (&optional arg)
     "Delete the current line without putting it in the `kill-ring'.
 Derived from function `kill-whole-line'.  ARG is defined as for that
 function."
@@ -30,7 +30,7 @@ function."
            (delete-region (progn (forward-visible-line 0) (point))
                                                   (progn (forward-visible-line arg) (point))))))
 
-(defun eslint-fix--apply-rcs-patch (patch-buffer)
+(defun eslintd-fix--apply-rcs-patch (patch-buffer)
   "Apply an RCS-formatted diff from PATCH-BUFFER to the current buffer."
   (let ((target-buffer (current-buffer))
         ;; Relative offset between buffer line numbers and line numbers
@@ -49,7 +49,7 @@ function."
         (goto-char (point-min))
         (while (not (eobp))
           (unless (looking-at "^\\([ad]\\)\\([0-9]+\\) \\([0-9]+\\)")
-            (error "invalid rcs patch or internal error in eslint-fix--apply-rcs-patch"))
+            (error "invalid rcs patch or internal error in eslintd-fix--apply-rcs-patch"))
           (forward-line)
           (let ((action (match-string 1))
                 (from (string-to-number (match-string 2)))
@@ -66,14 +66,14 @@ function."
                     (insert text)))))
              ((equal action "d")
               (with-current-buffer target-buffer
-                (eslint-fix--goto-line (- from line-offset))
+                (eslintd-fix--goto-line (- from line-offset))
                 (setq line-offset (+ line-offset len))
-                (eslint-fix--delete-whole-line len)))
+                (eslintd-fix--delete-whole-line len)))
              (t
-              (error "invalid rcs patch or internal error in eslint-fix--apply-rcs-patch")))))))))
+              (error "invalid rcs patch or internal error in eslintd-fix--apply-rcs-patch")))))))))
 
 ;;;###autoload
-(defun eslint-fix ()
+(defun eslintd-fix ()
   (interactive)
   (let ((current-point (point))
         (line (count-screen-lines (window-start) (point)))
@@ -104,11 +104,11 @@ function."
               ;; Replace buffer
               t
               ;; Error buffer name
-              "*eslint-fix error*"
+              "*eslintd-fix error*"
               ;; Display errors
               t))
         (let ((patch-buffer (current-buffer)))
           (with-current-buffer buffer
-            (eslint-fix--apply-rcs-patch patch-buffer)))))))
+            (eslintd-fix--apply-rcs-patch patch-buffer)))))))
 
-(provide 'eslint-fix)
+(provide 'eslintd-fix)
