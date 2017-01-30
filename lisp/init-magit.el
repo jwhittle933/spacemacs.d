@@ -5,6 +5,7 @@
 (setq magit-commit-show-diff nil)
 (setq magit-display-buffer-function 'magit-display-buffer-fullcolumn-most-v1)
 (setq magit-diff-refine-hunk 'all)
+(setq magit-delete-by-moving-to-trash nil)
 
 ;; Start commit in insert mode
 (add-hook 'git-commit-mode-hook 'evil-insert-state)
