@@ -26,4 +26,6 @@
   (define-key org-mode-map (kbd "M-L") 'org-shiftmetaright)
   (org-keys))
 
+(setq org-mobile-force-id-on-agenda-items nil)
+
 (provide 'init-org)
