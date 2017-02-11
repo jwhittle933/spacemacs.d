@@ -123,6 +123,8 @@
 
 (define-abbrev-table 'git-rebase-mode-abbrev-table '())
 
+(define-abbrev-table 'gitattributes-mode-abbrev-table '())
+
 (define-abbrev-table 'gitconfig-mode-abbrev-table '())
 
 (define-abbrev-table 'gitignore-mode-abbrev-table '())
@@ -153,6 +155,7 @@
     ("shennanigans" "shenanigans" nil 0)
     ("simulatenously" "simultaneously" nil 0)
     ("siwtch" "switch" nil 0)
+    ("teamcity" "teamcity" nil 0)
     ("teh" "the" nil 3)
     ("tehn" "then" nil 1)
     ("thel" "the" nil 0)
