@@ -409,11 +409,6 @@ layers configuration. You are free to put any user code."
    (setq spaceline-version-control-p nil)
    (spaceline-compile))
 
-  ;; auto-correct
-  (setq abbrev-file-name "~/.spacemacs.d/abbrev_defs")
-  (if (file-exists-p abbrev-file-name)
-      (quietly-read-abbrev-file))
-
   ;; Indentation
   (setq
    sh-basic-offset 2
