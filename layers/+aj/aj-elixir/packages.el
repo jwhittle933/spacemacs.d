@@ -2,7 +2,6 @@
   '(
     alchemist
     elixir-mode
-    (flycheck-credo :toggle (configuration-layer/package-usedp 'flycheck))
     flycheck-dialyxir
     flycheck-dogma
     flycheck
@@ -32,11 +31,6 @@
   (with-eval-after-load 'elixir-mode
     ;; Treat _ as a word character
     (modify-syntax-entry ?_ "w" elixir-mode-syntax-table)))
-
-(defun aj-elixir/init-flycheck-credo ()
-  (use-package flycheck-credo
-    :defer t
-    ))
 
 (defun aj-elixir/init-flycheck-dogma ()
   (use-package flycheck-dogma
