@@ -90,7 +90,6 @@ values."
      fix-git-autorevert
      flow
      frame-geometry
-     hub
      match-indent
      )
    ;; List of additional packages that will be installed without being
