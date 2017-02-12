@@ -492,6 +492,16 @@ layers configuration. You are free to put any user code."
   ;; Don't copy text to system clipboard while selecting it
   (fset 'evil-visual-update-x-selection 'ignore)
 
+  ;; Remap paste to be able to paste multiple times
+  ;; If I don't like this, maybe I'll try this:
+  ;; https://github.com/Dewdrops/evil-ReplaceWithRegister/
+  (defun evil-paste-after-from-0 ()
+    (interactive)
+    (let ((evil-this-register ?0))
+      (call-interactively 'evil-paste-after)))
+
+  (define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
+
   (dotimes (n 10)
     ;; Map s-<number> to switch layouts
     (global-set-key (kbd (format "s-%d" n)) (intern (format "spacemacs/persp-switch-to-%d" n)))
