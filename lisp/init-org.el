@@ -27,5 +27,6 @@
   (org-keys))
 
 (setq org-mobile-force-id-on-agenda-items nil)
+(setq org-startup-indented t)
 
 (provide 'init-org)
