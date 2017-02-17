@@ -1,4 +1,4 @@
-;;; eslintd-fix.el --- flycheck checker for elixir dogma
+;;; eslintd-fix.el --- use eslint_d to automatically fix js files
 
 ;; Copyright (C) 2016 by Aaron Jensen
 
