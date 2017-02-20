@@ -29,6 +29,8 @@
 (setq org-mobile-force-id-on-agenda-items nil)
 (setq org-startup-indented t)
 
+(add-hook 'org-capture-mode-hook 'evil-insert-state)
+
 ;; Sync mobile org automatically in both directions
 ;; From http://stackoverflow.com/a/31360779/11229
 (with-eval-after-load 'org
