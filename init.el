@@ -512,6 +512,9 @@ layers configuration. You are free to put any user code."
       (global-unset-key key)
       (global-set-key key (intern (format "eyebrowse-switch-to-window-config-%d" n)))))
 
+  ;; Pairing stuff
+  (global-set-key (kbd "<end>") 'evil-end-of-line)
+
   ;; load private settings
   (when (file-exists-p "~/.emacs-private.el")
     (load-file "~/.emacs-private.el"))
