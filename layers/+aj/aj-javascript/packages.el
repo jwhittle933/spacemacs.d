@@ -2,7 +2,7 @@
   '(
     add-node-modules-path
     company-flow
-    (eslintd-fix :location local)
+    eslintd-fix
     flycheck
     rjsx-mode
     ))
