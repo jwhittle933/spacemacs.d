@@ -29,4 +29,39 @@
 (setq org-mobile-force-id-on-agenda-items nil)
 (setq org-startup-indented t)
 
+;; Sync mobile org automatically in both directions
+;; From http://stackoverflow.com/a/31360779/11229
+(with-eval-after-load 'org
+  (when (and org-mobile-directory org-mobile-inbox-for-pull)
+    (require 'org-mobile)
+    (require 'gnus-async)
+    ;; Define a timer variable
+    (defvar org-mobile-push-timer nil
+      "Timer that `org-mobile-push-timer' used to reschedule itself, or nil.")
+    ;; Push to mobile when the idle timer runs out
+    (defun org-mobile-push-with-delay (secs)
+      (when org-mobile-push-timer
+        (cancel-timer org-mobile-push-timer))
+      (setq org-mobile-push-timer
+            (run-with-idle-timer
+             (* 1 secs) nil 'org-mobile-push)))
+    ;; After saving files, start an idle timer after which we are going to push
+    (add-hook 'after-save-hook
+              (lambda ()
+                (if (or (eq major-mode 'org-mode) (eq major-mode 'org-agenda-mode))
+                    (dolist (file (org-mobile-files-alist))
+                      (if (string= (expand-file-name (car file)) (buffer-file-name))
+                          (org-mobile-push-with-delay 30))))))
+    ;; watch mobileorg.org for changes, and then call org-mobile-pull
+    (defun org-mobile-install-monitor (file secs)
+      (run-with-timer
+       0 secs
+       (lambda (f p)
+         (unless (< p (second (time-since (elt (file-attributes f) 5))))
+           (org-mobile-pull)
+           (org-mobile-push)))
+       file secs))
+    (defvar monitor-timer (org-mobile-install-monitor (concat org-mobile-directory "/mobileorg.org") 30)
+      "Check if file changed every 30 s.")))
+
 (provide 'init-org)
