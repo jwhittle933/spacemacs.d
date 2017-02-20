@@ -51,8 +51,7 @@ values."
      clojure
      (org :variables
           org-enable-github-support t
-          org-enable-reveal-js-support t
-          org-project-file "TODOs.org")
+          org-enable-reveal-js-support t)
      colors
      osx
      ;; vinegar
