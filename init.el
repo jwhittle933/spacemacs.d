@@ -482,6 +482,10 @@ layers configuration. You are free to put any user code."
   (spacemacs/set-leader-keys "opx" 'profiler-reset)
   (spacemacs/set-leader-keys "oper" 'elp-results)
 
+  ;; Bury buffers instead of killing them by default
+  (spacemacs/set-leader-keys "bd" 'bury-buffer)
+  (spacemacs/set-leader-keys "bk" 'spacemacs/kill-this-buffer)
+
   ;; Use C-j in place of C-x
   ;; (define-key key-translation-map "\C-j" "\C-x")
   (global-set-key (kbd "<s-return>") 'spacemacs/toggle-fullscreen-frame)
