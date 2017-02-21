@@ -101,6 +101,7 @@ values."
      evil-terminal-cursor-changer
      company-flx
      graphviz-dot-mode
+     org-gcal
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
