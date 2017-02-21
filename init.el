@@ -427,6 +427,12 @@ layers configuration. You are free to put any user code."
   ;; https://github.com/Bad-ptr/persp-mode.el/issues/36
   (setq persp-emacsclient-init-frame-behaviour-override nil)
 
+  ;; Prevent org-capture buffers from being added to perspectives which prevents
+  ;; a warning when killing them via `C-c C-k'.
+  (push
+   #'(lambda (b) (buffer-local-value 'org-capture-mode b))
+   persp-add-buffer-on-after-change-major-mode-filter-functions)
+
   ;; ivy
   ;; Use fuzzy finder
   (setq ivy-re-builders-alist
