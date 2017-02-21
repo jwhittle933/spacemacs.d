@@ -485,6 +485,7 @@ layers configuration. You are free to put any user code."
   ;; Bury buffers instead of killing them by default
   (spacemacs/set-leader-keys "bd" 'bury-buffer)
   (spacemacs/set-leader-keys "bk" 'spacemacs/kill-this-buffer)
+  (spacemacs/set-leader-keys "bK" 'spacemacs/kill-other-buffers)
 
   ;; Use C-j in place of C-x
   ;; (define-key key-translation-map "\C-j" "\C-x")
