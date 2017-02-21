@@ -28,6 +28,7 @@
 
 (setq org-mobile-force-id-on-agenda-items nil)
 (setq org-startup-indented t)
+(setq org-agenda-todo-ignore-scheduled t)
 
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
 
