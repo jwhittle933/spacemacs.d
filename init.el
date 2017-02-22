@@ -431,8 +431,9 @@ layers configuration. You are free to put any user code."
   ;; Prevent org-capture buffers from being added to perspectives which prevents
   ;; a warning when killing them via `C-c C-k'.
   (push
-   #'(lambda (b) (and (member 'org-capture-mode (buffer-local-variables b))
-                      (buffer-local-value 'org-capture-mode b)))
+   #'(lambda (b) (or (eq 'org-agenda-mode (buffer-local-value 'major-mode b))
+                     (and (member 'org-capture-mode (buffer-local-variables b))
+                          (buffer-local-value 'org-capture-mode b))))
    persp-add-buffer-on-after-change-major-mode-filter-functions)
 
   ;; ivy
