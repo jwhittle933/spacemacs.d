@@ -72,7 +72,7 @@
 ;; Appt will be refreshed any time an org file is saved after 10 seconds of idle.
 ;; gcal will be synced after 1 minute of idle every 15 minutes.
 (with-eval-after-load 'org
-  (when org-gcal-client-id
+  (when (and (boundp 'org-gcal-client-id) org-gcal-client-id)
     (defvar aj-refresh-appt-timer nil
       "Timer that `aj-refresh-appt-with-delay' uses to reschedule itself, or nil.")
     (defun aj-refresh-appt-with-delay ()
@@ -83,7 +83,8 @@
              10 nil
              (lambda ()
                (setq appt-time-msg-list nil)
-               (org-agenda-to-appt)))))
+               (org-agenda-to-appt)
+               (message nil)))))
 
     (add-hook 'after-save-hook
               (lambda ()
