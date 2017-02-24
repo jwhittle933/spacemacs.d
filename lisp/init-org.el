@@ -71,38 +71,37 @@
 ;; Refresh calendars via org-gcal and automatically create appt-reminders.
 ;; Appt will be refreshed any time an org file is saved after 10 seconds of idle.
 ;; gcal will be synced after 1 minute of idle every 15 minutes.
-(with-eval-after-load 'org
-  (when (and (boundp 'org-gcal-client-id) org-gcal-client-id)
-    (defvar aj-refresh-appt-timer nil
-      "Timer that `aj-refresh-appt-with-delay' uses to reschedule itself, or nil.")
-    (defun aj-refresh-appt-with-delay ()
-      (when aj-refresh-appt-timer
-        (cancel-timer aj-refresh-appt-timer))
-      (setq aj-refresh-appt-timer
-            (run-with-idle-timer
-             10 nil
-             (lambda ()
-               (setq appt-time-msg-list nil)
-               (org-agenda-to-appt)
-               (message nil)))))
+;; Start with `(aj-sync-calendar-start)'
+(defvar aj-refresh-appt-timer nil
+  "Timer that `aj-refresh-appt-with-delay' uses to reschedule itself, or nil.")
+(defun aj-refresh-appt-with-delay ()
+  (when aj-refresh-appt-timer
+    (cancel-timer aj-refresh-appt-timer))
+  (setq aj-refresh-appt-timer
+        (run-with-idle-timer
+         10 nil
+         (lambda ()
+           (setq appt-time-msg-list nil)
+           (org-agenda-to-appt)
+           (message nil)))))
 
-    (add-hook 'after-save-hook
-              (lambda ()
-                (when (eq major-mode 'org-mode)
-                  (aj-refresh-appt-with-delay))))
+(defvar aj-sync-calendar-timer nil
+  "Timer that `aj-sync-calendar-with-delay' uses to reschedule itself, or nil.")
+(defun aj-sync-calendar-with-delay ()
+  (when aj-sync-calendar-timer
+    (cancel-timer aj-sync-calendar-timer))
+  (setq aj-sync-calendar-timer
+        (run-with-idle-timer
+         60 nil
+         'org-gcal-fetch)))
 
-    (defvar aj-sync-calendar-timer nil
-      "Timer that `aj-sync-calendar-with-delay' uses to reschedule itself, or nil.")
-    (defun aj-sync-calendar-with-delay ()
-      (when aj-sync-calendar-timer
-        (cancel-timer aj-sync-calendar-timer))
-      (setq aj-sync-calendar-timer
-            (run-with-idle-timer
-             60 nil
-             'org-gcal-fetch)))
+(defun aj-sync-calendar-start ()
+  (add-hook 'after-save-hook
+            (lambda ()
+              (when (eq major-mode 'org-mode)
+                (aj-refresh-appt-with-delay))))
 
-    (run-with-timer
-     0 (* 15 60)
-     'aj-sync-calendar-with-delay)))
-
+  (run-with-timer
+   0 (* 15 60)
+   'aj-sync-calendar-with-delay))
 (provide 'init-org)
