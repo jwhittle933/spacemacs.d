@@ -358,6 +358,8 @@ user code here.  The exception is org related code, which should be placed in
   (setq create-lockfiles nil)
   (setq require-final-newline t)
   (setq inhibit-compacting-font-caches t)
+  ;; TODO: Remove after Emacs 26.1, it is the default there
+  (setq switch-to-buffer-preserve-window-point t)
 
   ;; smartparens
   (setq sp-highlight-pair-overlay nil)
