@@ -357,6 +357,7 @@ user code here.  The exception is org related code, which should be placed in
 
   (setq create-lockfiles nil)
   (setq require-final-newline t)
+  (setq inhibit-compacting-font-caches t)
 
   ;; smartparens
   (setq sp-highlight-pair-overlay nil)
