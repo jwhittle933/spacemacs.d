@@ -93,7 +93,9 @@
   (setq aj-sync-calendar-timer
         (run-with-idle-timer
          60 nil
-         'org-gcal-fetch)))
+         (lambda ()
+           (org-gcal-refresh-token)
+           (org-gcal-fetch)))))
 
 (defun aj-sync-calendar-start ()
   (add-hook 'after-save-hook
