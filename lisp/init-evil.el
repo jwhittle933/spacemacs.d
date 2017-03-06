@@ -28,7 +28,7 @@
 ;; Make > and < round to tab stops
 (setq evil-shift-round nil)
 
-;; Account our collective ability to hit escape and then another key quickly
+;; Account for our collective ability to hit escape and then another key quickly
 (setq evil-esc-delay 0.001)
 
 (provide 'init-evil)
