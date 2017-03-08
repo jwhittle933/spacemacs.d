@@ -12,7 +12,7 @@
     :defer t
     :commands eslintd-fix-mode
     :init
-    (add-hook 'rjsx-mode-hook #'eslintd-fix-mode)))
+    (add-hook 'rjsx-mode-hook #'eslintd-fix-mode t)))
 
 (defun aj-javascript/init-rjsx-mode ()
   (use-package rjsx-mode
@@ -29,7 +29,7 @@
        js2-strict-trailing-comma-warning nil
        js2-strict-missing-semi-warning nil)
 
-      (add-hook 'rjsx-mode-hook #'aj-javascript/eslintd-set-flycheck-executable))
+      (add-hook 'rjsx-mode-hook #'aj-javascript/eslintd-set-flycheck-executable t))
     :config
     (modify-syntax-entry ?_ "w" js2-mode-syntax-table)))
 
