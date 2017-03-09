@@ -72,4 +72,10 @@
   (run-with-timer
    0 (* 15 60)
    'aj-sync-calendar-with-delay))
+
+(advice-add 'org-agenda-quit :before 'org-save-all-org-buffers)
+(advice-add 'org-agenda-todo :after 'org-save-all-org-buffers)
+(advice-add 'org-agenda-deadline :after 'org-save-all-org-buffers)
+(advice-add 'org-agenda-schedule :after 'org-save-all-org-buffers)
+
 (provide 'init-org)
