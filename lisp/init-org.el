@@ -30,6 +30,7 @@
 (setq org-startup-indented t)
 (setq org-agenda-todo-ignore-scheduled t)
 (setq org-agenda-todo-ignore-deadlines t)
+(setq org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
 
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
 
