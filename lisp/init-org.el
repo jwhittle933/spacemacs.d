@@ -26,11 +26,14 @@
   (define-key org-mode-map (kbd "M-L") 'org-shiftmetaright)
   (org-keys))
 
+(spacemacs/set-leader-keys "bo" 'org-iswitchb)
+
 (setq org-mobile-force-id-on-agenda-items nil)
 (setq org-startup-indented t)
 (setq org-agenda-todo-ignore-scheduled t)
 (setq org-agenda-todo-ignore-deadlines t)
 (setq org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
+(setq org-agenda-sticky t)
 
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
 
@@ -77,5 +80,33 @@
 (advice-add 'org-agenda-todo :after 'org-save-all-org-buffers)
 (advice-add 'org-agenda-deadline :after 'org-save-all-org-buffers)
 (advice-add 'org-agenda-schedule :after 'org-save-all-org-buffers)
+
+;; org-refile settings
+(setq org-refile-targets '((nil :maxlevel . 9)
+                           (org-agenda-files :maxlevel . 9)))
+(setq org-refile-use-outline-path t)
+(setq org-outline-path-complete-in-steps nil)
+(setq org-refile-allow-creating-parent-nodes 'confirm)
+
+(defun aj/verify-refile-target ()
+  "Exclude todo keywords with a done state and org-gcal files"
+  (and (not (member (nth 2 (org-heading-components)) org-done-keywords))
+       (not (member buffer-file-name (mapcar #'cdr org-gcal-file-alist)))))
+
+(setq org-refile-target-verify-function 'aj/verify-refile-target)
+
+;; org-capture settings
+(setq org-capture-templates
+      '(("n" "Notes" entry
+         (file (concat org-directory "/refile.org"))
+         "* %? :NOTE:\n%U\n%a")
+        ("t" "Todo" entry
+         (file+headline (concat org-directory "/todo.org") "To Do")
+         "* TODO %?\n%U\n%a")
+        ("s" "Scheduled Task" entry
+         (file+headline (concat org-directory "/schedule.org") "Tasks")
+         "* TODO %?\nSCHEDULED: %^{When}t")))
+
+(setq org-projectile:capture-template "* TODO %?\n%U\n%a")
 
 (provide 'init-org)
