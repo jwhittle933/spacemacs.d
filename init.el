@@ -459,7 +459,7 @@ layers configuration. You are free to put any user code."
   (global-set-key (kbd "M-]") 'sp-slurp-hybrid-sexp)
   (global-set-key (kbd "C-x C-l") 'evil-complete-next-line)
 
-  (spacemacs/set-leader-keys "SPC" 'avy-goto-char-timer)
+  (spacemacs/set-leader-keys "SPC" 'avy-goto-char-2)
   (setq avy-timeout-seconds 0.2)
 
   ;; Profiler bindings
