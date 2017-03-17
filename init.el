@@ -398,6 +398,7 @@ layers configuration. You are free to put any user code."
   (require 'init-org)
   (require 'init-terminal-cursor)
   (require 'init-flyspell)
+  (require 'init-typescript)
 
   (require 'company-simple-complete)
   (require 'fill-or-unfill)
