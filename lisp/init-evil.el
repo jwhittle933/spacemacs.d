@@ -17,6 +17,10 @@
   (define-key evil-normal-state-map (kbd "*") 'evil-search-word-forward)
   (define-key evil-normal-state-map (kbd "#") 'evil-search-word-backward)
 
+  ;; Remove C-a and C-b from ex (:) so we can use the regular emacs varieties
+  (define-key evil-ex-completion-map (kbd "C-a") nil)
+  (define-key evil-ex-completion-map (kbd "C-b") nil)
+
   ;; Remove this mapping so C-z can suspend in tty
   (define-key evil-motion-state-map (kbd "C-z") nil))
 
