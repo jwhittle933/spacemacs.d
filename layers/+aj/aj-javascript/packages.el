@@ -63,4 +63,4 @@
     (push 'javascript-jshint flycheck-disabled-checkers)
     (push 'json-jsonlint flycheck-disabled-checkers))
 
-  (spacemacs/add-flycheck-hook 'rjsx-mode))
+  (spacemacs/enable-flycheck 'rjsx-mode))
