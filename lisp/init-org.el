@@ -81,6 +81,17 @@
 (advice-add 'org-agenda-deadline :after 'org-save-all-org-buffers)
 (advice-add 'org-agenda-schedule :after 'org-save-all-org-buffers)
 
+;; Custom org-agenda view
+(setq org-agenda-compact-blocks t)
+(setq org-agenda-custom-commands
+      (quote ((" " "Agenda"
+               ((agenda "" ((org-agenda-span 'day)))
+                (todo ""))))))
+(defun org-agenda-show-agenda (&optional arg)
+  (interactive "P")
+  (org-agenda arg " "))
+(spacemacs/set-leader-keys "oa" 'org-agenda-show-agenda)
+
 ;; org-refile settings
 (setq org-refile-targets '((nil :maxlevel . 9)
                            (org-agenda-files :maxlevel . 9)))
