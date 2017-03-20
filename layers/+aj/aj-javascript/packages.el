@@ -49,8 +49,12 @@
   (use-package add-node-modules-path
     :defer t
     :init
-    (with-eval-after-load 'rjsx-mode
-      (add-hook 'rjsx-mode-hook #'add-node-modules-path))))
+    (progn
+      (add-hook 'web-typescript-mode-hook #'add-node-modules-path)
+      (add-hook 'web-mode-hook #'add-node-modules-path)
+      (add-hook 'typescript-mode-hook #'add-node-modules-path)
+      (with-eval-after-load 'rjsx-mode
+        (add-hook 'rjsx-mode-hook #'add-node-modules-path)))))
 
 (defun aj-javascript/post-init-company-flow ()
   (spacemacs|add-company-backends
