@@ -86,7 +86,8 @@
 (setq org-agenda-custom-commands
       (quote ((" " "Agenda"
                ((agenda "" ((org-agenda-span 'day)))
-                (todo ""))))))
+                (tags "REFILE")
+                (alltodo ""))))))
 (defun org-agenda-show-agenda (&optional arg)
   (interactive "P")
   (org-agenda arg " ")
