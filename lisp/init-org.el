@@ -153,4 +153,7 @@
 
 (setq org-projectile:capture-template "* TODO %?\n%U\n%a")
 
+;; gnuplot settings
+(advice-add 'org-plot/gnuplot :after #'org-redisplay-inline-images)
+
 (provide 'init-org)
