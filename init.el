@@ -436,12 +436,12 @@ layers configuration. You are free to put any user code."
   ;; Do not insert ^
   (setq ivy-initial-inputs-alist nil)
 
+  ;; Enable /sudo:root@server:
+  (add-to-list 'tramp-default-proxies-alist '(".*" "\\`root\\'" "/ssh:%h:"))
+
   (setq
    ;; Use bash because it's faster
    shell-file-name "/bin/bash"
-
-   ;; Enable sudo:server:
-   tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:")))
 
    ;; Spaceline
    spaceline-minor-modes-p nil
