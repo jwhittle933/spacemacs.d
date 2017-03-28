@@ -561,9 +561,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
  '(diff-refine-added ((t (:background "#394e10" :foreground "#A6E22E"))))
- '(diff-refine-removed ((t (:background "#430b1e" :foreground "#F92672"))))
- '(header-line ((t (:background "#3E3D31" :foreground "#F8F8F0" :box nil)))))
+ '(diff-refine-removed ((t (:background "#430b1e" :foreground "#F92672")))))
 )
