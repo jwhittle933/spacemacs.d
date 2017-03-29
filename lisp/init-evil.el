@@ -24,6 +24,14 @@
   ;; Remove this mapping so C-z can suspend in tty
   (define-key evil-motion-state-map (kbd "C-z") nil))
 
+(defun minibuffer-inactive-mode-hook-setup ()
+  ;; make `try-expand-dabbrev' from `hippie-expand' work in mini-buffer
+  ;; @see `he-dabbrev-beg', so we need re-define syntax for '/'
+  (set-syntax-table (let* ((table (make-syntax-table)))
+                      (modify-syntax-entry ?/ "." table)
+                      table)))
+(add-hook 'minibuffer-inactive-mode-hook 'minibuffer-inactive-mode-hook-setup)
+
 ;; search by symbols in emacs
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
