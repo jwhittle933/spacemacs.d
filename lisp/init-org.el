@@ -76,10 +76,12 @@
    0 (* 15 60)
    'aj-sync-calendar-with-delay))
 
-(advice-add 'org-agenda-quit :before 'org-save-all-org-buffers)
-(advice-add 'org-agenda-todo :after 'org-save-all-org-buffers)
-(advice-add 'org-agenda-deadline :after 'org-save-all-org-buffers)
-(advice-add 'org-agenda-schedule :after 'org-save-all-org-buffers)
+(defun aj/org-save-all-org-buffers (&rest _)
+  (org-save-all-org-buffers))
+(advice-add 'org-agenda-quit :before 'aj/org-save-all-org-buffers)
+(advice-add 'org-agenda-todo :after 'aj/org-save-all-org-buffers)
+(advice-add 'org-agenda-deadline :after 'aj/org-save-all-org-buffers)
+(advice-add 'org-agenda-schedule :after 'aj/org-save-all-org-buffers)
 
 ;; Custom org-agenda view
 (setq org-agenda-compact-blocks t)
