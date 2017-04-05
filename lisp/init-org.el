@@ -72,8 +72,8 @@
          10 nil
          (lambda ()
            (setq appt-time-msg-list nil)
-           (org-agenda-to-appt)
-           (message nil)))))
+           (let ((inhibit-message t))
+             (org-agenda-to-appt))))))
 
 (defvar aj-sync-calendar-timer nil
   "Timer that `aj-sync-calendar-with-delay' uses to reschedule itself, or nil.")
@@ -84,8 +84,9 @@
         (run-with-idle-timer
          60 nil
          (lambda ()
-           (org-gcal-refresh-token)
-           (org-gcal-fetch)))))
+           (let ((inhibit-message t))
+             (org-gcal-refresh-token)
+             (org-gcal-fetch))))))
 
 (defun aj-sync-calendar-start ()
   (add-hook 'after-save-hook
