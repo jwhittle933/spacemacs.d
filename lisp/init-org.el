@@ -35,7 +35,28 @@
 (setq org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
 (setq org-agenda-sticky t)
 
+(setq org-todo-keywords
+      (quote ((sequence "TODO(t)" "|" "DONE(d)")
+              (sequence "WAITING(w@/!)" "|" "CANCELLED(c@/!)"))))
+
+
+(setq org-todo-keyword-faces
+      (quote (("TODO" :foreground "#F92672" :weight bold)
+              ("DONE" :foreground "#A6E22E" :weight bold)
+              ("WAITING" :foreground "#FD971F" :weight bold)
+              ("CANCELLED" :foreground "#A6E22E" :weight bold))))
+
+(setq org-todo-state-tags-triggers
+      (quote (("CANCELLED" ("CANCELLED" . t))
+              ("WAITING" ("WAITING" . t))
+              (done ("WAITING") ("HOLD"))
+              ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
+              ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
+
+(setq org-use-fast-todo-selection t)
+
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
+(add-hook 'org-log-buffer-setup-hook 'evil-insert-state)
 
 ;; Refresh calendars via org-gcal and automatically create appt-reminders.
 ;; Appt will be refreshed any time an org file is saved after 10 seconds of idle.
