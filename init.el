@@ -511,6 +511,8 @@ layers configuration. You are free to put any user code."
       (global-unset-key key)
       (global-set-key key (intern (format "eyebrowse-switch-to-window-config-%d" n)))))
 
+  ;; Prevent font size changes from resizing frame
+  (setq frame-inhibit-implied-resize t)
   ;; Change entire frame font size
   (defun my-alter-frame-font-size (fn)
     (let* ((current-font-name (frame-parameter nil 'font))

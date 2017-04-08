@@ -1,11 +1,10 @@
 (defun frame-geometry//save ()
   "Gets the current frame's geometry and saves to ~/.emacs.d/frame-geometry."
-  (let (
-        (frame-geometry-left (frame-parameter (selected-frame) 'left))
-        (frame-geometry-top (frame-parameter (selected-frame) 'top))
-        (frame-geometry-width (frame-parameter (selected-frame) 'width))
-        (frame-geometry-height (frame-parameter (selected-frame) 'height))
-        )
+  (let* ((frame-size (alist-get 'outer-size (frame-geometry (selected-frame))))
+         (frame-geometry-left (frame-parameter (selected-frame) 'left))
+         (frame-geometry-top (frame-parameter (selected-frame) 'top))
+         (frame-geometry-width (car frame-size))
+         (frame-geometry-height (cdr frame-size)))
 
     (when (not (number-or-marker-p frame-geometry-left))
       (setq frame-geometry-left 0))
@@ -24,8 +23,8 @@
        "      '(\n"
        (format "        (top . %d)\n" (max frame-geometry-top 0))
        (format "        (left . %d)\n" (max frame-geometry-left 0))
-       (format "        (width . %d)\n" (max frame-geometry-width 0))
-       (format "        (height . %d)))\n" (max frame-geometry-height 0)))
+       (format "        (width . (text-pixels . %d))\n" (max frame-geometry-width 0))
+       (format "        (height . (text-pixels . %d))))\n" (max frame-geometry-height 0)))
       (when (file-writable-p frame-geometry-file)
         (write-file frame-geometry-file)))))
 
