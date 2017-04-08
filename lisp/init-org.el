@@ -180,4 +180,17 @@
 ;; gnuplot settings
 (advice-add 'org-plot/gnuplot :after #'org-redisplay-inline-images)
 
+;; https://lists.gnu.org/archive/html/emacs-orgmode/2017-04/msg00062.html
+(with-eval-after-load 'org-mobile
+  (defun org-mobile-get-outline-path-link (pom)
+    (org-with-point-at pom
+      (concat "olp:"
+              (org-mobile-escape-olp (file-name-nondirectory buffer-file-name))
+              ":"
+              (mapconcat 'org-mobile-escape-olp
+                         (org-get-outline-path)
+                         "/")
+              "/"
+              (org-mobile-escape-olp (nth 4 (org-heading-components)))))))
+
 (provide 'init-org)
