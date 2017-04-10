@@ -23,8 +23,9 @@
        "      '(\n"
        (format "        (top . %d)\n" (max frame-geometry-top 0))
        (format "        (left . %d)\n" (max frame-geometry-left 0))
-       (format "        (width . (text-pixels . %d))\n" (max frame-geometry-width 0))
-       (format "        (height . (text-pixels . %d))))\n" (max frame-geometry-height 0)))
+       ;; For some reason, we're about 20x4px off, so adjust
+       (format "        (width . (text-pixels . %d))\n" (max (- frame-geometry-width 20) 0))
+       (format "        (height . (text-pixels . %d))))\n" (max (- frame-geometry-height 4) 0)))
       (when (file-writable-p frame-geometry-file)
         (write-file frame-geometry-file)))))
 
