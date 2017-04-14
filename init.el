@@ -457,6 +457,9 @@ layers configuration. You are free to put any user code."
    t
    '(("i" aj/ivy-insert "insert")
      ("w" aj/ivy-kill-new "copy")))
+  (ivy-set-actions
+   'spacemacs/counsel-search
+   spacemacs--ivy-grep-actions)
 
   (defun aj/projectile-find-file-split (file)
     (spacemacs/find-file-split (expand-file-name file (projectile-project-root))))
