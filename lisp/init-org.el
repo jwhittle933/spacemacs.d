@@ -24,7 +24,9 @@
   (define-key org-mode-map (kbd "M-J") 'org-shiftmetadown)
   (define-key org-mode-map (kbd "M-K") 'org-shiftmetaup)
   (define-key org-mode-map (kbd "M-L") 'org-shiftmetaright)
-  (org-keys))
+  (org-keys)
+
+  (add-to-list 'org-log-note-headings '(note . "%t")))
 
 (spacemacs/set-leader-keys "bo" 'org-iswitchb)
 
