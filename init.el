@@ -473,7 +473,6 @@ layers configuration. You are free to put any user code."
          x
        (car x))))
 
-
   ;; Enable /sudo:root@server:
   (add-to-list 'tramp-default-proxies-alist '(".*" "\\`root\\'" "/ssh:%h:"))
 
