@@ -441,6 +441,39 @@ layers configuration. You are free to put any user code."
   ;; Do not insert ^
   (setq ivy-initial-inputs-alist nil)
 
+  ;; Add `M-o v' and `M-o s' to open projectile files and buffers in splits
+  ;; from ivy
+  (ivy-set-actions
+   'counsel-projectile-find-file
+   '(("v" spacemacs/find-file-vsplit "in vertical split")
+     ("s" spacemacs/find-file-split "in horizontal split")
+     ("d" spacemacs/delete-file-confirm "delete file")))
+  (ivy-set-actions
+   'ivy-switch-buffer
+   '(("v" aj/pop-to-buffer-vsplit "in vertical split")
+     ("s" aj/pop-to-buffer-split "in horizontal split")))
+  ;; Add i and w to ivy actions to insert/copy the selection
+  (ivy-set-actions
+   t
+   '(("i" aj/ivy-insert "insert")
+     ("w" aj/ivy-kill-new "copy")))
+
+  (defun aj/pop-to-buffer-vsplit (buffer)
+    (pop-to-buffer buffer '(spacemacs//display-in-split (split-side . right))))
+  (defun aj/pop-to-buffer-split (buffer)
+    (pop-to-buffer buffer '(spacemacs//display-in-split (split-side . below))))
+  (defun aj/ivy-insert (x)
+    (insert
+     (if (stringp x)
+         x
+       (car x))))
+  (defun aj/ivy-kill-new (x)
+    (kill-new
+     (if (stringp x)
+         x
+       (car x))))
+
+
   ;; Enable /sudo:root@server:
   (add-to-list 'tramp-default-proxies-alist '(".*" "\\`root\\'" "/ssh:%h:"))
 
