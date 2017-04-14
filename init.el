@@ -445,9 +445,9 @@ layers configuration. You are free to put any user code."
   ;; from ivy
   (ivy-set-actions
    'counsel-projectile-find-file
-   '(("v" spacemacs/find-file-vsplit "in vertical split")
-     ("s" spacemacs/find-file-split "in horizontal split")
-     ("d" spacemacs/delete-file-confirm "delete file")))
+   '(("v" aj/projectile-find-file-vsplit "in vertical split")
+     ("s" aj/projectile-find-file-split "in horizontal split")
+     ("d" aj/projectile-delete-file-confirm "delete file")))
   (ivy-set-actions
    'ivy-switch-buffer
    '(("v" aj/pop-to-buffer-vsplit "in vertical split")
@@ -458,6 +458,12 @@ layers configuration. You are free to put any user code."
    '(("i" aj/ivy-insert "insert")
      ("w" aj/ivy-kill-new "copy")))
 
+  (defun aj/projectile-find-file-split (file)
+    (spacemacs/find-file-split (expand-file-name file (projectile-project-root))))
+  (defun aj/projectile-find-file-vsplit (file)
+    (spacemacs/find-file-vsplit (expand-file-name file (projectile-project-root))))
+  (defun aj/projectile-delete-file-confirm (file)
+    (spacemacs/delete-file-confirm (expand-file-name file (projectile-project-root))))
   (defun aj/pop-to-buffer-vsplit (buffer)
     (pop-to-buffer buffer '(spacemacs//display-in-split (split-side . right))))
   (defun aj/pop-to-buffer-split (buffer)
