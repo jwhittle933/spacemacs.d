@@ -209,6 +209,9 @@ Use a prefix arg to get regular RET. "
   (if ignore
       (org-return)
     (cond
+     ;; Break lines like normal
+     ((eq 'line-break (car (org-element-context)))
+      (org-return-indent))
      ;; Open links like usual
      ((eq 'link (car (org-element-context)))
       (org-open-at-point-global))
@@ -228,7 +231,8 @@ Use a prefix arg to get regular RET. "
         (beginning-of-line)
         (setf (buffer-substring
                (line-beginning-position) (line-end-position)) "")
-        (org-return)))
+        ;; (org-return)
+        ))
      ((org-at-heading-p)
       (if (not (string= "" (org-element-property :title (org-element-context))))
           (progn (org-end-of-meta-data)
