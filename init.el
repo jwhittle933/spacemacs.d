@@ -512,6 +512,8 @@ layers configuration. You are free to put any user code."
   (spacemacs/set-leader-keys "SPC" 'avy-goto-char-2)
   (setq avy-timeout-seconds 0.2)
 
+  (spacemacs/set-leader-keys "fel" 'counsel-find-library)
+
   ;; Profiler bindings
   (defun profiler-start-cpu ()
     (interactive)
