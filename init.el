@@ -408,6 +408,7 @@ layers configuration. You are free to put any user code."
 
   (require 'company-simple-complete)
   (require 'fill-or-unfill)
+  (require 'quiet-emacs)
 
   ;; Delete consecutive dupes from company in case they differ by annotation only
   ;; https://github.com/company-mode/company-mode/issues/528
