@@ -35,6 +35,7 @@
 (spacemacs/set-leader-keys "bo" 'org-iswitchb)
 (spacemacs/set-leader-keys "oh" 'counsel-org-agenda-headlines)
 
+(setq org-log-into-drawer "LOGBOOK")
 (setq org-mobile-force-id-on-agenda-items nil)
 (setq org-startup-indented t)
 (setq org-agenda-todo-ignore-scheduled t)
