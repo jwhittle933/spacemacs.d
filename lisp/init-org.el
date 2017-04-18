@@ -29,6 +29,8 @@
   (require 'org-inlinetask)
   (define-key org-mode-map (kbd "RET")
     'aj/org-return)
+  (define-key org-mode-map (kbd "<backspace>")
+    'aj/org-delete-backward-char)
 
   (add-to-list 'org-log-note-headings '(note . "%t")))
 
@@ -202,6 +204,48 @@
               "/"
               (org-mobile-escape-olp (nth 4 (org-heading-components)))))))
 
+(defun string-before-p (string)
+  "Return t if string before `point' equals STRING."
+  (let ((start (- (point) (length string))))
+    (and (>= start (point-min))
+         (string-equal
+          (buffer-substring-no-properties start (point))
+          string))))
+
+(defun aj/org-delete-backward-char (&optional n)
+  "Delete checkboxes, list item bullets and demote headlines."
+  (interactive "P")
+  (cond
+   (n
+    (org-delete-backward-char n))
+   ((eq 'item (car (org-element-context)))
+    (cond
+     ;; Delete entire checkbox
+     ((or (string-before-p "[ ]")
+          (string-before-p "[x]"))
+      (delete-backward-char 3))
+     ;; Delete individual spaces if there is more than one
+     ((or (string-before-p "  ")
+          (string-before-p "] "))
+      (delete-backward-char 1))
+     ;; Otherwise, delete to end of line (entire bullet)
+     (t
+      (setf (buffer-substring (line-beginning-position) (point)) ""))))
+   ((eq 'headline (car (org-element-context)))
+    (cond
+     ;; Delete top level headline *, including trailing space
+     ((looking-back "^\\* " 0)
+      (org-ctrl-c-star))
+     ;; Promote headline
+     ((looking-back "^\\*\\*+ " 0)
+      (org-metaleft))
+     ;; Otherwise, delete normally
+     (t
+      (org-delete-backward-char 1))))
+   ;; Normal delete
+   (t
+    (org-delete-backward-char 1))))
+
 ;; via http://kitchingroup.cheme.cmu.edu/blog/2017/04/09/A-better-return-in-org-mode/
 (defun aj/org-return (&optional ignore)
   "Add new list item, heading or table row with RET.
@@ -237,8 +281,7 @@ Use a prefix arg to get regular RET. "
         ))
      ((org-at-heading-p)
       (if (not (string= "" (org-element-property :title (org-element-context))))
-          (progn (org-end-of-meta-data)
-                 (org-insert-heading))
+          (org-insert-heading-respect-content)
         (beginning-of-line)
         (setf (buffer-substring
                (line-beginning-position) (line-end-position)) "")))
