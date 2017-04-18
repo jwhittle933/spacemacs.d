@@ -201,6 +201,7 @@
               "/"
               (org-mobile-escape-olp (nth 4 (org-heading-components)))))))
 
+;; via http://kitchingroup.cheme.cmu.edu/blog/2017/04/09/A-better-return-in-org-mode/
 (defun aj/org-return (&optional ignore)
   "Add new list item, heading or table row with RET.
 A double return on an empty element deletes it.
@@ -213,7 +214,7 @@ Use a prefix arg to get regular RET. "
      ((eq 'line-break (car (org-element-context)))
       (org-return-indent))
      ;; Open links like usual
-     ((eq 'link (car (org-element-context)))
+     ((and (eq 'link (car (org-element-context))) (not (eolp)))
       (org-open-at-point-global))
      ;; It doesn't make sense to add headings in inline tasks. Thanks Anders
      ;; Johansson!
