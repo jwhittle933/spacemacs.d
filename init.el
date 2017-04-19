@@ -359,6 +359,7 @@ user code here.  The exception is org related code, which should be placed in
 
   (setq exec-path-from-shell-arguments '("-l"))
   (add-to-list 'auto-mode-alist '("\\.?\\(bashrc\\|zshrc\\|shellrc\\|bash_profile\\)" . sh-mode))
+  (add-to-list 'auto-mode-alist '("\\.?\\(eslintrc\\)" . json-mode))
 
   (setq frame-resize-pixelwise t)
   (setq create-lockfiles nil)
