@@ -13,18 +13,7 @@
     :commands eslintd-fix-mode
     :init
     (progn
-      (add-hook 'rjsx-mode-hook #'eslintd-fix-mode t)
-      (add-hook 'rjsx-mode-hook #'aj-javascript/set-eslintd-fix-preprocess-command t))))
-
-(defun aj-javascript/set-eslintd-fix-preprocess-command ()
-  (let ((prettier (executable-find "prettier")))
-    (when prettier
-      (setq-local eslintd-fix-preprocess-command
-                  (concat
-                   prettier
-                   " --trailing-comma es5"
-                   " --bracket-spacing false"
-                   " --single-quote")))))
+      (add-hook 'rjsx-mode-hook #'eslintd-fix-mode t))))
 
 (defun aj-javascript/init-rjsx-mode ()
   (use-package rjsx-mode
