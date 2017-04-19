@@ -35,7 +35,8 @@
   (add-to-list 'org-log-note-headings '(note . "%t")))
 
 (spacemacs/set-leader-keys "bo" 'org-iswitchb)
-(spacemacs/set-leader-keys "oh" 'counsel-org-agenda-headlines)
+(spacemacs/set-leader-keys "oh" 'aj/counsel-org-file-headlines)
+(spacemacs/set-leader-keys "oH" 'counsel-org-agenda-headlines)
 
 (setq org-log-into-drawer "LOGBOOK")
 (setq org-mobile-force-id-on-agenda-items nil)
@@ -300,5 +301,26 @@ Use a prefix arg to get regular RET. "
      (t
       (org-return)))))
 
+;; From https://github.com/jkitchin/scimax/blob/master/scimax-org.el
+(defun aj/counsel-org-file-headlines ()
+  "Jump to heading in the current buffer."
+  (interactive)
+  (let ((headlines '()))
+    (save-excursion
+      (goto-char (point-min))
+      (while (re-search-forward
+              ;; this matches org headings in elisp too.
+              "^\\(;; \\)?\\(\\*+\\)\\(?: +\\(.*?\\)\\)?[ 	]*$"  nil t)
+        (cl-pushnew (list
+                     (format "%-80s"
+                             (match-string 0))
+                     (cons 'position (match-beginning 0)))
+                    headlines)))
+    (ivy-read "Headline: "
+              (reverse headlines)
+              :action (lambda (candidate)
+                        (org-mark-ring-push)
+                        (goto-char (cdr (assoc 'position candidate)))
+                        (outline-show-entry)))))
 
 (provide 'init-org)
