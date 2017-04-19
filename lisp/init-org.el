@@ -97,6 +97,7 @@
          60 nil
          (lambda ()
            (let ((inhibit-message t))
+             (require 'org-gcal)
              (org-gcal-refresh-token)
              (org-gcal-fetch))))))
 
