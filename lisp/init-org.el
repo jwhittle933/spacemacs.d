@@ -61,9 +61,9 @@
 (setq org-todo-state-tags-triggers
       (quote (("CANCELLED" ("CANCELLED" . t))
               ("WAITING" ("WAITING" . t))
-              (done ("WAITING") ("HOLD"))
-              ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
-              ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
+              (done ("WAITING"))
+              ("TODO" ("WAITING") ("CANCELLED"))
+              ("DONE" ("WAITING") ("CANCELLED")))))
 
 (setq org-use-fast-todo-selection t)
 
