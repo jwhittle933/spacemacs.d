@@ -182,10 +182,10 @@
          (file (concat org-directory "/refile.org"))
          "* %? :NOTE:\n%U\n%a")
         ("t" "Todo" entry
-         (file+headline (concat org-directory "/tasks.org") "Tasks")
+         (file (concat org-directory "/refile.org"))
          "* TODO %?\n%U\n%a")
         ("s" "Scheduled Task" entry
-         (file+headline (concat org-directory "/tasks.org") "Tasks")
+         (file (concat org-directory "/refile.org"))
          "* TODO %?\nSCHEDULED: %^{When}t")))
 
 (setq org-projectile:capture-template "* TODO %?\n%U\n%a")
