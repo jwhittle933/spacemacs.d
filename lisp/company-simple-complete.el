@@ -72,6 +72,10 @@
   (ad-activate 'company-set-selection)
   (ad-activate 'company-tooltip--simple-update-offset)
   (ad-activate 'company-tooltip--lines-update-offset)
-  (add-to-list 'company-frontends 'company-simple-complete-frontend))
+  (add-to-list 'company-frontends 'company-simple-complete-frontend)
+
+  (with-eval-after-load 'evil
+    (evil-declare-change-repeat #'company-simple-complete-next)
+    (evil-declare-change-repeat #'company-simple-complete-previous)))
 
 (provide 'company-simple-complete)
