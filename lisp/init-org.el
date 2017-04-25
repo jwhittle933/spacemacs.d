@@ -220,19 +220,35 @@
   (cond
    (n
     (org-delete-backward-char n))
-   ((eq 'item (car (org-element-context)))
-    (cond
-     ;; Delete entire checkbox
-     ((or (string-before-p "[ ]")
-          (string-before-p "[x]"))
-      (delete-backward-char 3))
-     ;; Delete individual spaces if there is more than one
-     ((or (string-before-p "  ")
-          (string-before-p "] "))
-      (delete-backward-char 1))
-     ;; Otherwise, delete to end of line (entire bullet)
-     (t
-      (setf (buffer-substring (line-beginning-position) (point)) ""))))
+   ((org-at-item-p)
+    (let ((point (point))
+          (bullet-beginning (match-beginning 1))
+          (bullet-end (match-end 1)))
+      (cond
+       ;; If we are near the end of the bullet...
+       ((or (eql bullet-end point)
+            (eql bullet-end (- point 1)))
+        ;; See if we are in a nested list...
+        (if (save-excursion
+              (goto-char bullet-end)
+              (eql
+               'item
+               (car
+                (org-element-property
+                 :parent
+                 (org-element-property :parent (org-element-context))))))
+            ;; And if so, outdent
+            (org-metaleft)
+          ;; Otherwise, delete the bullet
+          (delete-region bullet-beginning point)))
+       ;; If we are near the end of a checkbox...
+       ((and (org-at-item-checkbox-p)
+             (or (eql (match-end 1) point)
+                 (eql (match-end 1) (- point 1))))
+        ;; Delete the entire checkbox
+        (delete-region (match-beginning 1) point))
+       (t
+        (org-delete-backward-char 1)))))
    ((eq 'headline (car (org-element-context)))
     (cond
      ;; Delete top level headline *, including trailing space
