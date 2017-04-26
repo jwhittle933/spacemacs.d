@@ -623,5 +623,6 @@ This function is called at the very end of Spacemacs initialization."
  '(aw-leading-char-face ((t (:foreground "#F92672" :height 8.0))))
  '(diff-refine-added ((t (:background "#394e10" :foreground "#A6E22E"))))
  '(diff-refine-removed ((t (:background "#430b1e" :foreground "#F92672"))))
+ '(hl-line ((t (:background "#30322a"))))
  '(sp-show-pair-match-face ((t (:background "#AE81FF" :foreground "#272822" :inverse-video nil :weight normal)))))
 )
