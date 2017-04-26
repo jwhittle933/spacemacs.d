@@ -30,6 +30,9 @@
        js2-strict-trailing-comma-warning nil
        js2-strict-missing-semi-warning nil)
 
+      (advice-add #'js-jsx-indent-line
+                  :after
+                  #'aj-javascript/js-jsx-indent-line-align-closing-bracket)
       (add-hook 'rjsx-mode-hook #'aj-javascript/eslintd-set-flycheck-executable t))
     :config
     (modify-syntax-entry ?_ "w" js2-mode-syntax-table)))
