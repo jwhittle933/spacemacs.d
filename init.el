@@ -429,6 +429,8 @@ layers configuration. You are free to put any user code."
    css-indent-offset 2
    )
 
+  (spacemacs/enable-flycheck 'sh-mode)
+
   ;; Prevent persp from loading existing perspectives when opening new frames.
   ;; This fixes a flash of another buffer when opening things from the terminal.
   ;; https://github.com/Bad-ptr/persp-mode.el/issues/64
