@@ -616,6 +616,11 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(avy-lead-face ((t (:background "#20211c" :foreground "#F92672"))))
+ '(avy-lead-face-0 ((t (:background "#20211c" :foreground "#e5236a"))))
+ '(avy-lead-face-1 ((t (:background "#20211c" :foreground "#d32062"))))
+ '(avy-lead-face-2 ((t (:background "#20211c" :foreground "#c41e5b"))))
+ '(aw-leading-char-face ((t (:foreground "#F92672" :height 8.0))))
  '(diff-refine-added ((t (:background "#394e10" :foreground "#A6E22E"))))
  '(diff-refine-removed ((t (:background "#430b1e" :foreground "#F92672")))))
 )
