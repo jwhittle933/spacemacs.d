@@ -10,6 +10,4 @@
   (save-excursion
     (beginning-of-line)
     (when (looking-at-p "^ +\/?> *$")
-      (setf (buffer-substring (line-beginning-position)
-                              (+ sgml-basic-offset (line-beginning-position)))
-            ""))))
+      (delete-char sgml-basic-offset))))
