@@ -2,8 +2,8 @@
   '(
     alchemist
     elixir-mode
-    flycheck-dialyxir
-    flycheck-dogma
+    ;; flycheck-dialyxir
+    ;; flycheck-dogma
     flycheck
     ))
 
