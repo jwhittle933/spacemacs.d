@@ -446,11 +446,12 @@ layers configuration. You are free to put any user code."
 
   ;; Add `M-o v' and `M-o s' to open projectile files and buffers in splits
   ;; from ivy
-  (ivy-set-actions
-   'counsel-projectile-find-file
-   '(("v" aj/projectile-find-file-vsplit "in vertical split")
-     ("s" aj/projectile-find-file-split "in horizontal split")
-     ("d" aj/projectile-delete-file-confirm "delete file")))
+  (with-eval-after-load 'counsel-projectile
+    (ivy-set-actions
+     'counsel-projectile-find-file
+     '(("v" aj/projectile-find-file-vsplit "in vertical split")
+       ("s" aj/projectile-find-file-split "in horizontal split")
+       ("d" aj/projectile-delete-file-confirm "delete file"))))
   (ivy-set-actions
    'ivy-switch-buffer
    '(("v" aj/pop-to-buffer-vsplit "in vertical split")
