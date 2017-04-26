@@ -15,4 +15,16 @@
   (evil-define-key 'normal magit-mode-map (kbd "C-n") 'magit-section-forward-sibling)
   (evil-define-key 'normal magit-mode-map (kbd "C-p") 'magit-section-backward-sibling))
 
+;; Add SPC g c to stage all and commit while viewing the diff
+(defun aj/magit-stage-all-and-commit ()
+  (interactive)
+  (magit-stage-modified t)
+  (setq this-command 'magit-commit)
+  (setq magit-commit-show-diff t)
+  (magit-commit))
+(advice-add 'magit-commit-diff :after (lambda ()
+                                        "Disable magit-commit-show-diff."
+                                        (setq magit-commit-show-diff nil)))
+(spacemacs/set-leader-keys "gc" #'aj/magit-stage-all-and-commit)
+
 (provide 'init-magit)
