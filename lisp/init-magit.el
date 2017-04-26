@@ -6,6 +6,7 @@
 (setq magit-display-buffer-function 'magit-display-buffer-fullcolumn-most-v1)
 (setq magit-diff-refine-hunk 'all)
 (setq magit-delete-by-moving-to-trash nil)
+(setq magit-revision-use-gravatar-kludge t)
 
 ;; Start commit in insert mode
 (add-hook 'with-editor-mode-hook 'evil-insert-state)
