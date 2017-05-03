@@ -27,6 +27,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     swift
      php
      nginx
      better-defaults
