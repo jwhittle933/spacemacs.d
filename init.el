@@ -363,6 +363,10 @@ user code here.  The exception is org related code, which should be placed in
   (add-to-list 'auto-mode-alist '("\\.?\\(bashrc\\|zshrc\\|shellrc\\|bash_profile\\)" . sh-mode))
   (add-to-list 'auto-mode-alist '("\\.?\\(eslintrc\\)" . json-mode))
 
+  ;; This makes it so that the window will only split vertically (top and
+  ;; bottom) if there are at least 100 lines visible. In practice, this makes it
+  ;; split horizontally (left and right) most of the time.
+  (setq split-height-threshold 100)
   (setq winum-scope 'frame-local)
   (setq frame-resize-pixelwise t)
   (setq create-lockfiles nil)
