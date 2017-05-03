@@ -358,6 +358,7 @@ user code here.  The exception is org related code, which should be placed in
   (add-to-list 'load-path (expand-file-name "lisp" dotspacemacs-directory))
   (require 'init-evil)
   (require 'init-html)
+  (require 'init-sass)
 
   (setq exec-path-from-shell-arguments '("-l"))
   (add-to-list 'auto-mode-alist '("\\.?\\(bashrc\\|zshrc\\|shellrc\\|bash_profile\\)" . sh-mode))
