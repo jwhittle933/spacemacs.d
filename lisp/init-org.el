@@ -340,4 +340,9 @@ Use a prefix arg to get regular RET. "
                         (goto-char (cdr (assoc 'position candidate)))
                         (outline-show-entry)))))
 
+;; Recalculate buffer tables on save
+(add-hook 'org-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook #'org-table-recalculate-buffer-tables nil t)))
+
 (provide 'init-org)
