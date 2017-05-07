@@ -362,6 +362,9 @@ user code here.  The exception is org related code, which should be placed in
   (require 'init-php)
   (require 'init-sass)
 
+  ;; Hide title bar
+  (setq default-frame-alist '((undecorated . t)))
+
   (setq exec-path-from-shell-arguments '("-l"))
   (add-to-list 'auto-mode-alist '("\\.?\\(bashrc\\|zshrc\\|shellrc\\|bash_profile\\)" . sh-mode))
   (add-to-list 'auto-mode-alist '("\\.?\\(eslintrc\\)" . json-mode))
