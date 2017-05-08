@@ -405,6 +405,17 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (add-to-list 'auto-mode-alist '("\\.?\\(bashrc\\|zshrc\\|shellrc\\|bash_profile\\)" . sh-mode))
   (add-to-list 'auto-mode-alist '("\\.?\\(eslintrc\\)" . json-mode))
 
+  ;; Require certificates to actually be valid (this may require additional configuration,)
+  ;; https://glyph.twistedmatrix.com/2015/11/editor-malware.html
+  (let ((trustfile "/usr/local/etc/libressl/cert.pem"))
+    (setq tls-program
+          (list
+           (format "gnutls-cli%s --x509cafile %s -p %%p %%h"
+                   (if (eq window-system 'w32) ".exe" "") trustfile)))
+    (setq gnutls-trustfiles (list trustfile)))
+  (setq gnutls-verify-error t)
+  (setq tls-checktrust t)
+
   ;; This makes it so that the window will only split vertically (top and
   ;; bottom) if there are at least 100 lines visible. In practice, this makes it
   ;; split horizontally (left and right) most of the time.
