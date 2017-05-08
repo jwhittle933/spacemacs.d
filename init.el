@@ -413,7 +413,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
            (format "gnutls-cli%s --x509cafile %s -p %%p %%h"
                    (if (eq window-system 'w32) ".exe" "") trustfile)))
     (setq gnutls-trustfiles (list trustfile)))
-  (setq gnutls-verify-error t)
+  (setq gnutls-verify-error nil)
   (setq tls-checktrust t)
 
   ;; This makes it so that the window will only split vertically (top and
