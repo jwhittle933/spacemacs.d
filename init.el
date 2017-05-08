@@ -640,8 +640,6 @@ you should place your code here."
   (global-set-key (kbd "C-=") 'spacemacs/scale-up-font)
   (global-set-key (kbd "C--") 'spacemacs/scale-down-font)
 
-  (add-to-list 'spacemacs--counsel-commands '("rg" . "rg --smart-case --no-heading --color never --line-number --max-columns 150 %s %S ."))
-
   ;; Pairing stuff
   (global-set-key (kbd "<end>") 'evil-end-of-line)
 
