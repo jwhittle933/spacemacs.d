@@ -632,7 +632,7 @@ you should place your code here."
   (defun my-alter-frame-font-size (fn)
     (let* ((current-font-name (frame-parameter nil 'font))
            (decomposed-font-name (x-decompose-font-name current-font-name))
-           (font-size (string-to-int (aref decomposed-font-name 5))))
+           (font-size (string-to-number (aref decomposed-font-name 5))))
       (aset decomposed-font-name 5 (int-to-string (funcall fn font-size)))
       (set-frame-font (x-compose-font-name decomposed-font-name))))
 
