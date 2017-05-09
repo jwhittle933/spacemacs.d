@@ -6,6 +6,7 @@
   (let ((process-connection-type nil))
     (apply start-server args)))
 (with-eval-after-load 'tide
-  (advice-add 'tide-start-server :around 'aj/fix-tide-start-server))
+  (advice-add 'tide-start-server :around 'aj/fix-tide-start-server)
+  (add-hook 'before-save-hook #'tide-format-before-save))
 
 (provide 'init-typescript)
