@@ -479,8 +479,12 @@ you should place your code here."
   ;; Edit from Chrome
   (add-to-list 'edit-server-new-frame-alist '(undecorated . nil))
   (with-eval-after-load 'edit-server
-    (add-hook 'edit-server-edit-mode-hook #'delete-other-windows)
-    (add-hook 'edit-server-done-hook (lambda () (shell-command "open -a \"Google Chrome\""))))
+    (add-hook 'edit-server-edit-mode-hook
+              (lambda ()
+                (delete-other-windows)
+                (auto-fill-mode -1)))
+    (add-hook 'edit-server-done-hook
+              (lambda () (shell-command "open -a \"Google Chrome\""))))
 
   ;; Delete consecutive dupes from company in case they differ by annotation only
   ;; https://github.com/company-mode/company-mode/issues/528
