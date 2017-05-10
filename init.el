@@ -482,7 +482,8 @@ you should place your code here."
     (add-hook 'edit-server-edit-mode-hook
               (lambda ()
                 (delete-other-windows)
-                (auto-fill-mode -1)))
+                (auto-fill-mode -1)
+                (visual-line-mode)))
     (add-hook 'edit-server-done-hook
               (lambda () (shell-command "open -a \"Google Chrome\""))))
 
