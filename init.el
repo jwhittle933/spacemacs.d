@@ -402,11 +402,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Hide title bar
   (setq default-frame-alist '((undecorated . t)))
 
-  ;; Edit from Chrome
-  (add-to-list 'edit-server-new-frame-alist '(undecorated . nil))
-  (add-hook 'edit-server-edit-mode-hook #'delete-other-windows)
-  (add-hook 'edit-server-done-hook (lambda () (shell-command "open -a \"Google Chrome\"")))
-
   (setq exec-path-from-shell-arguments '("-l"))
   (add-to-list 'auto-mode-alist '("\\.?\\(bashrc\\|zshrc\\|shellrc\\|bash_profile\\)" . sh-mode))
   (add-to-list 'auto-mode-alist '("\\.?\\(eslintrc\\)" . json-mode))
@@ -480,6 +475,12 @@ you should place your code here."
   (require 'company-simple-complete)
   (require 'fill-or-unfill)
   (require 'quiet-emacs)
+
+  ;; Edit from Chrome
+  (add-to-list 'edit-server-new-frame-alist '(undecorated . nil))
+  (with-eval-after-load 'edit-server
+    (add-hook 'edit-server-edit-mode-hook #'delete-other-windows)
+    (add-hook 'edit-server-done-hook (lambda () (shell-command "open -a \"Google Chrome\""))))
 
   ;; Delete consecutive dupes from company in case they differ by annotation only
   ;; https://github.com/company-mode/company-mode/issues/528
