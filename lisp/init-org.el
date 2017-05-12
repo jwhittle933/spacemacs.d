@@ -161,7 +161,7 @@
 (defun org-agenda-show-agenda (&optional arg)
   (interactive "P")
   (org-agenda arg " ")
-  (org-agenda-redo))
+  (run-with-idle-timer 1 nil 'org-agenda-redo))
 (spacemacs/set-leader-keys "oa" 'org-agenda-show-agenda)
 
 ;; org-refile settings
