@@ -1,3 +1,5 @@
+(require 'dash)
+
 (defun org-keys ()
   (interactive)
   ;; Make ~SPC ,~ work, reference:
@@ -163,8 +165,15 @@
 (spacemacs/set-leader-keys "oa" 'org-agenda-show-agenda)
 
 ;; org-refile settings
+(defun aj/refile-target-files ()
+  (let ((exclude (and
+                  (boundp 'org-gcal-file-alist)
+                  (-map 'cdr org-gcal-file-alist))))
+    (-reject (lambda (file) (-contains-p exclude file))
+             (org-agenda-files))))
+
 (setq org-refile-targets '((nil :maxlevel . 9)
-                           (org-agenda-files :maxlevel . 9)))
+                           (aj/refile-target-files :maxlevel . 3)))
 (setq org-refile-use-outline-path 'file)
 (setq org-outline-path-complete-in-steps nil)
 (setq org-refile-allow-creating-parent-nodes 'confirm)
