@@ -703,6 +703,6 @@ This function is called at the very end of Spacemacs initialization."
  '(diff-refine-added ((t (:background "#394e10" :foreground "#A6E22E"))))
  '(diff-refine-removed ((t (:background "#430b1e" :foreground "#F92672"))))
  '(hl-line ((t (:background "#33362d"))))
- '(ivy-highlight-face ((t (:background "#383b31"))))
+ '(ivy-highlight-face ((t (:foreground "#A1EFE4"))))
  '(sp-show-pair-match-face ((t (:background "#AE81FF" :foreground "#272822" :inverse-video nil :weight normal)))))
 )
