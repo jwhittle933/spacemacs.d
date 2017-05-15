@@ -37,7 +37,7 @@ values."
      (markdown :variables
                markdown-live-preview-engine 'vmd)
      (syntax-checking :variables
-                      syntax-checking-enable-tooltips nil)
+                      syntax-checking-enable-tooltips t)
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage nil
                       auto-completion-enable-snippets-in-popup nil
