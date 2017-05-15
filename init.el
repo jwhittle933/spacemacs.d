@@ -401,7 +401,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (require 'init-sass)
 
   ;; Hide title bar
-  (setq default-frame-alist '((undecorated . t)))
+  (setq initial-frame-alist '((undecorated . t)))
 
   (setq exec-path-from-shell-arguments '("-l"))
   (add-to-list 'auto-mode-alist '("\\.?\\(bashrc\\|zshrc\\|shellrc\\|bash_profile\\)" . sh-mode))
