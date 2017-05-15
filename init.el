@@ -512,6 +512,8 @@ you should place your code here."
   ;; https://github.com/Bad-ptr/persp-mode.el/issues/64
   ;; https://github.com/Bad-ptr/persp-mode.el/issues/36
   (setq persp-emacsclient-init-frame-behaviour-override nil)
+  ;; Don't care if I kill a buffer from a foreign persp
+  (setq persp-kill-foreign-buffer-behaviour nil)
   (setq dtrt-indent-max-merge-deviation 9.0)
 
   ;; ivy
