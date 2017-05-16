@@ -8,6 +8,10 @@
 (setq magit-delete-by-moving-to-trash nil)
 (setq magit-revision-use-gravatar-kludge t)
 
+;; https://github.com/vermiculus/magithub/issues/85#issuecomment-301669109
+(with-eval-after-load 'ghub+
+  (defun ghubp--remove-api-links (o &rest _) o))
+
 ;; Start commit in insert mode
 (add-hook 'with-editor-mode-hook 'evil-insert-state)
 
