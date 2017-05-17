@@ -470,6 +470,7 @@ you should place your code here."
   (require 'init-flyspell)
   (require 'init-typescript)
   (require 'init-xclip)
+  (require 'init-mail)
 
   (require 'company-simple-complete)
   (require 'fill-or-unfill)
