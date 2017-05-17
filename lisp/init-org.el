@@ -275,6 +275,12 @@
    (t
     (org-delete-backward-char 1))))
 
+(defun aj/org-in-empty-item ()
+  "Return t if in an empty list item, nil otherwise."
+  (save-excursion
+    (beginning-of-line)
+    (looking-at (concat (org-item-re) " ?$"))))
+
 ;; via http://kitchingroup.cheme.cmu.edu/blog/2017/04/09/A-better-return-in-org-mode/
 (defun aj/org-return (&optional ignore)
   "Add new list item, heading or table row with RET.
@@ -297,20 +303,16 @@ Use a prefix arg to get regular RET. "
      ;; add checkboxes
      ((org-at-item-checkbox-p)
       (org-insert-todo-heading nil))
-     ;; lists end with two blank lines, so we need to make sure we are also not
-     ;; at the beginning of a line to avoid a loop where a new entry gets
-     ;; created with only one blank line.
+     ;; If we are in an item and not at the beginning of the line...
      ((and (org-in-item-p) (not (bolp)))
-      (if (org-element-property :contents-begin (org-element-context))
-          (org-insert-heading)
-        (beginning-of-line)
-        (setf (buffer-substring
-               (line-beginning-position) (line-end-position)) "")
-        ;; (org-return)
-        ))
+      (if (aj/org-in-empty-item)
+          ;; Delete the bullet
+          (delete-region (line-beginning-position) (line-end-position))
+        ;; Insert a new bullet
+        (org-insert-heading)))
      ((org-at-heading-p)
       (if (not (string= "" (org-element-property :title (org-element-context))))
-          (org-insert-heading-respect-content)
+          (org-meta-return)
         (beginning-of-line)
         (setf (buffer-substring
                (line-beginning-position) (line-end-position)) "")))
