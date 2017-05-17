@@ -631,14 +631,18 @@ you should place your code here."
 
   (define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
 
-  (dotimes (n 10)
-    ;; Map s-<number> to switch layouts
+  (dotimes (n 8)
+    ;; Map H-<number> to switch layouts
     (global-set-key (kbd (format "H-%d" n)) (intern (format "spacemacs/persp-switch-to-%d" n)))
     ;; Map M-<number> to workspace switching
     (let ((key (kbd (format "M-%d" n))))
       (define-key winum-keymap key nil)
       (global-unset-key key)
       (global-set-key key (intern (format "eyebrowse-switch-to-window-config-%d" n)))))
+  (global-set-key (kbd "H-8") 'spacemacs/custom-layouts-transient-state/spacemacs/custom-perspective-@Org-and-exit)
+  (global-set-key (kbd "H-9") 'spacemacs/custom-layouts-transient-state/spacemacs/custom-perspective-@Spacemacs-and-exit)
+  (global-set-key (kbd "H-0") 'spacemacs/custom-layouts-transient-state/spacemacs/custom-perspective-@Mu4e-and-exit)
+
 
   ;; Prevent font size changes from resizing frame
   (setq frame-inhibit-implied-resize t)
