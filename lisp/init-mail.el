@@ -23,6 +23,10 @@
 
 ;; Viewing mail
 
+;; This controls whether or not to assume html has more content than plaintext.
+;; I bumped it up to get github notifications showing as plaintext, I may some
+;; day want to disable it.
+(setq mu4e-view-html-plaintext-ratio-heuristic 10)
 (with-eval-after-load 'mu4e
   (add-to-list 'mu4e-view-actions
                '("ViewInBrowser" . mu4e-action-view-in-browser) t))
