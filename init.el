@@ -518,10 +518,12 @@ you should place your code here."
   ;; ivy
   ;; Use fuzzy finder
   (setq ivy-re-builders-alist
-        '((swiper . ivy--regex-plus)
+        '((message-tab . ivy--regex-ignore-order)
+          (swiper . ivy--regex-plus)
           (t . ivy--regex-fuzzy)))
   ;; Do not insert ^
   (setq ivy-initial-inputs-alist nil)
+  (add-to-list 'ivy-sort-functions-alist '(message-tab))
 
   ;; Add `M-o v' and `M-o s' to open projectile files and buffers in splits
   ;; from ivy
