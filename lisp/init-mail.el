@@ -72,7 +72,6 @@
 
   ;; Avoid trashing when deleting--gmail treats the trash as a normal folder
   ;; and mbsync is not configured to expunge any way
-  (setq mu4e-marks (remove-nth-element 5 mu4e-marks))
   (add-to-list 'mu4e-marks
                '(trash
                  :char ("d" . "▼")
