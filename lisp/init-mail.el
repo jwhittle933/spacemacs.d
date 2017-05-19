@@ -11,10 +11,12 @@
 (setq mu4e-change-filenames-when-moving t)
 
 ;; Index view
+(setq mu4e-confirm-quit nil)
 (setq mu4e-maildir-shortcuts
       '(("/inbox" . ?i)))
 
 ;; Header view
+(setq mu4e-headers-visible-lines 16)
 (setq mu4e-headers-fields
       '((:human-date . 12)
         (:flags . 6)
@@ -27,9 +29,6 @@
 ;; I bumped it up to get github notifications showing as plaintext, I may some
 ;; day want to disable it.
 (setq mu4e-view-html-plaintext-ratio-heuristic 10)
-(with-eval-after-load 'mu4e
-  (add-to-list 'mu4e-view-actions
-               '("ViewInBrowser" . mu4e-action-view-in-browser) t))
 
 ;; enable inline images
 (setq mu4e-view-show-images t
