@@ -36,9 +36,9 @@
 
 ;; (setq mu4e-html2text-command "/usr/local/bin/w3m -T text/html")
 ;; (setq mu4e-html2text-command "/usr/local/bin/html2text -width 72")
-(setq mu4e-html2text-command "textutil -stdin -format html -convert txt -stdout")
+;; (setq mu4e-html2text-command "textutil -stdin -format html -convert txt -stdout")
 ;; (setq mu4e-html2text-command "html2text")
-;; (setq mu4e-html2text-command 'mu4e-shr2text)
+(setq mu4e-html2text-command 'mu4e-shr2text)
 ;; (advice-add #'shr-colorize-region :around (defun shr-no-colourise-region (&rest ignore)))
 ;; (setq shr-color-visible-luminance-min 40)
 
