@@ -22,6 +22,7 @@
         (:flags . 6)
         (:from . 22)
         (:subject . nil)))
+(setq mu4e-headers-skip-duplicates t)
 
 ;; Viewing mail
 
