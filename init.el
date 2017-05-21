@@ -393,6 +393,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
   (add-to-list 'load-path (expand-file-name "lisp" dotspacemacs-directory))
+  (let ((default-directory (expand-file-name "packages" dotspacemacs-directory)))
+    (normal-top-level-add-subdirs-to-load-path))
   (require 'init-evil)
   (require 'init-html)
   (require 'init-php)

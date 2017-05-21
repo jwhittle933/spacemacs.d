@@ -22,6 +22,7 @@
         (:flags . 6)
         (:from . 22)
         (:subject . nil)))
+;; Gmail has duplicates between inbox and all mail, skip them
 (setq mu4e-headers-skip-duplicates t)
 
 ;; Viewing mail
@@ -50,6 +51,10 @@
 (setq mu4e-compose-format-flowed t)
 (setq message-fill-column nil)
 (add-hook 'mu4e-view-mode-hook 'visual-line-mode)
+(add-hook 'mu4e-view-mode-hook 'turn-on-window-margin-mode)
+
+(add-hook 'mu4e-compose-mode-hook (lambda () (auto-fill-mode -1)))
+(add-hook 'mu4e-compose-mode-hook 'turn-on-window-margin-mode)
 
 ;; Sending mail
 (setq message-send-mail-function 'smtpmail-send-it)
@@ -85,5 +90,12 @@
 ;; use imagemagick, if available
 (when (fboundp 'imagemagick-register-types)
   (imagemagick-register-types))
+
+(use-package window-margin
+  :defer t
+  :commands
+  (turn-on-window-margin-mode
+   turn-off-window-margin-mode
+   window-margin-mode))
 
 (provide 'init-mail)
