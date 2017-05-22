@@ -160,11 +160,13 @@
                   nil))  ; available to archive
             (or subtree-end (point-max)))
         next-headline))))
-(defun org-agenda-show-agenda (&optional arg)
+
+(defun aj/org-agenda-show-agenda (&optional arg)
+  "Show my custom agenda and refresh it first chance we get."
   (interactive "P")
   (org-agenda arg " ")
   (run-with-idle-timer 1 nil 'org-agenda-redo))
-(spacemacs/set-leader-keys "oa" 'org-agenda-show-agenda)
+(spacemacs/set-leader-keys "oa" 'aj/org-agenda-show-agenda)
 
 ;; org-refile settings
 (defun aj/refile-target-files ()
