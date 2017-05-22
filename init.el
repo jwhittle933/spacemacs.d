@@ -77,7 +77,6 @@ values."
      typescript
      lua
      chrome
-     mu4e
 
      ;; TheBB's layers
      ;; https://github.com/TheBB/spacemacs-layers
@@ -88,6 +87,7 @@ values."
      aj-elixir
      aj-emacs-lisp
      aj-javascript
+     aj-mail
      auto-correct
      cleverparens-lispy
      contextual-menubar
@@ -395,7 +395,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (add-to-list 'load-path (expand-file-name "lisp" dotspacemacs-directory))
   (let ((default-directory (expand-file-name "packages" dotspacemacs-directory)))
-    (normal-top-level-add-subdirs-to-load-path))
+    (if (file-exists-p default-directory)
+        (normal-top-level-add-subdirs-to-load-path)))
   (require 'init-evil)
   (require 'init-html)
   (require 'init-php)
@@ -476,7 +477,6 @@ you should place your code here."
   (require 'init-flyspell)
   (require 'init-typescript)
   (require 'init-xclip)
-  (require 'init-mail)
 
   (require 'company-simple-complete)
   (require 'fill-or-unfill)
@@ -649,8 +649,10 @@ you should place your code here."
         (define-key winum-keymap key nil)
         (global-unset-key key)
         (global-set-key key (intern (format "eyebrowse-switch-to-window-config-%d" n))))))
+  (global-set-key (kbd "s-1") 'aj/persp-org-agenda)
   (global-set-key (kbd "s-8") 'spacemacs/custom-layouts-transient-state/spacemacs/custom-perspective-@Org-and-exit)
   (global-set-key (kbd "s-9") 'spacemacs/custom-layouts-transient-state/spacemacs/custom-perspective-@Spacemacs-and-exit)
+  (global-set-key (kbd "s-0") 'aj-mail/persp-mu4e)
 
   ;; Prevent font size changes from resizing frame
   (setq frame-inhibit-implied-resize t)

@@ -170,7 +170,6 @@
     (let ((org-agenda-window-setup 'only-window))
       (org-agenda arg " ")))
   (run-with-idle-timer 1 nil 'org-agenda-redo))
-(global-set-key (kbd "s-1") 'aj/persp-org-agenda)
 
 ;; org-refile settings
 (defun aj/refile-target-files ()
