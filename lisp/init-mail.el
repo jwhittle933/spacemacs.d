@@ -115,4 +115,13 @@
     (mu4e-update-mail-and-index background)))
 (define-key mu4e-headers-mode-map (kbd "s-r") 'aj/mu4e-refresh-inbox)
 
+(defun aj/mu4e-push (&rest ignored)
+  "Push email changes."
+  (interactive)
+  (let ((mu4e-get-mail-command "/usr/local/bin/mbsync -a --push"))
+    (mu4e-update-mail-and-index t)))
+
+(with-eval-after-load 'mu4e-mark
+  (advice-add 'mu4e-mark-execute-all :after 'aj/mu4e-push))
+
 (provide 'init-mail)
