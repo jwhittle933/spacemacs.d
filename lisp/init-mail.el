@@ -3,7 +3,7 @@
 (setq mu4e-compose-context-policy 'ask)
 
 ;; Indexing mail
-(setq mu4e-get-mail-command "/usr/local/bin/mbsync -aq")
+(setq mu4e-get-mail-command "/usr/local/bin/mbsync -a")
 (setq mu4e-update-interval (* 3 60))
 (setq mu4e-hide-index-messages t)
 (setq mu4e-index-lazy-check t)
@@ -104,7 +104,15 @@
   (unless (get-buffer-window "*mu4e-headers*")
     (mu4e-headers-search-bookmark
      (mu4e-get-bookmark-query ?i))
-    (delete-other-windows)))
+    (delete-other-windows))
+  (aj/mu4e-refresh-inbox t))
 (global-set-key (kbd "s-0") 'aj/persp-mu4e)
+
+(defun aj/mu4e-refresh-inbox (&rest background)
+  "Refresh only mbsync inbox"
+  (interactive)
+  (let ((mu4e-get-mail-command "/usr/local/bin/mbsync inbox"))
+    (mu4e-update-mail-and-index background)))
+(define-key mu4e-headers-mode-map (kbd "s-r") 'aj/mu4e-refresh-inbox)
 
 (provide 'init-mail)
