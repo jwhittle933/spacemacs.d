@@ -650,9 +650,9 @@ you should place your code here."
         (global-unset-key key)
         (global-set-key key (intern (format "eyebrowse-switch-to-window-config-%d" n))))))
   (global-set-key (kbd "s-1") 'aj/persp-org-agenda)
+  (global-set-key (kbd "s-2") 'aj-mail/persp-mu4e)
   (global-set-key (kbd "s-8") 'spacemacs/custom-layouts-transient-state/spacemacs/custom-perspective-@Org-and-exit)
   (global-set-key (kbd "s-9") 'spacemacs/custom-layouts-transient-state/spacemacs/custom-perspective-@Spacemacs-and-exit)
-  (global-set-key (kbd "s-0") 'aj-mail/persp-mu4e)
 
   ;; Prevent font size changes from resizing frame
   (setq frame-inhibit-implied-resize t)
