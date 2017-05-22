@@ -649,8 +649,6 @@ you should place your code here."
       (global-set-key key (intern (format "eyebrowse-switch-to-window-config-%d" n)))))
   (global-set-key (kbd "s-8") 'spacemacs/custom-layouts-transient-state/spacemacs/custom-perspective-@Org-and-exit)
   (global-set-key (kbd "s-9") 'spacemacs/custom-layouts-transient-state/spacemacs/custom-perspective-@Spacemacs-and-exit)
-  (global-set-key (kbd "s-0") 'spacemacs/custom-layouts-transient-state/spacemacs/custom-perspective-@Mu4e-and-exit)
-
 
   ;; Prevent font size changes from resizing frame
   (setq frame-inhibit-implied-resize t)

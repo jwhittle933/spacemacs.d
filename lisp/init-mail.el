@@ -98,4 +98,13 @@
    turn-off-window-margin-mode
    window-margin-mode))
 
+(defun aj/persp-mu4e ()
+  (interactive)
+  (persp-switch "@Mu4e")
+  (unless (get-buffer-window "*mu4e-headers*")
+    (mu4e-headers-search-bookmark
+     (mu4e-get-bookmark-query ?i))
+    (delete-other-windows)))
+(global-set-key (kbd "s-0") 'aj/persp-mu4e)
+
 (provide 'init-mail)
