@@ -161,12 +161,16 @@
             (or subtree-end (point-max)))
         next-headline))))
 
-(defun aj/org-agenda-show-agenda (&optional arg)
+(defun aj/persp-org-agenda (&optional arg)
   "Show my custom agenda and refresh it first chance we get."
   (interactive "P")
-  (org-agenda arg " ")
+  (persp-switch "@Agenda")
+  (if-let (window (get-buffer-window "*Org Agenda( )*"))
+      (select-window window)
+    (let ((org-agenda-window-setup 'only-window))
+      (org-agenda arg " ")))
   (run-with-idle-timer 1 nil 'org-agenda-redo))
-(spacemacs/set-leader-keys "oa" 'aj/org-agenda-show-agenda)
+(global-set-key (kbd "s-1") 'aj/persp-org-agenda)
 
 ;; org-refile settings
 (defun aj/refile-target-files ()

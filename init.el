@@ -639,14 +639,16 @@ you should place your code here."
 
   (define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
 
-  (dotimes (n 8)
-    ;; Map s-<number> to switch layouts
-    (global-set-key (kbd (format "s-%d" n)) (intern (format "spacemacs/persp-switch-to-%d" n)))
-    ;; Map M-<number> to workspace switching
-    (let ((key (kbd (format "M-%d" n))))
-      (define-key winum-keymap key nil)
-      (global-unset-key key)
-      (global-set-key key (intern (format "eyebrowse-switch-to-window-config-%d" n)))))
+  (dotimes (n 6)
+    (let ((n (+ n 2)))
+      (message "binding: %s" n)
+      ;; Map s-<number> to switch layouts
+      (global-set-key (kbd (format "s-%d" n)) (intern (format "spacemacs/persp-switch-to-%d" n)))
+      ;; Map M-<number> to workspace switching
+      (let ((key (kbd (format "M-%d" n))))
+        (define-key winum-keymap key nil)
+        (global-unset-key key)
+        (global-set-key key (intern (format "eyebrowse-switch-to-window-config-%d" n))))))
   (global-set-key (kbd "s-8") 'spacemacs/custom-layouts-transient-state/spacemacs/custom-perspective-@Org-and-exit)
   (global-set-key (kbd "s-9") 'spacemacs/custom-layouts-transient-state/spacemacs/custom-perspective-@Spacemacs-and-exit)
 
