@@ -19,7 +19,7 @@
   (interactive)
   (persp-switch "@Mu4e")
   (unless (get-buffer-window "*mu4e-headers*")
-    (require 'mu4e)
+    (mu4e t)
     (mu4e-headers-search-bookmark
      (mu4e-get-bookmark-query ?i))
     (delete-other-windows))

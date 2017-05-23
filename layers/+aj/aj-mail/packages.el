@@ -16,7 +16,7 @@
     (window-margin :location local))
   "The list of Lisp packages required by the aj-mail layer.")
 
-(defun aj-mail/post-init-mu4e ()
+(defun aj-mail/pre-init-mu4e ()
   ;; Mail contexts
   (setq mu4e-context-policy 'pick-first)
   (setq mu4e-compose-context-policy 'ask)
