@@ -1,24 +1,24 @@
 (defconst cleverparens-lispy-packages
-  '(evil-cleverparens
+  '(lispyville
     lispy))
 
-(defun cleverparens-lispy/init-evil-cleverparens ()
-  (use-package evil-cleverparens
+ (defun cleverparens-lispy/init-lispyville ()
+  (use-package lispyville
     :defer t
     :init
-    (progn
-      (add-hook 'emacs-lisp-mode-hook #'evil-cleverparens-mode)
-      (setq evil-cleverparens-use-additional-bindings t))
+    (add-hook 'lispy-mode-hook #'lispyville-mode)
     :config
-    (require 'evil-cleverparens-text-objects)))
+    (lispyville-set-key-theme '(operators
+                                additional-movement
+                                escape
+                                slurp/barf-lispy))))
 
-;; (defun cleverparens-lispy/init-lispy ()
-;;   (use-package lispy
-;;     :defer t
-;;     :init
-;;     (add-hook 'emacs-lisp-mode-hook (lambda ()
-;;                                       (lispy-mode 1)
-;;                                       (lispy-set-key-theme '(special evilcp c-digits))))))
+(defun cleverparens-lispy/init-lispy ()
+  (use-package lispy
+    :defer t
+    :init
+    (add-hook 'emacs-lisp-mode-hook (lambda ()
+                                      (lispy-mode 1)))))
 
 (defun cleverparens-lispy/pre-init-smartparens ()
   (setq sp-highlight-pair-overlay nil)
