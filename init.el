@@ -84,7 +84,6 @@ values."
      auto-correct
      cleverparens-lispy
      contextual-menubar
-     editorconfig
      fix-git-autorevert
      flow
      frame-geometry
