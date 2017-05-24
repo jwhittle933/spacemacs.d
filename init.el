@@ -680,6 +680,9 @@ you should place your code here."
   (global-set-key (kbd "C-=") 'spacemacs/scale-up-font)
   (global-set-key (kbd "C--") 'spacemacs/scale-down-font)
 
+  ;; Remove binding to open font panel
+  (global-unset-key (kbd "s-t"))
+
   ;; Pairing stuff
   (global-set-key (kbd "<end>") 'evil-end-of-line)
 
