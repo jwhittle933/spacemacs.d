@@ -425,8 +425,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq create-lockfiles nil)
   (setq require-final-newline t)
   (setq inhibit-compacting-font-caches t)
-  ;; TODO: Remove after Emacs 26.1, it is the default there
-  (setq switch-to-buffer-preserve-window-point t)
 
   (setq report-emacs-bug-no-explanations t)
 
