@@ -40,13 +40,7 @@ values."
                       syntax-checking-enable-tooltips t)
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage nil
-                      auto-completion-enable-snippets-in-popup nil
-                      ;; spacemacs adds .emacs.d/private/snippets as the first snippet dir
-                      ;; but I want to save to .spacemacs.d by default.
-                      auto-completion-private-snippets-directory
-                      (expand-file-name
-                       "snippets"
-                       dotspacemacs-directory))
+                      auto-completion-enable-snippets-in-popup nil)
      git
      dash
      pdf-tools
