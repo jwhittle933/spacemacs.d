@@ -321,7 +321,8 @@ Use a prefix arg to get regular RET. "
         (beginning-of-line)
         (setf (buffer-substring
                (line-beginning-position) (line-end-position)) "")))
-     ((org-at-table-p)
+     ((and (org-at-table-p)
+           (org-table-check-inside-data-field t))
       (if (-any?
            (lambda (x) (not (string= "" x)))
            (nth
