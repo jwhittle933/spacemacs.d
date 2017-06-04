@@ -326,7 +326,7 @@ Use a prefix arg to get regular RET. "
       (if (-any?
            (lambda (x) (not (string= "" x)))
            (nth
-            (- (org-table-current-dline) 1)
+            (org-table-current-dline)
             (org-table-to-lisp)))
           (org-return)
         ;; empty row
