@@ -37,16 +37,9 @@
     :config
     (modify-syntax-entry ?_ "w" js2-mode-syntax-table)))
 
-(defun aj-javascript/init-add-node-modules-path ()
-  (use-package add-node-modules-path
-    :defer t
-    :init
-    (progn
-      (add-hook 'web-typescript-mode-hook #'add-node-modules-path)
-      (add-hook 'web-mode-hook #'add-node-modules-path)
-      (add-hook 'typescript-mode-hook #'add-node-modules-path)
-      (with-eval-after-load 'rjsx-mode
-        (add-hook 'rjsx-mode-hook #'add-node-modules-path)))))
+(defun aj-javascript/post-init-add-node-modules-path ()
+  (with-eval-after-load 'rjsx-mode
+    (add-hook 'rjsx-mode-hook #'add-node-modules-path)))
 
 (defun aj-javascript/post-init-company-flow ()
   (spacemacs|add-company-backends
