@@ -4,6 +4,7 @@
     company-flow
     eslintd-fix
     flycheck
+    prettier-js
     rjsx-mode
     ))
 
@@ -53,3 +54,13 @@
     (push 'json-jsonlint flycheck-disabled-checkers))
 
   (spacemacs/enable-flycheck 'rjsx-mode))
+
+(defun aj-javascript/init-prettier-js ()
+  (use-package prettier-js
+    :defer t
+    :init
+    (setq prettier-js-args '(
+                             "--trailing-comma" "es5"
+                             "--bracket-spacing" "false"
+                             "--no-semi"
+                             "--single-quote"))))
