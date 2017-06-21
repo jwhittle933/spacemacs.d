@@ -20,7 +20,12 @@
 ;;; Code:
 
 (defconst aj-typescript-packages
-  '(tide))
+  '(tide
+    prettier-js))
+
+(defun aj-typescript/post-init-prettier-js ()
+  (add-hook 'typescript-mode-hook 'prettier-js-mode t)
+  (add-hook 'web-mode-hook 'prettier-js-mode t))
 
 (defun aj-typescript/post-init-tide ()
   (setq typescript-indent-level 2)
