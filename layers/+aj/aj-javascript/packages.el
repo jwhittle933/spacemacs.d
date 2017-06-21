@@ -5,8 +5,8 @@
     eslintd-fix
     flycheck
     prettier-js
-    rjsx-mode
-    ))
+    rjsx-mode))
+
 
 (defun aj-javascript/init-eslintd-fix ()
   (use-package eslintd-fix
@@ -59,8 +59,10 @@
   (use-package prettier-js
     :defer t
     :init
-    (setq prettier-js-args '(
-                             "--trailing-comma" "es5"
-                             "--bracket-spacing" "false"
-                             "--no-semi"
-                             "--single-quote"))))
+    (progn
+      (add-hook 'rjsx-mode-hook 'prettier-js-mode)
+      (setq prettier-js-args '(
+                               "--trailing-comma" "es5"
+                               "--bracket-spacing" "false"
+                               "--no-semi"
+                               "--single-quote")))))
