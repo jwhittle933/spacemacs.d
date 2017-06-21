@@ -21,6 +21,7 @@
 
 (defconst aj-typescript-packages
   '(tide
+    typescript-mode
     prettier-js))
 
 (defun aj-typescript/post-init-prettier-js ()
@@ -28,9 +29,13 @@
   (add-hook 'web-mode-hook 'prettier-js-mode t))
 
 (defun aj-typescript/post-init-tide ()
-  (setq typescript-indent-level 2)
-
   (with-eval-after-load 'tide
     (spacemacs/set-leader-keys-for-minor-mode 'tide-mode "f" #'tide-fix)))
 
+
+(defun aj-typescript/post-init-typescript-mode ()
+  (setq typescript-indent-level 2)
+
+  (with-eval-after-load 'typescript-mode
+    (modify-syntax-entry ?_ "w" typescript-mode-syntax-table)))
 ;;; packages.el ends here
