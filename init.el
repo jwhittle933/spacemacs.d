@@ -67,7 +67,6 @@ This function should only modify configuration layer settings."
      docker
      elm
      restclient
-     typescript
      lua
      chrome
 
@@ -80,6 +79,7 @@ This function should only modify configuration layer settings."
      aj-elixir
      aj-emacs-lisp
      aj-javascript
+     aj-typescript
      auto-correct
      ;; cleverparens-lispy
      contextual-menubar
@@ -475,7 +475,6 @@ you should place your code here."
   (require 'init-org)
   (require 'init-terminal-cursor)
   (require 'init-flyspell)
-  (require 'init-typescript)
   (require 'init-xclip)
 
   (require 'company-simple-complete)
