@@ -48,6 +48,7 @@
 (setq org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
 (setq org-agenda-sticky t)
 (setq org-export-html-postamble nil)
+(setq org-M-RET-may-split-line '((default . nil)))
 
 (setq org-todo-keywords
       (quote ((sequence "TODO(t)" "|" "DONE(d)")
