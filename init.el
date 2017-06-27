@@ -47,7 +47,8 @@ This function should only modify configuration layer settings."
      clojure
      (org :variables
           org-enable-github-support t
-          org-enable-reveal-js-support t)
+          org-enable-reveal-js-support t
+          org-want-todo-bindings t)
      colors
      (osx :variables osx-command-as 'super)
      ;; vinegar
