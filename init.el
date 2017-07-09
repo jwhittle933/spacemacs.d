@@ -399,6 +399,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (setq node-add-modules-path t)
 
+  ;; Fix powerline separator colors on mac
+  (setq powerline-image-apple-rgb t)
+
   ;; Hide title bar
   (setq initial-frame-alist '((undecorated . t)))
 
