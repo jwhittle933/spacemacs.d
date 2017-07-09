@@ -101,7 +101,6 @@ This function should only modify configuration layer settings."
      graphviz-dot-mode
      helpful
      org-gcal
-     org-mobile-sync
      xclip
      )
    ;; A list of packages that cannot be updated.
