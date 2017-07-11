@@ -489,6 +489,11 @@ you should place your code here."
     :commands
     (helpful-function helpful-command helpful-macro))
 
+  ;; Prefer dumb-jump over evil to definition
+  (setq spacemacs-default-jump-handlers (delete 'dumb-jump-go spacemacs-default-jump-handlers))
+  (push 'dumb-jump-go spacemacs-default-jump-handlers)
+  (setq dumb-jump-prefer-searcher 'rg)
+
   ;; Edit from Chrome
   (add-to-list 'edit-server-new-frame-alist '(undecorated . nil))
   (with-eval-after-load 'edit-server
