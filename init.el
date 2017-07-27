@@ -687,6 +687,14 @@ you should place your code here."
   (global-set-key (kbd "C-=") 'spacemacs/scale-up-font)
   (global-set-key (kbd "C--") 'spacemacs/scale-down-font)
 
+  (setq completing-read-function 'ivy-completing-read)
+
+  ;; Ivy isn't great for renaming files, so let's try using the default function
+  (defun aj/use-completing-read-default (orig-fun &rest args)
+    (let ((completing-read-function 'completing-read-default))
+      (apply orig-fun args)))
+  (advice-add 'spacemacs/rename-current-buffer-file :around 'aj/use-completing-read-default)
+
   ;; Remove binding to open font panel
   (global-unset-key (kbd "s-t"))
 
