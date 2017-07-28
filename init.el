@@ -512,8 +512,36 @@ you should place your code here."
 
   (spacemacs|do-after-display-system-init
    (setq powerline-default-separator 'alternate)
-   (setq spaceline-version-control-p nil)
-   (spaceline-compile))
+   (spaceline-compile 'main
+     '(((persp-name
+         workspace-number
+         window-number)
+        :fallback evil-state
+        :face highlight-face
+        :priority 1)
+       ((buffer-modified
+         buffer-id
+         remote-host)
+        :priority 0)
+       (major-mode :priority 2)
+       (process :when active)
+       ((flycheck-error
+         flycheck-warning
+         flycheck-info)
+        :when active
+        :priority 3)
+       (version-control :when active
+                        :priority 7))
+     '(((purpose
+         selection-info)
+        :priority 2)
+       ((line-column
+         point-position)
+        :priority 0)
+       (global :when active)
+       ((buffer-position
+         hud)
+        :priority 1))))
 
   ;; Indentation
   (setq
