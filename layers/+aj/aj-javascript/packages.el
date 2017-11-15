@@ -4,11 +4,10 @@
     company-flow
     eslintd-fix
     flow-minor-mode
+    (flow-js2-mode :location (recipe :fetcher github :repo "Fuco1/flow-js2-mode"))
     flycheck
     prettier-js
-    (flow-js2-mode :location (recipe :fetcher github :repo "Fuco1/flow-js2-mode"))
     rjsx-mode))
-
 
 (defun aj-javascript/init-eslintd-fix ()
   (use-package eslintd-fix
@@ -100,4 +99,3 @@
     :defer t
     :init
     (add-hook 'rjsx-mode-hook 'flow-js2-mode)))
-
