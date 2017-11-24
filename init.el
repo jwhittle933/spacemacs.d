@@ -44,7 +44,7 @@ This function should only modify configuration layer settings."
      dash
      pdf-tools
      html
-     clojure
+     ;; clojure
      (org :variables
           org-enable-github-support t
           org-enable-reveal-js-support t
@@ -53,22 +53,22 @@ This function should only modify configuration layer settings."
      (osx :variables osx-command-as 'super)
      ;; vinegar
      github
-     ruby
+     ;; ruby
      (shell :variables
             shell-default-shell 'ansi-term
             shell-default-height 30
             shell-default-position 'bottom)
      (spell-checking :variables
                      spell-checking-enable-by-default nil)
-     ranger
+     ;; ranger
      version-control
-     rcirc
-     tmux
+     ;; rcirc
+     ;; tmux
      yaml
      docker
-     elm
+     ;; elm
      restclient
-     lua
+     ;; lua
      chrome
 
      ;; TheBB's layers
@@ -80,7 +80,7 @@ This function should only modify configuration layer settings."
      aj-elixir
      aj-emacs-lisp
      aj-javascript
-     aj-typescript
+     ;; aj-typescript
      auto-correct
      ;; cleverparens-lispy
      contextual-menubar
@@ -188,8 +188,9 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("SF Mono for Powerline"
-                               :size 14
+   ;; dotspacemacs-default-font '("SF Mono for Powerline"
+   dotspacemacs-default-font '("Source Code Pro"
+                               :size 13
                                :weight light
                                :width normal
                                :powerline-scale 1.1)
@@ -197,7 +198,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands `M-x' (after pressing on the leader key).
    ;; (default "SPC")
-   dotspacemacs-emacs-command-key ":"
+   ;; dotspacemacs-emacs-command-key ":"
    ;; The key used for Vim Ex commands (default ":")
    dotspacemacs-ex-command-key ":"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -480,7 +481,7 @@ you should place your code here."
   (require 'init-magit)
   (require 'init-org)
   (require 'init-terminal-cursor)
-  (require 'init-flyspell)
+  ;; (require 'init-flyspell)
   (require 'init-xclip)
 
   (require 'company-simple-complete)
@@ -744,34 +745,48 @@ you should place your code here."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(max-specpdl-size 2000)
+   '(package-selected-packages
+     (quote
+      (dired-collapse password-generator impatient-mode elisp-refs loop list-utils helpful org-brain prettier-js evil-org parinfer ruby-refactor company-php ac-php-core xcscope sayid evil-lion lispyville flatui-theme company-lua ghub+ apiwrap ghub mu4e-maildirs-extension mu4e-alert gmail-message-mode ham-mode html-to-markdown flymd edit-server phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode swift-mode counsel-gtags esup nginx-mode string-inflection symon xclip browse-at-remote lua-mode gnuplot-mode wgrep smex rjsx-mode ivy-purpose ivy-hydra flyspell-correct-ivy counsel-dash org-mobile-sync shift-number eslintd-fix vmd-mode request-deferred deferred org-gcal solarized-theme fuzzy magithub flycheck-dogma flycheck-dialyxir pdf-tools winum counsel-projectile counsel unfill wgrep-ag eros vimrc-mode dactyl-mode nameless evil-multiedit add-node-modules-path org-tree-slide ox-reveal restclient-helm ob-restclient company-restclient know-your-http-well hide-comnt package-lint ob-elixir helm-purpose window-purpose imenu-list minitest pug-mode tide typescript-mode restclient ob-http zoutline parent-mode goto-chg undo-tree diminish flx seq spinner bind-key pkg-info epl flycheck-credo flycheck-package osx-dictionary company-flow dumb-jump ht flycheck-flow helm-gtags ggtags emoji-cheat-sheet-plus editorconfig company-emoji org marshal flycheck-mix evil-unimpaired popup evil-terminal-cursor-changer org-projectile mwim github-search flycheck-elm elm-mode yaml-mode dockerfile-mode docker tablist docker-tramp flyspell-correct-helm anzu highlight ox-gfm color-identifiers-mode flyspell-correct align-cljlet iedit nlinum-relative nlinum bind-map dash evil-visual-mark-mode ruby-end s ivy async hydra org-download projectile smartparens helm helm-core avy package-build evil eyebrowse column-enforce-mode clojure-snippets clj-refactor inflections edn peg cider-eval-sexp-fu cider queue clojure-mode evil-cleverparens paredit xterm-color web-mode web-beautify toc-org tagedit stickyfunc-enhance srefactor spaceline powerline smeargle slim-mode shell-pop shackle scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder rcirc-notify rcirc-color rbenv ranger rake rainbow-mode rainbow-identifiers pbcopy osx-trash orgit org-repo-todo org-present org-pomodoro alert log4e gntp org-plus-contrib org-bullets multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-gh-pulls macrostep livid-mode skewer-mode simple-httpd lispy swiper less-css-mode launchctl json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc jade-mode htmlize helm-gitignore request helm-flyspell helm-dash helm-css-scss helm-company helm-c-yasnippet haml-mode graphviz-dot-mode gnuplot gitignore-mode github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh logito pcache gh-md flycheck-pos-tip flycheck floobits evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help erlang emmet-mode elisp-slime-nav dtrt-indent diff-hl deft dash-at-point company-web web-completion-data company-tern dash-functional tern company-statistics company-quickhelp pos-tip company-flx coffee-mode chruby bundler inf-ruby auto-yasnippet yasnippet auto-dictionary auto-compile packed alchemist company elixir-mode ac-ispell auto-complete ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package spacemacs-theme smooth-scrolling restart-emacs rainbow-delimiters quelpa popwin persp-mode pcre2el paradox page-break-lines open-junk-file neotree move-text monokai-theme lorem-ipsum linum-relative link-hint leuven-theme info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery f expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu define-word clean-aindent-mode buffer-move bracketed-paste auto-highlight-symbol aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+   '(paradox-github-token t)
+   '(safe-local-variable-values
+     (quote
+      ((prettier-js-args "--tab-width" "4" "--trailing-comma" "es5")
+       (create-lockfiles . t))))
+   '(send-mail-function (quote mailclient-send-it)))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(avy-lead-face ((t (:background "#20211c" :foreground "#F92672"))))
+   '(avy-lead-face-0 ((t (:background "#20211c" :foreground "#e5236a"))))
+   '(avy-lead-face-1 ((t (:background "#20211c" :foreground "#d32062"))))
+   '(avy-lead-face-2 ((t (:background "#20211c" :foreground "#c41e5b"))))
+   '(aw-leading-char-face ((t (:foreground "#F92672" :height 8.0))))
+   '(diff-refine-added ((t (:background "#394e10" :foreground "#A6E22E"))))
+   '(diff-refine-removed ((t (:background "#430b1e" :foreground "#F92672"))))
+   '(hl-line ((t (:background "#33362d"))))
+   '(ivy-highlight-face ((t (:foreground "#A1EFE4"))))
+   '(sp-show-pair-match-face ((t (:background "#AE81FF" :foreground "#272822" :inverse-video nil :weight normal)))))
+  )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(max-specpdl-size 2000)
  '(package-selected-packages
    (quote
-    (dired-collapse password-generator impatient-mode elisp-refs loop list-utils helpful org-brain prettier-js evil-org parinfer ruby-refactor company-php ac-php-core xcscope sayid evil-lion lispyville flatui-theme company-lua ghub+ apiwrap ghub mu4e-maildirs-extension mu4e-alert gmail-message-mode ham-mode html-to-markdown flymd edit-server phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode swift-mode counsel-gtags esup nginx-mode string-inflection symon xclip browse-at-remote lua-mode gnuplot-mode wgrep smex rjsx-mode ivy-purpose ivy-hydra flyspell-correct-ivy counsel-dash org-mobile-sync shift-number eslintd-fix vmd-mode request-deferred deferred org-gcal solarized-theme fuzzy magithub flycheck-dogma flycheck-dialyxir pdf-tools winum counsel-projectile counsel unfill wgrep-ag eros vimrc-mode dactyl-mode nameless evil-multiedit add-node-modules-path org-tree-slide ox-reveal restclient-helm ob-restclient company-restclient know-your-http-well hide-comnt package-lint ob-elixir helm-purpose window-purpose imenu-list minitest pug-mode tide typescript-mode restclient ob-http zoutline parent-mode goto-chg undo-tree diminish flx seq spinner bind-key pkg-info epl flycheck-credo flycheck-package osx-dictionary company-flow dumb-jump ht flycheck-flow helm-gtags ggtags emoji-cheat-sheet-plus editorconfig company-emoji org marshal flycheck-mix evil-unimpaired popup evil-terminal-cursor-changer org-projectile mwim github-search flycheck-elm elm-mode yaml-mode dockerfile-mode docker tablist docker-tramp flyspell-correct-helm anzu highlight ox-gfm color-identifiers-mode flyspell-correct align-cljlet iedit nlinum-relative nlinum bind-map dash evil-visual-mark-mode ruby-end s ivy async hydra org-download projectile smartparens helm helm-core avy package-build evil eyebrowse column-enforce-mode clojure-snippets clj-refactor inflections edn peg cider-eval-sexp-fu cider queue clojure-mode evil-cleverparens paredit xterm-color web-mode web-beautify toc-org tagedit stickyfunc-enhance srefactor spaceline powerline smeargle slim-mode shell-pop shackle scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder rcirc-notify rcirc-color rbenv ranger rake rainbow-mode rainbow-identifiers pbcopy osx-trash orgit org-repo-todo org-present org-pomodoro alert log4e gntp org-plus-contrib org-bullets multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-gh-pulls macrostep livid-mode skewer-mode simple-httpd lispy swiper less-css-mode launchctl json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc jade-mode htmlize helm-gitignore request helm-flyspell helm-dash helm-css-scss helm-company helm-c-yasnippet haml-mode graphviz-dot-mode gnuplot gitignore-mode github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh logito pcache gh-md flycheck-pos-tip flycheck floobits evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help erlang emmet-mode elisp-slime-nav dtrt-indent diff-hl deft dash-at-point company-web web-completion-data company-tern dash-functional tern company-statistics company-quickhelp pos-tip company-flx coffee-mode chruby bundler inf-ruby auto-yasnippet yasnippet auto-dictionary auto-compile packed alchemist company elixir-mode ac-ispell auto-complete ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package spacemacs-theme smooth-scrolling restart-emacs rainbow-delimiters quelpa popwin persp-mode pcre2el paradox page-break-lines open-junk-file neotree move-text monokai-theme lorem-ipsum linum-relative link-hint leuven-theme info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery f expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu define-word clean-aindent-mode buffer-move bracketed-paste auto-highlight-symbol aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
- '(paradox-github-token t)
- '(safe-local-variable-values
-   (quote
-    ((prettier-js-args "--tab-width" "4" "--trailing-comma" "es5")
-     (create-lockfiles . t))))
- '(send-mail-function (quote mailclient-send-it)))
+    (org-gcal ob-elixir yaml-mode xterm-color xclip ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights vmd-mode vi-tilde-fringe uuidgen use-package unfill toc-org tide typescript-mode tagedit swift-mode spaceline powerline smex smeargle slim-mode shift-number shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rjsx-mode reveal-in-osx-finder restart-emacs rcirc-notify rcirc-color rbenv ranger rake rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode prettier-js popwin phpunit phpcbf php-extras php-auto-yasnippets persp-mode pdf-tools pcre2el pbcopy paradox ox-reveal ox-gfm osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert request-deferred request deferred log4e gntp org-download org-bullets open-junk-file ob-restclient ob-http org-plus-contrib nginx-mode neotree nameless mwim multi-term move-text mmm-mode minitest markdown-toc magit-gitflow magit-gh-pulls macrostep lua-mode lorem-ipsum livid-mode skewer-mode simple-httpd linum-relative link-hint less-css-mode launchctl js2-refactor js2-mode js-doc ivy-hydra info+ indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt helpful elisp-refs loop list-utils help-fns+ helm-make haml-mode graphviz-dot-mode google-translate golden-ratio gnuplot gmail-message-mode ham-mode markdown-mode html-to-markdown gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md fuzzy flyspell-correct-ivy flyspell-correct flymd flycheck-pos-tip pos-tip flycheck-package package-lint flycheck-mix flycheck-flow flycheck-elm flycheck-credo flycheck flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-terminal-cursor-changer evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eslintd-fix eshell-z eshell-prompt-extras esh-help eros erlang emmet-mode elm-mode elisp-slime-nav edit-server dumb-jump dtrt-indent drupal-mode php-mode dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat dired-collapse f diminish diff-hl dash-at-point counsel-projectile projectile counsel-dash helm-dash dash-functional helm helm-core counsel swiper ivy company-web web-completion-data company-statistics company-restclient restclient know-your-http-well company-flx flx company-flow column-enforce-mode color-identifiers-mode coffee-mode clojure-snippets clj-refactor hydra inflections edn multiple-cursors paredit peg clean-aindent-mode cider-eval-sexp-fu eval-sexp-fu highlight cider seq spinner queue clojure-mode chruby bundler inf-ruby bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-dictionary auto-compile packed async alchemist s company dash elixir-mode pkg-info epl aggressive-indent adaptive-wrap ace-window ace-link avy ac-ispell auto-complete popup monokai-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(avy-lead-face ((t (:background "#20211c" :foreground "#F92672"))))
- '(avy-lead-face-0 ((t (:background "#20211c" :foreground "#e5236a"))))
- '(avy-lead-face-1 ((t (:background "#20211c" :foreground "#d32062"))))
- '(avy-lead-face-2 ((t (:background "#20211c" :foreground "#c41e5b"))))
- '(aw-leading-char-face ((t (:foreground "#F92672" :height 8.0))))
- '(diff-refine-added ((t (:background "#394e10" :foreground "#A6E22E"))))
- '(diff-refine-removed ((t (:background "#430b1e" :foreground "#F92672"))))
- '(hl-line ((t (:background "#33362d"))))
- '(ivy-highlight-face ((t (:foreground "#A1EFE4"))))
- '(sp-show-pair-match-face ((t (:background "#AE81FF" :foreground "#272822" :inverse-video nil :weight normal)))))
-)
+ )
