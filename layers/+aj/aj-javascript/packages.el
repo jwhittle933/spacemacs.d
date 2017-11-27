@@ -1,10 +1,7 @@
 (defconst aj-javascript-packages
   '(
     add-node-modules-path
-    company-flow
-    eslintd-fix
-    flow-minor-mode
-    (flow-js2-mode :location (recipe :fetcher github :repo "Fuco1/flow-js2-mode"))
+    (eslintd-fix :location (recipe :fetcher github :repo "aaronjensen/eslintd-fix" :branch "tcp"))
     flycheck
     prettier-js
     rjsx-mode))
@@ -35,8 +32,7 @@
       (advice-add #'js-jsx-indent-line
                   :after
                   #'aj-javascript/js-jsx-indent-line-align-closing-bracket)
-      (add-hook 'rjsx-mode-hook #'aj-javascript/set-eslint-executable t)
-      (add-hook 'rjsx-mode-hook #'aj-javascript/set-flow-executable t))
+      (add-hook 'rjsx-mode-hook #'aj-javascript/set-eslint-executable t))
     :config
     (modify-syntax-entry ?_ "w" js2-mode-syntax-table)))
 
@@ -44,11 +40,6 @@
   (with-eval-after-load 'rjsx-mode
     (add-hook 'rjsx-mode-hook #'add-node-modules-path)))
 
-(defun aj-javascript/post-init-company-flow ()
-  (spacemacs|add-company-backends
-    :backends
-    '((company-flow :with company-dabbrev-code)
-      company-files)))
 
 (defun aj-javascript//flycheck-eslint-disable-prettier (oldfun checker &rest args)
   (let ((arguments (apply oldfun checker args)))
@@ -86,16 +77,3 @@
     (progn)))
       ;; (add-hook 'rjsx-mode-hook 'aj-javascript//enable-prettier)
       ;; (add-hook 'web-mode-hook 'aj-javascript//enable-prettier-in-web-mode)
-
-
-(defun aj-javascript/init-flow-minor-mode ()
-  (use-package flow-minor-mode
-    :defer t
-    :init
-    (add-hook 'rjsx-mode-hook 'flow-minor-enable-automatically)))
-
-(defun aj-javascript/init-flow-js2-mode ()
-  (use-package flow-js2-mode
-    :defer t
-    :init
-    (add-hook 'rjsx-mode-hook 'flow-js2-mode)))

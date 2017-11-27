@@ -25,13 +25,11 @@
     prettier-js))
 
 (defun aj-typescript/post-init-prettier-js ()
-  (add-hook 'typescript-mode-hook 'prettier-js-mode t)
-  (add-hook 'web-mode-hook 'prettier-js-mode t))
+  (add-hook 'typescript-mode-hook 'prettier-js-mode t))
 
 (defun aj-typescript/post-init-tide ()
   (with-eval-after-load 'tide
     (spacemacs/set-leader-keys-for-minor-mode 'tide-mode "f" #'tide-fix)))
-
 
 (defun aj-typescript/post-init-typescript-mode ()
   (setq typescript-indent-level 2)
