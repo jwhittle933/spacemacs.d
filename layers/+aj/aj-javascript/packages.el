@@ -1,7 +1,7 @@
 (defconst aj-javascript-packages
   '(
     add-node-modules-path
-    (eslintd-fix :location (recipe :fetcher github :repo "aaronjensen/eslintd-fix" :branch "tcp"))
+    eslintd-fix
     flycheck
     prettier-js
     rjsx-mode))
