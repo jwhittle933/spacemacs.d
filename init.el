@@ -482,6 +482,25 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  ;; claylyons config
+  ;;
+  (add-hook 'focus-out-hook
+            (defun save-current-buffer-if-needed ()
+              (interactive)
+              (when (and (buffer-file-name) (buffer-modified-p))
+                (save-buffer))))
+  (add-hook 'dired-load-hook
+            (function (lambda () (load "dired-x"))))
+
+  (add-hook 'dired-mode-hook
+            (lambda ()
+              ;; Set dired-x buffer-local variables here.  For example:
+              (dired-omit-mode 1)))
+
+  ;; '(dired-omit-files "^\\.?#\\|\\.DS_Store")
+  ;;
+  ;; claylyons end
+
   (require 'init-magit)
   (require 'init-org)
   (require 'init-terminal-cursor)
@@ -497,15 +516,7 @@ you should place your code here."
     :commands
     (helpful-function helpful-command helpful-macro))
 
-  (add-hook 'dired-load-hook
-            (function (lambda () (load "dired-x"))))
 
-  (add-hook 'dired-mode-hook
-            (lambda ()
-              ;; Set dired-x buffer-local variables here.  For example:
-              (dired-omit-mode 1)))
-
-  ;; '(dired-omit-files "^\\.?#\\|\\.DS_Store")
   ;; Prefer dumb-jump over evil to definition
   (setq spacemacs-default-jump-handlers (delete 'dumb-jump-go spacemacs-default-jump-handlers))
   (push 'dumb-jump-go spacemacs-default-jump-handlers)
