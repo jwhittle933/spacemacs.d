@@ -156,10 +156,11 @@ It should only modify the values of Spacemacs settings."
    ;; with `:variables' keyword (similar to layers). Check the editing styles
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
-   dotspacemacs-editing-style '(hybrid :variables
-                                       hybrid-mode-default-state 'normal
-                                       hybrid-mode-enable-evilified-state t
-                                       hybrid-mode-enable-hjkl-bindings nil)
+   dotspacemacs-editing-style 'vim
+   ;; dotspacemacs-editing-style '(hybrid :variables
+   ;;                                     hybrid-mode-default-state 'normal
+   ;;                                     hybrid-mode-enable-evilified-state t
+   ;;                                     hybrid-mode-enable-hjkl-bindings nil)
    ;; If non-nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -400,7 +401,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
         (normal-top-level-add-subdirs-to-load-path)))
   (require 'init-evil)
   (require 'init-html)
-  (require 'init-php)
   (require 'init-sass)
 
   (add-hook 'dired-mode-hook #'dired-collapse-mode)
@@ -444,14 +444,14 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq report-emacs-bug-no-explanations t)
 
   ;; smartparens
-  (setq sp-highlight-pair-overlay nil)
+  ;; (setq sp-highlight-pair-overlay nil)
 
   (setq flycheck-display-errors-delay 0.5)
 
   ;; Ruby
   ;; Treat _ as a word character
-  (with-eval-after-load 'ruby-mode
-    (modify-syntax-entry ?_ "w" ruby-mode-syntax-table))
+  ;; (with-eval-after-load 'ruby-mode
+  ;;   (modify-syntax-entry ?_ "w" ruby-mode-syntax-table))
 
   ;; Company
   ;; Fuzzy completion
@@ -682,7 +682,7 @@ you should place your code here."
   (add-hook 'text-mode-hook 'auto-fill-mode)
 
   ;; Don't copy text to system clipboard while selecting it
-  (fset 'evil-visual-update-x-selection 'ignore)
+  ;; (fset 'evil-visual-update-x-selection 'ignore)
 
   ;; Remap paste to be able to paste multiple times
   ;; If I don't like this, maybe I'll try this:
