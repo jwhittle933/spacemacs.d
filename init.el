@@ -26,6 +26,7 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     claylyons
      swift
      ;; php
      nginx
@@ -74,7 +75,7 @@ This function should only modify configuration layer settings."
      ;; TheBB's layers
      ;; https://github.com/TheBB/spacemacs-layers
      ;; no-dots
-     evil-little-word
+     ;; evil-little-word
 
      ;; Personal layers
      aj-elixir
@@ -197,9 +198,9 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("SF Mono for Powerline"
+   dotspacemacs-default-font '("Source Code Pro for Powerline"
                                :size 14
-                               :weight light
+                               :weight Medium
                                :width normal
                                :powerline-scale 1.1)
    ;; The leader key
@@ -208,7 +209,7 @@ It should only modify the values of Spacemacs settings."
    ;; (default "SPC")
    dotspacemacs-emacs-command-key ":"
    ;; The key used for Vim Ex commands (default ":")
-   dotspacemacs-ex-command-key ":"
+   dotspacemacs-ex-command-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
    ;; (default "M-m")
    dotspacemacs-emacs-leader-key "M-m"
