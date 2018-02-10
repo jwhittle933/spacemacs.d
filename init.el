@@ -204,7 +204,7 @@ It should only modify the values of Spacemacs settings."
    ;; (default "SPC")
    ;; dotspacemacs-emacs-command-key ":"
    ;; The key used for Vim Ex commands (default ":")
-   dotspacemacs-ex-command-key ":"
+   dotspacemacs-ex-command-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
    ;; (default "M-m")
    dotspacemacs-emacs-leader-key "M-m"
