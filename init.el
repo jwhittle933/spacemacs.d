@@ -646,7 +646,7 @@ you should place your code here."
   (global-set-key (kbd "M-]") 'sp-slurp-hybrid-sexp)
   (global-set-key (kbd "C-x C-l") 'evil-complete-next-line)
 
-  (spacemacs/set-leader-keys "SPC" 'avy-goto-char-2)
+  ;; (spacemacs/set-leader-keys "SPC" 'avy-goto-char-2)
   (setq avy-timeout-seconds 0.2)
 
   (spacemacs/set-leader-keys "fel" 'counsel-find-library)
