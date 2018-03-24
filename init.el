@@ -51,7 +51,8 @@ This function should only modify configuration layer settings."
           org-enable-reveal-js-support t
           org-want-todo-bindings t)
      colors
-     (osx :variables osx-command-as 'super)
+     osx
+     ;; (osx :variables osx-command-as 'super)
      ;; vinegar
      github
      ;; ruby
@@ -182,22 +183,23 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(gruvbox-dark-medium
-               dakrone
-               monokai
-               whiteboard
-               solarized-light
-               flatui)
+   dotspacemacs-themes '(seti
+                         gruvbox-dark-medium
+                         dakrone
+                         monokai
+                         whiteboard
+                         solarized-light
+                         flatui)
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    ;; dotspacemacs-default-font '("SF Mono for Powerline"
    dotspacemacs-default-font '("Source Code Pro"
-                     :size 13
-                     :weight light
-                     :width normal
-                     :powerline-scale 1.1)
+                               :size 13
+                               :weight normal
+                               :width normal
+                               :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands `M-x' (after pressing on the leader key).
