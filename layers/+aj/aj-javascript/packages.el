@@ -57,10 +57,11 @@
 
 (defun aj-javascript/init-prettier-js ()
   (use-package prettier-js
+    :diabled
     :defer t
     :init
     (progn
-      ;; (add-hook 'rjsx-mode-hook 'prettier-js-mode)
+      (add-hook 'rjsx-mode-hook 'prettier-js-mode)
       (setq prettier-js-args '(
                                "--trailing-comma" "all"
                                "--bracket-spacing" "true"
