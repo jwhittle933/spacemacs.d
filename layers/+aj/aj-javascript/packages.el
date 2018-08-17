@@ -57,7 +57,7 @@
 
 (defun aj-javascript/init-prettier-js ()
   (use-package prettier-js
-    :diabled
+    :disabled
     :defer t
     :init
     (progn

@@ -79,7 +79,8 @@ This function should only modify configuration layer settings."
      ;; evil-little-word
 
      ;; Personal layers
-     aj-elixir
+     elixir
+     erlang
      aj-emacs-lisp
      aj-javascript
      ;; aj-typescript
@@ -183,7 +184,9 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(seti
+   dotspacemacs-themes '(naquadah
+                         atom-one-dark
+                         seti
                          gruvbox-dark-medium
                          dakrone
                          monokai
@@ -195,8 +198,9 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    ;; dotspacemacs-default-font '("SF Mono for Powerline"
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+   ;; dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Source Code Pro for Powerline Medium"
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
