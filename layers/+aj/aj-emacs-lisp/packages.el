@@ -1,8 +1,8 @@
 (defconst aj-emacs-lisp-packages
   '(
     eros
-    flycheck-package
-    nameless))
+    flycheck-package))
+    ;; nameless))
 
 (defun aj-emacs-lisp/init-eros ()
   (use-package eros
@@ -16,11 +16,11 @@
     :init
     (add-hook 'emacs-lisp-mode-hook #'flycheck-package-setup)))
 
-(defun aj-emacs-lisp/init-nameless ()
-  (use-package nameless
-    :defer t
-    :init
-    (add-hook 'emacs-lisp-mode-hook #'nameless-mode)))
+;; (defun aj-emacs-lisp/init-nameless ()
+;;   (use-package nameless
+;;     :defer t
+;;     :init
+;;     (add-hook 'emacs-lisp-mode-hook #'nameless-mode)))
 
 (defun aj-emacs-lisp/post-init-parinfer ()
   (with-eval-after-load 'parinfer-mode
