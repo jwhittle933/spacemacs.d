@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: obnoxious log
+# key: log
+# --
+console.log('${1:`"LOG _)_))_)_)_)OOOOOooooooo------>>>   "`}'.repeat(${2:12}));
+console.log({ $3 });
+console.log('$1'.repeat($2));
+
+$0
