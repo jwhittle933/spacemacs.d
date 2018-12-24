@@ -1,7 +1,7 @@
 (with-eval-after-load 'evil
   ;; Enable evil-mc for only prog and text, so it doesn't screw w/ magit and such
-  (add-hook 'prog-mode-hook 'turn-on-evil-mc-mode)
-  (add-hook 'text-mode-hook 'turn-on-evil-mc-mode)
+  ;; (add-hook 'prog-mode-hook 'turn-on-evil-mc-mode)
+  ;; (add-hook 'text-mode-hook 'turn-on-evil-mc-mode)
 
   ;; Move text up and down in visual mode with J/K
   (define-key evil-visual-state-map "J"
